@@ -87,7 +87,7 @@ const LadiesOrders = () => {
   };
 
   return (
-    <SafeAreaView className="flex-1">
+    <SafeAreaView className="flex-1 bg-white">
       {/* Search Bar */}
       <View className="flex-row">
         <TextInput

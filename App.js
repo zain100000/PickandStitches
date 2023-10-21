@@ -89,7 +89,21 @@ const App = () => {
         />
 
         <Stack.Screen name="DashBoard" component={AdminBottomNavigator} />
-        <Stack.Screen name="LadiesOrderInfo" component={LadiesOrderInfo} />
+        <Stack.Screen
+          name="LadiesOrderInfo"
+          component={LadiesOrderInfo}
+          options={{
+            headerShown: true,
+            headerTitle: 'Order Details',
+            headerTitleStyle: {
+              color: '#fff',
+              fontSize: 20,
+            },
+            headerStyle: {
+              backgroundColor: '#539165',
+            },
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -21,7 +21,7 @@ const DashBoard = () => {
   };
 
   return (
-    <SafeAreaView className="flex-1 items-center p-5">
+    <SafeAreaView className="flex-1 items-center p-5 bg-white">
       <View className="flex-row top-2">
         <Text className="text-center text-lg font-semibold text-dark right-2">
           Current Day:
