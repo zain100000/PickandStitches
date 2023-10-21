@@ -78,6 +78,10 @@ const GentsOrders = () => {
     setRefreshing(false);
   };
 
+  const handleViewOrderDetails = selectedOrder => {
+    navigation.navigate('GentsOrderInfo', {selectedOrder});
+  };
+
   return (
     <SafeAreaView className="flex-1 bg-white">
       <View className="flex-row">
@@ -100,19 +104,17 @@ const GentsOrders = () => {
       {filterData().length ? (
         <FlatList
           data={filterData()}
+          ListHeaderComponent={() => <View style={{height: 0}} />}
           renderItem={({item, index}) => (
             <View className="flex-row justify-between items-center p-5 border-b-2 border-b-gray-400">
               <View className="w-16">
                 <Text>{item.name}</Text>
               </View>
               <View className="w-16">
-                <Text>{item.product}</Text>
-              </View>
-              <View className="w-16">
                 <Text>{item.cell}</Text>
               </View>
               <View className="w-16">
-                <Text>{item.adress}</Text>
+                <Text>{item.address}</Text>
               </View>
               <View className="w-16">
                 <Text>{item.status}</Text>
@@ -126,8 +128,7 @@ const GentsOrders = () => {
                   onPress={() => handleStatusChange(index, 'delivered')}>
                   <FontAwesome5 name="shipping-fast" size={25} color={'#000'} />
                 </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => navigation.navigate('GentsOrderInfo')}>
+                <TouchableOpacity onPress={() => handleViewOrderDetails(item)}>
                   <FontAwesome5 name="eye" size={25} color={'#000'} />
                 </TouchableOpacity>
               </View>

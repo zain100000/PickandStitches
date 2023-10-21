@@ -12,6 +12,7 @@ import LadiesOrderDetails from './src/components/othercomponents/LadiesProducts/
 import LadiesCheckOut from './src/components/othercomponents/LadiesCheckOut/LadiesCheckOut';
 import AdminBottomNavigator from './src/components/navigation/AdminNavigation/AdminBottomNavigator';
 import LadiesOrderInfo from './src/components/screens/AdminModule/LadiesOrderInfo/LadiesOrderInfo';
+import GentsOrderInfo from './src/components/screens/AdminModule/GentsOrderInfo/GentsOrderInfo';
 
 const Stack = createNativeStackNavigator();
 
@@ -92,6 +93,22 @@ const App = () => {
         <Stack.Screen
           name="LadiesOrderInfo"
           component={LadiesOrderInfo}
+          options={{
+            headerShown: true,
+            headerTitle: 'Order Details',
+            headerTitleStyle: {
+              color: '#fff',
+              fontSize: 20,
+            },
+            headerStyle: {
+              backgroundColor: '#539165',
+            },
+          }}
+        />
+
+        <Stack.Screen
+          name="GentsOrderInfo"
+          component={GentsOrderInfo}
           options={{
             headerShown: true,
             headerTitle: 'Order Details',
