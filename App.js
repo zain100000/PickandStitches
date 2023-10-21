@@ -10,8 +10,8 @@ import GentsCheckOut from './src/components/othercomponents/GentsCheckOut/GentsC
 import GentsOrderDetails from './src/components/othercomponents/GentsProducts/GentsOrderDetails';
 import LadiesOrderDetails from './src/components/othercomponents/LadiesProducts/LadiesOrderDetails';
 import LadiesCheckOut from './src/components/othercomponents/LadiesCheckOut/LadiesCheckOut';
-import DashBoard from './src/components/screens/AdminModule/DashBoard';
 import AdminBottomNavigator from './src/components/navigation/AdminNavigation/AdminBottomNavigator';
+import LadiesOrderInfo from './src/components/screens/AdminModule/LadiesOrderInfo/LadiesOrderInfo';
 
 const Stack = createNativeStackNavigator();
 
@@ -89,6 +89,7 @@ const App = () => {
         />
 
         <Stack.Screen name="DashBoard" component={AdminBottomNavigator} />
+        <Stack.Screen name="LadiesOrderInfo" component={LadiesOrderInfo} />
       </Stack.Navigator>
     </NavigationContainer>
   );

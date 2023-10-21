@@ -83,7 +83,7 @@ const GentsCheckOut = () => {
   // Function to handle order submission
   const handleSubmit = () => {
     setLoading(true);
-    alert('Thank You', 'Your Order has been placed successfully');
+    alert('Thank You! Your Order has been placed successfully');
     navigation.navigate('UserHome');
     setLoading(false);
   };

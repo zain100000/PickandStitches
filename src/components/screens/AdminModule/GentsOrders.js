@@ -6,16 +6,18 @@ import {
   View,
   TouchableOpacity,
   TextInput,
-  Button,
   RefreshControl,
+  Image,
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import axios from 'axios';
+import {useNavigation} from '@react-navigation/native';
 
 const GentsOrders = () => {
   const [data, setData] = useState([]);
   const [searchText, setSearchText] = useState('');
-  const [refreshing, setRefreshing] = useState(false);  
+  const [refreshing, setRefreshing] = useState(false);
+  const navigation = useNavigation();
 
   const getApiData = async () => {
     const url =
@@ -104,6 +106,9 @@ const GentsOrders = () => {
                 <Text>{item.name}</Text>
               </View>
               <View className="w-16">
+                <Text>{item.product}</Text>
+              </View>
+              <View className="w-16">
                 <Text>{item.cell}</Text>
               </View>
               <View className="w-16">
@@ -112,7 +117,7 @@ const GentsOrders = () => {
               <View className="w-16">
                 <Text>{item.status}</Text>
               </View>
-              <View className="w-16 flex-row justify-between">
+              <View className="w-16 flex-row justify-between flex-wrap">
                 <TouchableOpacity
                   onPress={() => handleStatusChange(index, 'received')}>
                   <FontAwesome5 name="inbox" size={25} color={'blue'} />
@@ -120,6 +125,10 @@ const GentsOrders = () => {
                 <TouchableOpacity
                   onPress={() => handleStatusChange(index, 'delivered')}>
                   <FontAwesome5 name="shipping-fast" size={25} color={'#000'} />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('GentsOrderInfo')}>
+                  <FontAwesome5 name="eye" size={25} color={'#000'} />
                 </TouchableOpacity>
               </View>
             </View>

@@ -7,18 +7,21 @@ import {
   TouchableOpacity,
   TextInput,
   RefreshControl,
+  Image,
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import axios from 'axios';
+import {useNavigation} from '@react-navigation/native';
 
 const LadiesOrders = () => {
   const [data, setData] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [refreshing, setRefreshing] = useState(false);
+  const navigation = useNavigation();
 
   const getApiData = async () => {
     const url =
-      'https://pickandstitches.com/font-awesome/scss/scss/api_female_orders.php?' +
+      'http://pickandstitches.com/font-awesome/scss/scss/api_female_orders.php?' +
       Date.now();
 
     try {
@@ -79,6 +82,10 @@ const LadiesOrders = () => {
     setRefreshing(false);
   };
 
+  const handleViewOrderDetails = selectedOrder => {
+    navigation.navigate('LadiesOrderInfo', {selectedOrder});
+  };
+
   return (
     <SafeAreaView className="flex-1">
       {/* Search Bar */}
@@ -111,12 +118,12 @@ const LadiesOrders = () => {
                 <Text>{item.cell}</Text>
               </View>
               <View className="w-16">
-                <Text>{item.adress}</Text>
+                <Text>{item.address}</Text>
               </View>
               <View className="w-16">
                 <Text>{item.status}</Text>
               </View>
-              <View className="w-16 flex-row justify-between">
+              <View className="w-16 flex-row justify-between flex-wrap">
                 <TouchableOpacity
                   onPress={() => handleStatusChange(index, 'received')}>
                   <FontAwesome5 name="inbox" size={25} color={'blue'} />
@@ -124,6 +131,9 @@ const LadiesOrders = () => {
                 <TouchableOpacity
                   onPress={() => handleStatusChange(index, 'delivered')}>
                   <FontAwesome5 name="shipping-fast" size={25} color={'#000'} />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => handleViewOrderDetails(item)}>
+                  <FontAwesome5 name="eye" size={25} color={'#000'} />
                 </TouchableOpacity>
               </View>
             </View>
