@@ -1,28 +1,16 @@
-import React, {useState} from 'react';
-import {
-  Image,
-  ScrollView,
-  Text,
-  View,
-  TouchableOpacity,
-  ActivityIndicator,
-} from 'react-native';
-import ImageViewer from 'react-native-image-zoom-viewer';
+import React from 'react';
+import {Image, ScrollView, Text, View} from 'react-native';
 
 const LadiesOrderInfo = ({route}) => {
   const {selectedOrder} = route.params;
-  const [isImageViewerVisible, setImageViewerVisible] = useState(true);
-  const imageUrls = [{url: selectedOrder.product_pic}];
 
   return (
     <View className="flex-1 bg-white">
       <ScrollView showsVerticalScrollIndicator={false}>
-        <TouchableOpacity onPress={() => setImageViewerVisible(true)}>
-          <Image
-            source={{uri: selectedOrder.product_pic}}
-            className="w-52 h-96 bg-contain"
-          />
-        </TouchableOpacity>
+        <Image
+          source={{uri: selectedOrder.product_pic}}
+          className="w-52 h-96 bg-contain"
+        />
         <View>
           <View className="flex-row border-b-2 border-b-gray-400 p-5 justify-between">
             <Text className="text-lg">Product Name:</Text>
@@ -64,33 +52,29 @@ const LadiesOrderInfo = ({route}) => {
             <Text className="text-lg">{selectedOrder.Tob_double_stitch}</Text>
           </View>
 
-          <View className="flex-row border-b-2 border-b-gray-400 p-5 justify-between">
+          <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
             <Text className="text-lg">Comments:</Text>
             <Text className="text-lg">{selectedOrder.comments}</Text>
+          </View>
+
+          <View className="flex-row border-b-2 border-b-gray-400 p-5 justify-between items-center">
+            <Text className="text-lg">Samples:</Text>
+            {selectedOrder.sample ? (
+              <Image
+                source={{uri: selectedOrder.sample}}
+                className="w-36 h-36 bg-contain"
+              />
+            ) : (
+              <Text className="text-xl text-gray-600">No Sample Attached</Text>
+            )}
           </View>
 
           <View className="flex-row border-b-2 border-b-gray-400 p-5 justify-between">
             <Text className="text-lg">Total:</Text>
             <Text className="text-lg">{selectedOrder.total}</Text>
           </View>
-
-          <Image
-            source={{uri: selectedOrder.sample}}
-            className="w-24 h-24 bg-contain"
-          />
         </View>
       </ScrollView>
-      <ImageViewer
-        imageUrls={imageUrls}
-        enableSwipeDown
-        index={0}
-        onClick={() => setImageViewerVisible(false)}
-        onCancel={() => setImageViewerVisible(false)}
-        enablePreload
-        saveToLocalByLongPress={false}
-        loadingRender={() => <ActivityIndicator size="large" color="white" />}
-        visible={isImageViewerVisible}
-      />
     </View>
   );
 };
