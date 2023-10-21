@@ -71,7 +71,7 @@ const LadiesOrderInfo = ({route}) => {
 
           <View className="flex-row border-b-2 border-b-gray-400 p-5 justify-between">
             <Text className="text-lg">Total:</Text>
-            <Text className="text-lg">{selectedOrder.total}</Text>
+            <Text className="text-lg">{selectedOrder.total}Rs/-</Text>
           </View>
         </View>
       </ScrollView>
