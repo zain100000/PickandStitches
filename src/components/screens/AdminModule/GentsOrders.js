@@ -137,7 +137,6 @@ const GentsOrders = () => {
               <View className="w-16">
                 <Text>{item.address}</Text>
               </View>
-
               <View className="w-16 flex-row item-center justify-between flex-wrap left-5">
                 <TouchableOpacity onPress={() => handleViewOrderDetails(item)}>
                   <FontAwesome5 name="eye" size={20} color={'#000'} />
