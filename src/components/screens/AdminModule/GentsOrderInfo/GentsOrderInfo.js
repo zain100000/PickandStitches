@@ -1,28 +1,47 @@
-import React from 'react';
-import {Image, ScrollView, Text, View} from 'react-native';
+import React, {useState} from 'react';
+import {
+  Image,
+  ScrollView,
+  Text,
+  View,
+  TouchableOpacity,
+  Button,
+} from 'react-native';
+import Modal from 'react-native-modal';
+import ImageViewer from 'react-native-image-zoom-viewer';
 
 const GentsOrderInfo = ({route}) => {
   const {selectedOrder} = route.params;
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
 
   return (
     <View className="flex-1 bg-white">
       <ScrollView showsVerticalScrollIndicator={false}>
         <Image
           source={{uri: selectedOrder.product_pic}}
-          className="w-52 h-96 bg-contain"
+          className="w-52 h-96"
         />
         <View>
-          <View className="flex-row border-b-2 border-b-gray-400 p-5 justify-between">
+          <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
             <Text className="text-lg">Product Name:</Text>
             <Text className="text-lg">{selectedOrder.product}</Text>
           </View>
 
-          <View className="flex-row border-b-2 border-b-gray-400 p-5 justify-between">
+          <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
             <Text className="text-lg">Name:</Text>
             <Text className="text-lg">{selectedOrder.name}</Text>
           </View>
 
-          <View className="flex-row border-b-2 border-b-gray-400 p-5 justify-between">
+          <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
+            <Text className="text-lg">Id:</Text>
+            <Text className="text-lg">{selectedOrder.product_id}</Text>
+          </View>
+
+          <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
             <Text className="text-lg">Cell:</Text>
             <Text className="text-lg">{selectedOrder.cell}</Text>
           </View>
@@ -32,27 +51,32 @@ const GentsOrderInfo = ({route}) => {
             <Text className="text-lg">{selectedOrder.address}</Text>
           </View>
 
-          <View className="flex-row border-b-2 border-b-gray-400 p-5 justify-between">
+          <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
+            <Text className="text-lg">Comments:</Text>
+            <Text className="text-lg">{selectedOrder.comments}</Text>
+          </View>
+
+          <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
             <Text className="text-lg">Neck:</Text>
             <Text className="text-lg">{selectedOrder.neck}</Text>
           </View>
 
-          <View className="flex-row border-b-2 border-b-gray-400 p-5 justify-between">
+          <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
             <Text className="text-lg">Pocket:</Text>
             <Text className="text-lg">{selectedOrder.Pocket}</Text>
           </View>
 
-          <View className="flex-row border-b-2 border-b-gray-400 p-5 justify-between">
+          <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
             <Text className="text-lg">Daman:</Text>
             <Text className="text-lg">{selectedOrder.Daman}</Text>
           </View>
 
-          <View className="flex-row border-b-2 border-b-gray-400 p-5 justify-between">
+          <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
             <Text className="text-lg">Wrist:</Text>
             <Text className="text-lg">{selectedOrder.wrist}</Text>
           </View>
 
-          <View className="flex-row border-b-2 border-b-gray-400 p-5 justify-between">
+          <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
             <Text className="text-lg">Leg Opening:</Text>
             <Text className="text-lg">{selectedOrder.puncha}</Text>
           </View>
@@ -67,21 +91,14 @@ const GentsOrderInfo = ({route}) => {
             <Text className="text-lg">{selectedOrder.Embroidery}</Text>
           </View>
 
-          <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg">Comments:</Text>
-            <Text className="text-lg">{selectedOrder.comments}</Text>
-          </View>
-
-          <View className="flex-row border-b-2 border-b-gray-400 p-5 justify-between items-center">
+          <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between items-center">
             <Text className="text-lg">Samples:</Text>
-            {selectedOrder.sample ? (
+            <TouchableOpacity onPress={toggleModal}>
               <Image
                 source={{uri: selectedOrder.sample}}
-                className="w-36 h-36 bg-contain"
+                className="w-36 h-36"
               />
-            ) : (
-              <Text className="text-xl text-gray-600">No Sample Attached</Text>
-            )}
+            </TouchableOpacity>
           </View>
 
           <View className="flex-row border-b-2 border-b-gray-400 p-5 justify-between">
@@ -90,6 +107,15 @@ const GentsOrderInfo = ({route}) => {
           </View>
         </View>
       </ScrollView>
+
+      <Modal isVisible={isModalVisible}>
+        <ImageViewer
+          imageUrls={[{url: selectedOrder.sample}]}
+          enableSwipeDown
+          onSwipeDown={toggleModal}
+        />
+        <Button title="Close" onPress={toggleModal} />
+      </Modal>
     </View>
   );
 };

@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   TextInput,
   RefreshControl,
-  Image,
+  Alert,
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import axios from 'axios';
@@ -17,6 +17,7 @@ const GentsOrders = () => {
   const [data, setData] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [refreshing, setRefreshing] = useState(false);
+  const [selectAll, setSelectAll] = useState(false);
   const navigation = useNavigation();
 
   const getApiData = async () => {
@@ -27,12 +28,7 @@ const GentsOrders = () => {
     try {
       const response = await axios.get(url);
       const result = response.data;
-      const dataWithStatus = result.map(order => ({
-        ...order,
-        status: 'Pending',
-      }));
-
-      setData(dataWithStatus);
+      setData(result);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -41,12 +37,6 @@ const GentsOrders = () => {
   useEffect(() => {
     getApiData();
   }, []);
-
-  const handleStatusChange = (index, newStatus) => {
-    const newData = [...data];
-    newData[index].status = newStatus;
-    setData(newData);
-  };
 
   const filterData = () => {
     return data.filter(
@@ -65,12 +55,7 @@ const GentsOrders = () => {
       );
 
       const result = response.data;
-      const dataWithStatus = result.map(order => ({
-        ...order,
-        status: 'Pending',
-      }));
-
-      setData(dataWithStatus);
+      setData(result);
     } catch (error) {
       console.error('Error fetching new data:', error);
     }
@@ -82,22 +67,49 @@ const GentsOrders = () => {
     navigation.navigate('GentsOrderInfo', {selectedOrder});
   };
 
+  const handleSelectAll = () => {
+    // Toggle the selectAll state
+    setSelectAll(!selectAll);
+
+    // Update the selection for all orders based on selectAll state
+    const newData = data.map(order => ({
+      ...order,
+      selected: !selectAll, // Set selected to the opposite of selectAll
+    }));
+    setData(newData);
+  };
+
+  const handleSelectOrder = index => {
+    const newData = [...data];
+    newData[index].selected = !newData[index].selected; // Toggle the selected state for the individual order
+    setData(newData);
+  };
+
   return (
     <SafeAreaView className="flex-1 bg-white">
-      <View className="flex-row">
+      <View className="flex-row justify-between items-center">
+        <TouchableOpacity className="left-4">
+          <FontAwesome5 name={'trash'} size={25} color={'red'} />
+        </TouchableOpacity>
         <TextInput
           placeholder="Search by name or cell number"
           value={searchText}
           onChangeText={text => setSearchText(text)}
-          className="border-b-2 border-b-gray-400 w-full"
+          className="border-2 border-gray-400 w-80 border-l-2 border-r-0 border-t-0"
         />
       </View>
 
       <View className="flex-row justify-between items-center p-5 border-b-2 border-b-gray-400">
+        <TouchableOpacity onPress={handleSelectAll}>
+          <FontAwesome5
+            name={selectAll ? 'check-square' : 'square'}
+            size={18}
+            color={selectAll ? 'blue' : '#000'}
+          />
+        </TouchableOpacity>
         <Text className="text-dark font-semibold">Name:</Text>
         <Text className="text-dark font-semibold">Cell:</Text>
         <Text className="text-dark font-semibold">Address:</Text>
-        <Text className="text-dark font-semibold">Status:</Text>
         <Text className="text-dark font-semibold">Action:</Text>
       </View>
 
@@ -107,29 +119,32 @@ const GentsOrders = () => {
           ListHeaderComponent={() => <View style={{height: 0}} />}
           renderItem={({item, index}) => (
             <View className="flex-row justify-between items-center p-5 border-b-2 border-b-gray-400">
-              <View className="w-16">
+              <View className="w-14">
+                <TouchableOpacity onPress={() => handleSelectOrder(index)}>
+                  <FontAwesome5
+                    name={item.selected ? 'check-square' : 'square'}
+                    size={18}
+                    color={item.selected ? 'blue' : '#000'}
+                  />
+                </TouchableOpacity>
+              </View>
+              <View className="w-20 right-2">
                 <Text>{item.name}</Text>
               </View>
-              <View className="w-16">
+              <View className="w-16 right-2">
                 <Text>{item.cell}</Text>
               </View>
               <View className="w-16">
                 <Text>{item.address}</Text>
               </View>
-              <View className="w-16">
-                <Text>{item.status}</Text>
-              </View>
-              <View className="w-16 flex-row justify-between flex-wrap">
-                <TouchableOpacity
-                  onPress={() => handleStatusChange(index, 'received')}>
-                  <FontAwesome5 name="inbox" size={25} color={'blue'} />
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => handleStatusChange(index, 'delivered')}>
-                  <FontAwesome5 name="shipping-fast" size={25} color={'#000'} />
-                </TouchableOpacity>
+
+              <View className="w-16 flex-row item-center justify-between flex-wrap left-5">
                 <TouchableOpacity onPress={() => handleViewOrderDetails(item)}>
-                  <FontAwesome5 name="eye" size={25} color={'#000'} />
+                  <FontAwesome5 name="eye" size={20} color={'#000'} />
+                </TouchableOpacity>
+
+                <TouchableOpacity className="right-2">
+                  <FontAwesome5 name={'trash'} size={20} color={'red'} />
                 </TouchableOpacity>
               </View>
             </View>
