@@ -101,11 +101,11 @@ const GentsCheckOut = () => {
 
   const getEmbroideryDescription = (embroidaryFull, embroideryNormal) => {
     if (embroidaryFull && embroideryNormal) {
-      return 'Full(Rs.500) and Normal(Rs.300)';
+      return 'Embroidery Full(Rs.500) and Embroidery Normal(Rs.300)';
     } else if (embroidaryFull) {
-      return 'Full(Rs.500)';
+      return 'Embroidery Full(Rs.500)';
     } else if (embroideryNormal) {
-      return 'Normal(Rs.300)';
+      return 'Embroidery Normal(Rs.300)';
     }
     return 'Not selected';
   };
@@ -129,7 +129,7 @@ const GentsCheckOut = () => {
 
     {
       label: 'Tob Stitch',
-      value: tobStitch ? 'Double Kanta(Rs.200)' : 'Not selected',
+      value: tobStitch ? 'Tob Double Stitch(Rs.200)' : 'Not selected',
     },
     {
       label: 'Embroidery',

@@ -355,7 +355,7 @@ const GentsOrderDetails = () => {
               </View>
               <View>
                 <Text className="text-sm font-medium top-2">Single Kanta</Text>
-                <Text className="text-sm font-medium top-2">(100Rs)</Text>
+                <Text className="text-sm font-medium top-2">(Rs.100)</Text>
               </View>
 
               <View className="flex-row left-10">
@@ -383,7 +383,7 @@ const GentsOrderDetails = () => {
                 <CheckBox value={tobStitch} onValueChange={setTobStitch} />
               </View>
               <View>
-                <Text className="text-sm font-medium top-2">Double Kanta</Text>
+                <Text className="text-sm font-medium top-2">Tob Double Stitch</Text>
                 <Text className="text-sm font-medium top-2">(Rs.200)</Text>
               </View>
             </View>
@@ -400,7 +400,7 @@ const GentsOrderDetails = () => {
                 />
               </View>
               <View>
-                <Text className="text-sm font-medium top-2">Full</Text>
+                <Text className="text-sm font-medium top-2">Embroidery Full</Text>
                 <Text className="text-sm font-medium top-2">Rs.500</Text>
               </View>
 
@@ -412,7 +412,7 @@ const GentsOrderDetails = () => {
                   />
                 </View>
                 <View>
-                  <Text className="text-sm font-medium top-2">Normal</Text>
+                  <Text className="text-sm font-medium top-2">Embroidery Normal</Text>
                   <Text className="text-sm font-medium top-2">Rs.300</Text>
                 </View>
               </View>
