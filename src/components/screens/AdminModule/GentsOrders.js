@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   TextInput,
   RefreshControl,
-  Alert,
+  ActivityIndicator,
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import axios from 'axios';
@@ -18,6 +18,7 @@ const GentsOrders = () => {
   const [searchText, setSearchText] = useState('');
   const [refreshing, setRefreshing] = useState(false);
   const [selectAll, setSelectAll] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const navigation = useNavigation();
 
   const getApiData = async () => {
@@ -29,8 +30,10 @@ const GentsOrders = () => {
       const response = await axios.get(url);
       const result = response.data;
       setData(result);
+      setIsLoading(false); // Set isLoading to false when data is fetched
     } catch (error) {
       console.error('Error fetching data:', error);
+      setIsLoading(false); // Set isLoading to false on error
     }
   };
 
@@ -113,48 +116,57 @@ const GentsOrders = () => {
         <Text className="text-dark font-semibold">Action:</Text>
       </View>
 
-      {filterData().length ? (
-        <FlatList
-          data={filterData()}
-          ListHeaderComponent={() => <View style={{height: 0}} />}
-          renderItem={({item, index}) => (
-            <View className="flex-row justify-between items-center p-5 border-b-2 border-b-gray-400">
-              <View className="w-14">
-                <TouchableOpacity onPress={() => handleSelectOrder(index)}>
-                  <FontAwesome5
-                    name={item.selected ? 'check-square' : 'square'}
-                    size={18}
-                    color={item.selected ? 'blue' : '#000'}
-                  />
-                </TouchableOpacity>
-              </View>
-              <View className="w-20 right-2">
-                <Text>{item.name}</Text>
-              </View>
-              <View className="w-16 right-2">
-                <Text>{item.cell}</Text>
-              </View>
-              <View className="w-16">
-                <Text>{item.address}</Text>
-              </View>
-              <View className="w-16 flex-row item-center justify-between flex-wrap left-5">
-                <TouchableOpacity onPress={() => handleViewOrderDetails(item)}>
-                  <FontAwesome5 name="eye" size={20} color={'#000'} />
-                </TouchableOpacity>
+      {isLoading ? (
+        <View className="flex-1 justify-center items-center">
+          <ActivityIndicator size="large" color="blue" />
+        </View>
+      ) : (
+        <View>
+          {filterData().length ? (
+            <FlatList
+              data={filterData()}
+              ListHeaderComponent={() => <View style={{height: 0}} />}
+              renderItem={({item, index}) => (
+                <View className="flex-row justify-between items-center p-5 border-b-2 border-b-gray-400">
+                  <View className="w-14">
+                    <TouchableOpacity onPress={() => handleSelectOrder(index)}>
+                      <FontAwesome5
+                        name={item.selected ? 'check-square' : 'square'}
+                        size={18}
+                        color={item.selected ? 'blue' : '#000'}
+                      />
+                    </TouchableOpacity>
+                  </View>
+                  <View className="w-20 right-2">
+                    <Text>{item.name}</Text>
+                  </View>
+                  <View className="w-16 right-2">
+                    <Text>{item.cell}</Text>
+                  </View>
+                  <View className="w-16">
+                    <Text>{item.address}</Text>
+                  </View>
+                  <View className="w-16 flex-row item-center justify-between flex-wrap left-5">
+                    <TouchableOpacity
+                      onPress={() => handleViewOrderDetails(item)}>
+                      <FontAwesome5 name="eye" size={20} color={'#000'} />
+                    </TouchableOpacity>
 
-                <TouchableOpacity className="right-2">
-                  <FontAwesome5 name={'trash'} size={20} color={'red'} />
-                </TouchableOpacity>
-              </View>
+                    <TouchableOpacity className="right-2">
+                      <FontAwesome5 name={'trash'} size={20} color={'red'} />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              )}
+              refreshControl={
+                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+              }
+            />
+          ) : (
+            <View className="flex-1 justify-center items-center">
+              <Text className="text-xl text-gray-600">No Gents Orders Yet</Text>
             </View>
           )}
-          refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-          }
-        />
-      ) : (
-        <View className="flex-1 justify-center items-center">
-          <Text className="text-xl text-gray-600">No Gents Orders Yet</Text>
         </View>
       )}
     </SafeAreaView>
