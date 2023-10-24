@@ -21,20 +21,20 @@ const GentsOrderDetails = () => {
   const title = route.params?.title;
   const price = route.params?.price;
 
-  const [fullname, setFullName] = useState('');
-  const [mobile, setMobile] = useState('');
-  const [address, setAddress] = useState('');
+  const [name, setName] = useState('');
+  const [cell, setCell] = useState('');
+  const [adress, setAdress] = useState('');
   const [neckType, setNeckType] = useState('');
   const [pocketType, setPocketType] = useState('');
   const [damanType, setDamanType] = useState('');
   const [wristType, setWristType] = useState('');
-  const [message, setMessage] = useState('');
+  const [comment, setComment] = useState('');
   const [singleKanta, setSingleKanta] = useState(false);
   const [doubleKanta, setDoubleKanta] = useState(false);
   const [tobStitch, setTobStitch] = useState(false);
   const [embroideryFull, setEmbroideryFull] = useState(false);
   const [embroideryNormal, setEmbroideryNormal] = useState(false);
-  const [attachment, setAttachment] = useState([]);
+  const [sample, setSample] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const handlePickDocument = async () => {
@@ -45,7 +45,7 @@ const GentsOrderDetails = () => {
       });
 
       const uris = result.map(file => file.uri);
-      setAttachment([...attachment, ...uris]);
+      setSample([...sample, ...uris]);
     } catch (error) {
       if (DocumentPicker.isCancel(error)) {
         // Handle cancel
@@ -57,75 +57,75 @@ const GentsOrderDetails = () => {
   };
 
   // Declare and initialize refs
-  const fullnameRef = useRef();
-  const mobileRef = useRef();
-  const addressRef = useRef();
+  const nameRef = useRef();
+  const cellRef = useRef();
+  const adressRef = useRef();
 
   const ValidInput = () => {
-    const fullNamePattern = /^[a-zA-Z\s]*$/;
-    const mobilePattern = /^(\+92|92|0)(3\d{2}|\d{2})(\d{7})$/;
-    const addressPattern = /^[\w\s,'-]*$/;
+    const namePattern = /^[a-zA-Z\s]*$/;
+    const cellPattern = /^(\+92|92|0)(3\d{2}|\d{2})(\d{7})$/;
+    const adressPattern = /^[\w\s,'-]*$/;
 
     return (
-      fullNamePattern.test(fullname) &&
-      mobilePattern.test(mobile) &&
-      addressPattern.test(address)
+      namePattern.test(name) &&
+      cellPattern.test(cell) &&
+      adressPattern.test(adress)
     );
   };
 
-  const validateFullName = () => {
+  const validateName = () => {
     const regex = /^[a-zA-Z\s]*$/;
-    if (!fullname.match(regex)) {
+    if (!name.match(regex)) {
       return 'Special Characters Not Allowed';
     }
     return '';
   };
-  const fullnameError = validateFullName();
+  const nameError = validateName();
 
-  const handleMobileChange = value => {
-    setMobile(value);
+  const handleCellChange = value => {
+    setCell(value);
   };
-  const validateMobile = () => {
-    if (!mobile) {
+  const validateCell = () => {
+    if (!cell) {
       return '';
     }
-    const mobileRegex = /^(\+92|92|0)(3\d{2}|\d{2})(\d{7})$/;
-    if (!mobileRegex.test(mobile)) {
-      return 'Invalid Mobile Format';
+    const cellRegex = /^(\+92|92|0)(3\d{2}|\d{2})(\d{7})$/;
+    if (!cellRegex.test(cell)) {
+      return 'Invalid Cell Format';
     }
     return '';
   };
-  const mobileError = validateMobile();
+  const cellError = validateCell();
 
-  const handleAddressChange = value => {
-    setAddress(value);
+  const handleAdressChange = value => {
+    setAdress(value);
   };
-  const validateAddress = () => {
-    if (!address) {
+  const validateAdress = () => {
+    if (!adress) {
       return '';
     }
-    const addressRegex = /^[\w\s,'-]*$/;
-    if (!addressRegex.test(address)) {
+    const adressRegex = /^[\w\s,'-]*$/;
+    if (!adressRegex.test(adress)) {
       return 'Invalid Address Format';
     }
     return '';
   };
-  const addressError = validateAddress();
+  const adressError = validateAdress();
 
   const handleCheckOut = () => {
-    if (!fullname) {
+    if (!name) {
       alert('Fullname field is empty');
-      fullnameRef.current.focus();
+      nameRef.current.focus();
       return;
     }
-    if (!mobile) {
-      alert('Mobile field is empty');
-      mobileRef.current.focus();
+    if (!cell) {
+      alert('Cell field is empty');
+      cellRef.current.focus();
       return;
     }
-    if (!address) {
+    if (!adress) {
       alert('Address field is empty');
-      addressRef.current.focus();
+      adressRef.current.focus();
       return;
     }
 
@@ -141,37 +141,37 @@ const GentsOrderDetails = () => {
       navigation.navigate('GentsCheckOut', {
         imgSrc,
         title,
-        fullname,
-        mobile,
-        address,
+        name,
+        cell,
+        adress,
         neckType,
         pocketType,
         damanType,
         wristType,
-        message,
+        comment,
         singleKanta,
         doubleKanta,
         tobStitch,
         embroideryFull,
         embroideryNormal,
         price,
-        attachment,
+        sample,
       });
 
-      setFullName('');
-      setMobile('');
-      setAddress('');
+      setName('');
+      setCell('');
+      setAdress('');
       setNeckType('');
       setPocketType('');
       setDamanType('');
       setWristType('');
-      setMessage('');
+      setComment('');
       setSingleKanta('');
       setDoubleKanta('');
       setTobStitch('');
       setEmbroideryFull('');
       setEmbroideryNormal('');
-      setAttachment('');
+      setSample('');
     }, 2000);
   };
 
@@ -202,14 +202,14 @@ const GentsOrderDetails = () => {
               className="text-sm text-black left-3"
               placeholder="Ful Name"
               placeholderTextColor={'gray'}
-              value={fullname}
-              onChangeText={setFullName}
-              ref={fullnameRef}
+              value={name}
+              onChangeText={setName}
+              ref={nameRef}
             />
           </View>
-          {fullnameError ? (
+          {nameError ? (
             <Text className="text-red-600 text-sm left-3 font-semibold">
-              {fullnameError}
+              {nameError}
             </Text>
           ) : null}
 
@@ -220,14 +220,14 @@ const GentsOrderDetails = () => {
               placeholder="Mobile"
               keyboardType="number-pad"
               placeholderTextColor={'gray'}
-              value={mobile}
-              onChangeText={handleMobileChange}
-              ref={mobileRef}
+              value={cell}
+              onChangeText={handleCellChange}
+              ref={cellRef}
             />
           </View>
-          {mobileError ? (
+          {cellError ? (
             <Text className="text-red-600 text-sm left-3 font-semibold">
-              {mobileError}
+              {cellError}
             </Text>
           ) : null}
 
@@ -237,14 +237,14 @@ const GentsOrderDetails = () => {
               className="text-sm text-black left-3"
               placeholder="Complete Address"
               placeholderTextColor={'gray'}
-              value={address}
-              onChangeText={handleAddressChange}
-              ref={addressRef}
+              value={adress}
+              onChangeText={handleAdressChange}
+              ref={adressRef}
             />
           </View>
-          {addressError ? (
+          {adressError ? (
             <Text className="text-red-600 text-sm left-3 font-semibold">
-              {addressError}
+              {adressError}
             </Text>
           ) : null}
 
@@ -339,8 +339,8 @@ const GentsOrderDetails = () => {
               placeholderTextColor="gray"
               multiline={true}
               numberOfLines={6}
-              value={message}
-              onChangeText={setMessage}
+              value={comment}
+              onChangeText={setComment}
             />
           </View>
 
@@ -383,7 +383,9 @@ const GentsOrderDetails = () => {
                 <CheckBox value={tobStitch} onValueChange={setTobStitch} />
               </View>
               <View>
-                <Text className="text-sm font-medium top-2">Tob Double Stitch</Text>
+                <Text className="text-sm font-medium top-2">
+                  Tob Double Stitch
+                </Text>
                 <Text className="text-sm font-medium top-2">(Rs.200)</Text>
               </View>
             </View>
@@ -400,7 +402,9 @@ const GentsOrderDetails = () => {
                 />
               </View>
               <View>
-                <Text className="text-sm font-medium top-2">Embroidery Full</Text>
+                <Text className="text-sm font-medium top-2">
+                  Embroidery Full
+                </Text>
                 <Text className="text-sm font-medium top-2">Rs.500</Text>
               </View>
 
@@ -412,7 +416,9 @@ const GentsOrderDetails = () => {
                   />
                 </View>
                 <View>
-                  <Text className="text-sm font-medium top-2">Embroidery Normal</Text>
+                  <Text className="text-sm font-medium top-2">
+                    Embroidery Normal
+                  </Text>
                   <Text className="text-sm font-medium top-2">Rs.300</Text>
                 </View>
               </View>
@@ -421,8 +427,8 @@ const GentsOrderDetails = () => {
 
           {/* Attachments */}
           <View className="flex-1 flex-row p-5">
-            {attachment && attachment.length > 0 ? (
-              attachment.map(uri => (
+            {sample && sample.length > 0 ? (
+              sample.map(uri => (
                 <Image
                   key={uri}
                   source={{uri}}

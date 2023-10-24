@@ -37,11 +37,6 @@ const GentsOrderInfo = ({route}) => {
           </View>
 
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg">Id:</Text>
-            <Text className="text-lg">{selectedOrder.product_id}</Text>
-          </View>
-
-          <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
             <Text className="text-lg">Cell:</Text>
             <Text className="text-lg">{selectedOrder.cell}</Text>
           </View>

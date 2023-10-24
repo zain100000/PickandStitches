@@ -12,25 +12,26 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import Print from 'react-native-print';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import axios from 'axios';
 
 const GentsCheckOut = () => {
   const route = useRoute();
   const title = route.params?.title || 'Default Title';
   const price = parseFloat(route.params?.price);
-  const fullname = route.params?.fullname || 'Default fullname';
-  const mobile = route.params?.mobile || 'Default mobile';
-  const address = route.params?.address || 'Default address';
+  const name = route.params?.name || 'Default name';
+  const cell = route.params?.cell || 'Default cell';
+  const adress = route.params?.adress || 'Default adress';
   const neckType = route.params?.neckType || 'Not selected';
   const pocketType = route.params?.pocketType || 'Not selected';
   const damanType = route.params?.damanType || 'Not selected';
   const wristType = route.params?.wristType || 'Not selected';
-  const message = route.params?.message || 'Message';
+  const comment = route.params?.comment || 'comment';
   const singleKanta = route.params?.singleKanta || false;
   const doubleKanta = route.params?.doubleKanta || false;
   const tobStitch = route.params?.tobStitch || false;
   const embroideryFull = route.params?.embroideryFull || false;
   const embroideryNormal = route.params?.embroideryNormal || false;
-  const attachment = route.params?.attachment;
+  const sample = route.params?.sample;
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
 
@@ -81,13 +82,8 @@ const GentsCheckOut = () => {
   };
 
   // Function to handle order submission
-  const handleSubmit = () => {
-    setLoading(true);
-    alert('Thank You! Your Order has been placed successfully');
-    navigation.navigate('UserHome');
-    setLoading(false);
-  };
 
+  // Function to describe leg opening pricing
   const getPriceDescription = (singleKanta, doubleKanta) => {
     if (singleKanta && doubleKanta) {
       return 'Single Kanta(Rs.100) and Double Kanta(Rs.200)';
@@ -99,6 +95,7 @@ const GentsCheckOut = () => {
     return 'Not selected';
   };
 
+  // Function to describe embroidery pricing
   const getEmbroideryDescription = (embroidaryFull, embroideryNormal) => {
     if (embroidaryFull && embroideryNormal) {
       return 'Embroidery Full(Rs.500) and Embroidery Normal(Rs.300)';
@@ -110,26 +107,25 @@ const GentsCheckOut = () => {
     return 'Not selected';
   };
 
+  // Define order details for display
   const orderDetails = [
     {label: 'Product Name', value: title},
-    {label: 'Name', value: fullname},
-    {label: 'Mobile', value: mobile},
-    {label: 'Address', value: address},
+    {label: 'Name', value: name},
+    {label: 'Mobile', value: cell},
+    {label: 'Address', value: adress},
     {label: 'Neck Type', value: neckType || 'Not selected'},
     {label: 'Pocket Type', value: pocketType || 'Not selected'},
     {label: 'Daman Type', value: damanType || 'Not selected'},
     {label: 'Wrist Type', value: wristType || 'Not selected'},
-    {label: 'Message', value: message || 'No additional message'},
+    {label: 'Comment', value: comment || 'No additional comment'},
     {label: 'Product Base Price', value: price},
-
     {
       label: 'Leg Opening (Puncha)',
       value: getPriceDescription(singleKanta, doubleKanta),
     },
-
     {
       label: 'Tob Stitch',
-      value: tobStitch ? 'Tob Double Stitch(Rs.200)' : 'Not selected',
+      value: tobStitch ? 'Double Kanta (Rs. 200)' : 'Not selected',
     },
     {
       label: 'Embroidery',
@@ -139,8 +135,8 @@ const GentsCheckOut = () => {
       label: 'Samples',
       value: (
         <View className="flex-1 flex-row p-5">
-          {attachment && attachment.length > 0 ? (
-            attachment.map(uri => (
+          {sample && sample.length > 0 ? (
+            sample.map(uri => (
               <Image key={uri} source={{uri}} className="w-20 h-20" />
             ))
           ) : (
@@ -155,12 +151,11 @@ const GentsCheckOut = () => {
 
   // Function to handle printing the receipt
   const printReceipt = async () => {
-    const receiptContent = getOrderReceiptContent(); // Implement a function to format the receipt content
+    const receiptContent = getOrderReceiptContent();
 
     try {
       const printJob = await Print.print({
         html: receiptContent,
-        // You can configure print options here, e.g., orientation, width, height, etc.
       });
 
       if (printJob) {
@@ -185,77 +180,80 @@ const GentsCheckOut = () => {
           h1 {
             font-size: 3rem;
             text-align: center;
-          }          
+          }
         </style>
       </head>
       <body>
         <h1>Order Receipt</h1>
         <div style="display: flex; justify-content: space-between; align-items: center;">
         <h4 style="font-size:2rem">Product Name</h4>
-        <p style="font-size:2rem">${title}</p>      
+        <p style="font-size:2rem">${title}</p>
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center;">
         <h4 style="font-size:2rem">Name</h4>
-        <p style="font-size:2rem">${fullname}</p>      
+        <p style="font-size:2rem">${name}</p>
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center;">
         <h4 style="font-size:2rem">Cell</h4>
-        <p style="font-size:2rem">${mobile}</p>      
+        <p style="font-size:2rem">${cell}</p>
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center;">
         <h4 style="font-size:2rem">Address</h4>
-        <p style="font-size:2rem">${address}</p>      
+        <p style="font-size:2rem">${adress}</p>
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center;">
         <h4 style="font-size:2rem">Neck Type</h4>
-        <p style="font-size:2rem">${neckType}</p>      
-        </div>
+        <p style="font-size:2rem">${neckType}</p>
+      </div>
 
-        <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
         <h4 style="font-size:2rem">Pocket Type</h4>
-        <p style="font-size:2rem">${pocketType}</p>      
-        </div>
-
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-        <h4 style="font-size:2rem">Daman Type</h4>
-        <p style="font-size:2rem">${damanType}</p>      
-        </div>
-
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-        <h4 style="font-size:2rem">Wrist Type</h4>
-        <p style="font-size:2rem">${wristType}</p>      
-        </div>
-        
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-        <h4 style="font-size:2rem">Leg Opening (Puncha)</h4>
-        <p style="font-size:2rem">${getPriceDescription(
-          singleKanta,
-          doubleKanta,
-        )}</p>
+        <p style="font-size:2rem">${pocketType}</p>
       </div>
 
       <div style="display: flex; justify-content: space-between; align-items: center;">
-        <h4 style="font-size:2rem">Tob Stitch</h4>
-        <p style="font-size:2rem">${
-          tobStitch ? 'Double Kanta (Rs. 200)' : 'Not selected'
-        }</p>
+        <h4 style="font-size:2rem">Daman</h4>
+        <p style="font-size:2rem">${damanType}</p>
       </div>
 
       <div style="display: flex; justify-content: space-between; align-items: center;">
-        <h4 style="font-size:2rem">Embroidery</h4>
-        <p style="font-size:2rem">${getEmbroideryDescription(
-          embroideryFull,
-          embroideryNormal,
-        )}</p>
+        <h4 style="font-size:2rem">Wrist</h4>
+        <p style="font-size:2rem">${wristType}</p>
       </div>
-        
+
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 style="font-size:2rem">Comment</h4>
+        <p style="font-size:2rem">${comment}</p>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h4 style="font-size:2rem">Leg Opening (Puncha)</h4>
+      <p style="font-size:2rem">${getPriceDescription(
+        singleKanta,
+        doubleKanta,
+      )}</p>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h4 style="font-size:2rem">Tob Stitch</h4>
+    <p style="font-size:2rem">${tobStitch}</p>
+  </div>
+
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h4 style="font-size:2rem">Embroidery</h4>
+    <p style="font-size:2rem">${getEmbroideryDescription(
+      embroideryFull,
+      embroideryNormal,
+    )}</p>
+  </div>
+
         <div style="display: flex; justify-content: space-between; align-items: center;">
         <h4 style="font-size:2rem">Total Amount</h4>
-        <p style="font-size:2rem">${formatPriceAsCurrency(totalPrice)}</p>      
+        <p style="font-size:2rem">${formatPriceAsCurrency(totalPrice)}</p>
         </div>
       </body>
     </html>
@@ -281,13 +279,11 @@ const GentsCheckOut = () => {
       </Text>
 
       <View className="flex-row justify-between">
-        <TouchableOpacity
-          className="justify-center left-3 mb-5 mr-5 items-center mt-8 p-4 bg-primary rounded-xl w-80"
-          onPress={handleSubmit}>
+        <TouchableOpacity className="justify-center left-3 mb-5 mr-5 items-center mt-8 p-4 bg-primary rounded-xl w-80">
           {loading ? (
-            <ActivityIndicator color={'#fff'} /> // Show loader while loading
+            <ActivityIndicator color={'#fff'} />
           ) : (
-            <Text className="text-white text-xl">Submit Order</Text> // Show Submit text when not loading
+            <Text className="text-white text-xl">Submit Order</Text>
           )}
         </TouchableOpacity>
 
