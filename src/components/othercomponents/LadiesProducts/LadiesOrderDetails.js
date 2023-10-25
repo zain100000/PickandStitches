@@ -199,7 +199,7 @@ const LadiesOrderDetails = () => {
               <TextInput
                 className="text-sm text-black left-2"
                 placeholder={title}
-                placeholderTextColor={'gray'}
+                placeholderTextColor={'#539165'}
               />
             </View>
           </View>
@@ -208,7 +208,7 @@ const LadiesOrderDetails = () => {
             <TextInput
               className="text-sm text-black left-3"
               placeholder="Ful Name"
-              placeholderTextColor={'gray'}
+              placeholderTextColor={'#539165'}
               value={fullname}
               onChangeText={setFullName}
               ref={fullnameRef}
@@ -226,7 +226,7 @@ const LadiesOrderDetails = () => {
               className="text-sm text-black left-3"
               placeholder="Mobile"
               keyboardType="number-pad"
-              placeholderTextColor={'gray'}
+              placeholderTextColor={'#539165'}
               value={mobile}
               onChangeText={handleMobileChange}
               ref={mobileRef}
@@ -243,7 +243,7 @@ const LadiesOrderDetails = () => {
             <TextInput
               className="text-sm text-black left-3"
               placeholder="Complete Address "
-              placeholderTextColor={'gray'}
+              placeholderTextColor={'#539165'}
               value={address}
               onChangeText={handleAddressChange}
               ref={addressRef}
@@ -260,7 +260,7 @@ const LadiesOrderDetails = () => {
             <TextInput
               className="text-sm text-black left-3"
               placeholder="Describe Anything Further In Your Mind"
-              placeholderTextColor="gray"
+              placeholderTextColor="#539165"
               multiline={true}
               numberOfLines={6}
               value={message}
@@ -273,20 +273,36 @@ const LadiesOrderDetails = () => {
             <Text className="text-sm text-dark font-medium">Piko</Text>
             <View className="flex-row mt-3">
               <View className="top-2 right-2">
-                <CheckBox value={pikoFull} onValueChange={setPikoFull} />
+                <CheckBox
+                  value={pikoFull}
+                  onValueChange={setPikoFull}
+                  tintColors={{true: 'blue', false: 'green'}}
+                />
               </View>
               <View>
-                <Text className="text-sm font-medium top-1">Piko Full</Text>
-                <Text className="text-sm font-medium top-1">(Rs.120)</Text>
+                <Text className="text-sm font-medium top-1 text-primary">
+                  Piko Full
+                </Text>
+                <Text className="text-sm font-medium top-1 text-primary">
+                  (Rs.120)
+                </Text>
               </View>
 
               <View className="flex-row left-10">
                 <View className="top-2 right-2">
-                  <CheckBox value={pikoHalf} onValueChange={setPikoHalf} />
+                  <CheckBox
+                    value={pikoHalf}
+                    onValueChange={setPikoHalf}
+                    tintColors={{true: 'blue', false: 'green'}}
+                  />
                 </View>
                 <View>
-                  <Text className="text-sm font-medium top-1">Piko Half</Text>
-                  <Text className="text-sm font-medium top-1">(Rs.60)</Text>
+                  <Text className="text-sm font-medium top-1 text-primary">
+                    Piko Half
+                  </Text>
+                  <Text className="text-sm font-medium top-1 text-primary">
+                    (Rs.60)
+                  </Text>
                 </View>
               </View>
             </View>
@@ -300,13 +316,16 @@ const LadiesOrderDetails = () => {
                 <CheckBox
                   value={dupataPiping}
                   onValueChange={setDupataPiping}
+                  tintColors={{true: 'blue', false: 'green'}}
                 />
               </View>
               <View>
-                <Text className="text-sm font-medium top-1">
+                <Text className="text-sm font-medium top-1 text-primary">
                   Dupatta Piping
                 </Text>
-                <Text className="text-sm font-medium top-1">(Rs.300)</Text>
+                <Text className="text-sm font-medium top-1 text-primary">
+                  (Rs.300)
+                </Text>
               </View>
             </View>
 
@@ -315,23 +334,34 @@ const LadiesOrderDetails = () => {
                 <CheckBox
                   value={dupataExtension}
                   onValueChange={setDupataExtension}
+                  tintColors={{true: 'blue', false: 'green'}}
                 />
               </View>
               <View>
-                <Text className="text-sm font-medium top-1">
+                <Text className="text-sm font-medium top-1 text-primary">
                   Dupatta Extension
                 </Text>
-                <Text className="text-sm font-medium top-1">(Rs.300)</Text>
+                <Text className="text-sm font-medium top-1 text-primary">
+                  (Rs.300)
+                </Text>
               </View>
             </View>
 
             <View className="flex-row mt-3">
               <View className="top-2 right-2">
-                <CheckBox value={dupataFetta} onValueChange={setDupataFetta} />
+                <CheckBox
+                  value={dupataFetta}
+                  onValueChange={setDupataFetta}
+                  tintColors={{true: 'blue', false: 'green'}}
+                />
               </View>
               <View>
-                <Text className="text-sm font-medium top-1">Dupatta Fetta</Text>
-                <Text className="text-sm font-medium top-1">(Rs.300)</Text>
+                <Text className="text-sm font-medium top-1 text-primary">
+                  Dupatta Fetta
+                </Text>
+                <Text className="text-sm font-medium top-1 text-primary">
+                  (Rs.300)
+                </Text>
               </View>
             </View>
           </View>
@@ -344,27 +374,33 @@ const LadiesOrderDetails = () => {
                 <CheckBox
                   value={fullTopPiping}
                   onValueChange={setFullTopPiping}
+                  tintColors={{true: 'blue', false: 'green'}}
                 />
               </View>
               <View>
-                <Text className="text-sm font-medium top-1">
+                <Text className="text-sm font-medium top-1 text-primary">
                   Full Top Piping
                 </Text>
-                <Text className="text-sm font-medium top-1">(Rs.300)</Text>
+                <Text className="text-sm font-medium top-1 text-primary">
+                  (Rs.300)
+                </Text>
               </View>
 
               <View className="flex-row left-10">
-                <View className="top-2 right-2">
+                <View className="top-2 right-3">
                   <CheckBox
                     value={fullTopExtension}
                     onValueChange={setFullTopExtension}
+                    tintColors={{true: 'blue', false: 'green'}}
                   />
                 </View>
                 <View className="right-2">
-                  <Text className="text-sm font-medium top-1">
+                  <Text className="text-sm font-medium top-1 text-primary">
                     Full Top Extension
                   </Text>
-                  <Text className="text-sm font-medium top-1">(Rs.300)</Text>
+                  <Text className="text-sm font-medium top-1 text-primary">
+                    (Rs.300)
+                  </Text>
                 </View>
               </View>
             </View>
@@ -373,13 +409,16 @@ const LadiesOrderDetails = () => {
                 <CheckBox
                   value={fullTopFetta}
                   onValueChange={setFullTopFetta}
+                  tintColors={{true: 'blue', false: 'green'}}
                 />
               </View>
               <View>
-                <Text className="text-sm font-medium top-1">
+                <Text className="text-sm font-medium top-1 text-primary">
                   Full Top Fetta
                 </Text>
-                <Text className="text-sm font-medium top-1">(Rs.300)</Text>
+                <Text className="text-sm font-medium top-1 text-primary">
+                  (Rs.300)
+                </Text>
               </View>
             </View>
           </View>
@@ -395,11 +434,16 @@ const LadiesOrderDetails = () => {
                     <CheckBox
                       value={embroideryGala}
                       onValueChange={setEmbroideryGala}
+                      tintColors={{true: 'blue', false: 'green'}}
                     />
                   </View>
                   <View>
-                    <Text className="text-sm font-medium top-1">Gala</Text>
-                    <Text className="text-sm font-medium top-1">(Rs.300)</Text>
+                    <Text className="text-sm font-medium top-1 text-primary">
+                      Gala
+                    </Text>
+                    <Text className="text-sm font-medium top-1 text-primary">
+                      (Rs.300)
+                    </Text>
                   </View>
                 </View>
 
@@ -408,11 +452,16 @@ const LadiesOrderDetails = () => {
                     <CheckBox
                       value={embroideryDaman}
                       onValueChange={setEmbroideryDaman}
+                      tintColors={{true: 'blue', false: 'green'}}
                     />
                   </View>
                   <View>
-                    <Text className="text-sm font-medium top-1">Daman</Text>
-                    <Text className="text-sm font-medium top-1">(Rs.300)</Text>
+                    <Text className="text-sm font-medium top-1 text-primary">
+                      Daman
+                    </Text>
+                    <Text className="text-sm font-medium top-1 text-primary">
+                      (Rs.300)
+                    </Text>
                   </View>
                 </View>
               </View>
@@ -423,11 +472,16 @@ const LadiesOrderDetails = () => {
                     <CheckBox
                       value={embroideryBazu}
                       onValueChange={setEmbroideryBazu}
+                      tintColors={{true: 'blue', false: 'green'}}
                     />
                   </View>
                   <View>
-                    <Text className="text-sm font-medium top-1">Bazu</Text>
-                    <Text className="text-sm font-medium top-1">(Rs.300)</Text>
+                    <Text className="text-sm font-medium top-1 text-primary">
+                      Bazu
+                    </Text>
+                    <Text className="text-sm font-medium top-1 text-primary">
+                      (Rs.300)
+                    </Text>
                   </View>
                 </View>
 
@@ -436,11 +490,16 @@ const LadiesOrderDetails = () => {
                     <CheckBox
                       value={embroideryBottom}
                       onValueChange={setEmbroideryBottom}
+                      tintColors={{true: 'blue', false: 'green'}}
                     />
                   </View>
                   <View>
-                    <Text className="text-sm font-medium top-1">Bottom</Text>
-                    <Text className="text-sm font-medium top-1">(Rs.300)</Text>
+                    <Text className="text-sm font-medium top-1 text-primary">
+                      Bottom
+                    </Text>
+                    <Text className="text-sm font-medium top-1 text-primary">
+                      (Rs.300)
+                    </Text>
                   </View>
                 </View>
               </View>

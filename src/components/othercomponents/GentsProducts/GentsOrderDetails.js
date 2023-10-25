@@ -13,25 +13,28 @@ import {useNavigation, useRoute} from '@react-navigation/native';
 import CheckBox from '@react-native-community/checkbox';
 import {Picker} from '@react-native-picker/picker';
 import DocumentPicker from 'react-native-document-picker';
+import {color} from 'react-native-tailwindcss';
 
 const GentsOrderDetails = () => {
   const navigation = useNavigation();
   const route = useRoute();
-  const imgSrc = route.params?.imgSrc;
-  const title = route.params?.title;
+  const product_pic = route.params?.product_pic;
+  const product = route.params?.product;
   const price = route.params?.price;
 
   const [name, setName] = useState('');
   const [cell, setCell] = useState('');
   const [adress, setAdress] = useState('');
-  const [neckType, setNeckType] = useState('');
-  const [pocketType, setPocketType] = useState('');
-  const [damanType, setDamanType] = useState('');
-  const [wristType, setWristType] = useState('');
-  const [comment, setComment] = useState('');
+  const [neck, setNeck] = useState('');
+  const [Pocket, setPocket] = useState('');
+  const [Daman, setDaman] = useState('');
+  const [wrist, setWrist] = useState('');
+  const [comments, setComments] = useState('');
+  const [puncha, setPuncha] = useState([]);
   const [singleKanta, setSingleKanta] = useState(false);
   const [doubleKanta, setDoubleKanta] = useState(false);
-  const [tobStitch, setTobStitch] = useState(false);
+  const [Tob_double_stitch, setTobDoubleStitch] = useState(false);
+  const [Embroidery, setEmbroidery] = useState([]);
   const [embroideryFull, setEmbroideryFull] = useState(false);
   const [embroideryNormal, setEmbroideryNormal] = useState(false);
   const [sample, setSample] = useState([]);
@@ -136,24 +139,50 @@ const GentsOrderDetails = () => {
 
     setLoading(true);
 
+    // puncha
+    const selectedPuncha = [];
+
+    if (singleKanta) {
+      selectedPuncha.push('Single Kanta');
+    }
+
+    if (doubleKanta) {
+      selectedPuncha.push('Double Kanta');
+    }
+
+    // Set the puncha state with the selected values
+    setPuncha(selectedPuncha);
+
+    // Embroidery
+    const selectedEmbroidery = [];
+
+    if (embroideryFull) {
+      selectedEmbroidery.push('EmbroideryFull');
+    }
+
+    if (embroideryNormal) {
+      selectedEmbroidery.push('EmbroideryNormal');
+    }
+
+    // Set the puncha state with the selected values
+    setEmbroidery(selectedEmbroidery);
+
     setTimeout(() => {
       setLoading(false);
       navigation.navigate('GentsCheckOut', {
-        imgSrc,
-        title,
+        product_pic,
+        product,
         name,
         cell,
         adress,
-        neckType,
-        pocketType,
-        damanType,
-        wristType,
-        comment,
-        singleKanta,
-        doubleKanta,
-        tobStitch,
-        embroideryFull,
-        embroideryNormal,
+        neck,
+        Pocket,
+        Daman,
+        wrist,
+        comments,
+        puncha,
+        Tob_double_stitch,
+        Embroidery,
         price,
         sample,
       });
@@ -161,18 +190,38 @@ const GentsOrderDetails = () => {
       setName('');
       setCell('');
       setAdress('');
-      setNeckType('');
-      setPocketType('');
-      setDamanType('');
-      setWristType('');
-      setComment('');
-      setSingleKanta('');
-      setDoubleKanta('');
-      setTobStitch('');
-      setEmbroideryFull('');
-      setEmbroideryNormal('');
+      setNeck('');
+      setPocket('');
+      setDaman('');
+      setWrist('');
+      setComments('');
+      setPuncha('');
+      setTobDoubleStitch('');
+      setEmbroidery('');
       setSample('');
     }, 2000);
+  };
+
+  const updatePuncha = (checked, option) => {
+    if (checked) {
+      // If the checkbox is checked, add the option to the puncha state
+      setPuncha(prevPuncha => [...prevPuncha, option]);
+    } else {
+      // If the checkbox is unchecked, remove the option from the puncha state
+      setPuncha(prevPuncha => prevPuncha.filter(item => item !== option));
+    }
+  };
+
+  const updateEmbroidery = (checked, option) => {
+    if (checked) {
+      // If the checkbox is checked, add the option to the puncha state
+      setEmbroidery(prevEmbroidery => [...prevEmbroidery, option]);
+    } else {
+      // If the checkbox is unchecked, remove the option from the puncha state
+      setEmbroidery(prevEmbroidery =>
+        prevEmbroidery.filter(item => item !== option),
+      );
+    }
   };
 
   return (
@@ -181,7 +230,7 @@ const GentsOrderDetails = () => {
         className="flex-1 px-4 py-4"
         showsVerticalScrollIndicator={false}>
         {/* Image Start */}
-        <Image source={imgSrc} className="w-36 h-56 bg-contain" />
+        <Image source={product_pic} className="w-36 h-56 bg-contain" />
 
         {/* Check-Out Form */}
         <View className="flex-1 mt-14">
@@ -191,8 +240,8 @@ const GentsOrderDetails = () => {
             <View className="border-2 border-gray-500 mb-3">
               <TextInput
                 className="text-sm text-black left-2 "
-                placeholder={title}
-                placeholderTextColor={'gray'}
+                placeholder={product}
+                placeholderTextColor={'#539165'}
               />
             </View>
           </View>
@@ -201,7 +250,7 @@ const GentsOrderDetails = () => {
             <TextInput
               className="text-sm text-black left-3"
               placeholder="Ful Name"
-              placeholderTextColor={'gray'}
+              placeholderTextColor={'#539165'}
               value={name}
               onChangeText={setName}
               ref={nameRef}
@@ -219,7 +268,7 @@ const GentsOrderDetails = () => {
               className="text-sm text-black left-3"
               placeholder="Mobile"
               keyboardType="number-pad"
-              placeholderTextColor={'gray'}
+              placeholderTextColor={'#539165'}
               value={cell}
               onChangeText={handleCellChange}
               ref={cellRef}
@@ -236,7 +285,7 @@ const GentsOrderDetails = () => {
             <TextInput
               className="text-sm text-black left-3"
               placeholder="Complete Address"
-              placeholderTextColor={'gray'}
+              placeholderTextColor={'#539165'}
               value={adress}
               onChangeText={handleAdressChange}
               ref={adressRef}
@@ -251,9 +300,9 @@ const GentsOrderDetails = () => {
           {/* Neck */}
           <View className="mb-3 border-b-2 border-b-gray-500">
             <Picker
-              selectedValue={neckType}
-              onValueChange={setNeckType}
-              style={{color: 'gray'}}>
+              selectedValue={neck}
+              onValueChange={setNeck}
+              style={{color: '#539165'}}>
               <Picker.Item
                 label="Select Neck Type"
                 value=""
@@ -268,9 +317,9 @@ const GentsOrderDetails = () => {
           {/* Pocket */}
           <View className="mb-3 border-b-2 border-b-gray-500">
             <Picker
-              selectedValue={pocketType}
-              onValueChange={setPocketType}
-              style={{color: 'gray'}}>
+              selectedValue={Pocket}
+              onValueChange={setPocket}
+              style={{color: '#539165'}}>
               <Picker.Item
                 label="Select Pocket Type"
                 value=""
@@ -302,9 +351,9 @@ const GentsOrderDetails = () => {
           {/* Daman */}
           <View className="mb-3 border-b-2 border-b-gray-500">
             <Picker
-              selectedValue={damanType}
-              onValueChange={setDamanType}
-              style={{color: 'gray'}}>
+              selectedValue={Daman}
+              onValueChange={setDaman}
+              style={{color: '#539165'}}>
               <Picker.Item
                 label="Select Daman Type"
                 value=""
@@ -318,9 +367,9 @@ const GentsOrderDetails = () => {
           {/* Wrist */}
           <View className="mb-3 border-b-2 border-b-gray-500">
             <Picker
-              selectedValue={wristType}
-              onValueChange={setWristType}
-              style={{color: 'gray'}}>
+              selectedValue={wrist}
+              onValueChange={setWrist}
+              style={{color: '#539165'}}>
               <Picker.Item
                 label="Select Wrist Type"
                 value=""
@@ -339,8 +388,8 @@ const GentsOrderDetails = () => {
               placeholderTextColor="gray"
               multiline={true}
               numberOfLines={6}
-              value={comment}
-              onChangeText={setComment}
+              value={comments}
+              onChangeText={setComments}
             />
           </View>
 
@@ -351,25 +400,42 @@ const GentsOrderDetails = () => {
             </Text>
             <View className="flex-row mt-3">
               <View className="top-2 right-2">
-                <CheckBox value={singleKanta} onValueChange={setSingleKanta} />
+                <CheckBox
+                  value={singleKanta}
+                  onValueChange={newValue => {
+                    setSingleKanta(newValue);
+                    updatePuncha(newValue, 'Single Kanta');
+                  }}
+                  tintColors={{true: 'blue', false: 'green'}}
+                />
               </View>
               <View>
-                <Text className="text-sm font-medium top-2">Single Kanta</Text>
-                <Text className="text-sm font-medium top-2">(Rs.100)</Text>
+                <Text className="text-sm font-medium top-2 text-primary">
+                  Single Kanta
+                </Text>
+                <Text className="text-sm font-medium top-2 text-primary">
+                  (Rs.100)
+                </Text>
               </View>
 
               <View className="flex-row left-10">
                 <View className="top-2 right-2">
                   <CheckBox
                     value={doubleKanta}
-                    onValueChange={setDoubleKanta}
+                    onValueChange={newValue => {
+                      setDoubleKanta(newValue);
+                      updatePuncha(newValue, 'Double Kanta');
+                    }}
+                    tintColors={{true: 'blue', false: 'green'}}
                   />
                 </View>
                 <View>
-                  <Text className="text-sm font-medium top-2">
+                  <Text className="text-sm font-medium top-2 text-primary">
                     Double Kanta
                   </Text>
-                  <Text className="text-sm font-medium top-2">(Rs.200)</Text>
+                  <Text className="text-sm font-medium top-2 text-primary">
+                    (Rs.200)
+                  </Text>
                 </View>
               </View>
             </View>
@@ -380,13 +446,19 @@ const GentsOrderDetails = () => {
             <Text className="text-sm text-dark font-medium">Tob Stitch</Text>
             <View className="flex-row mt-3">
               <View className="top-2 right-2">
-                <CheckBox value={tobStitch} onValueChange={setTobStitch} />
+                <CheckBox
+                  value={Tob_double_stitch}
+                  onValueChange={setTobDoubleStitch}
+                  tintColors={{true: 'blue', false: 'green'}}
+                />
               </View>
               <View>
-                <Text className="text-sm font-medium top-2">
+                <Text className="text-sm font-medium top-2 text-primary">
                   Tob Double Stitch
                 </Text>
-                <Text className="text-sm font-medium top-2">(Rs.200)</Text>
+                <Text className="text-sm font-medium top-2 text-primary">
+                  (Rs.200)
+                </Text>
               </View>
             </View>
           </View>
@@ -398,28 +470,40 @@ const GentsOrderDetails = () => {
               <View className="top-2 right-2">
                 <CheckBox
                   value={embroideryFull}
-                  onValueChange={setEmbroideryFull}
+                  onValueChange={newValue => {
+                    setEmbroideryFull(newValue);
+                    updateEmbroidery(newValue, 'EmbroideryFull');
+                  }}
+                  tintColors={{true: 'blue', false: 'green'}}
                 />
               </View>
               <View>
-                <Text className="text-sm font-medium top-2">
+                <Text className="text-sm font-medium top-2 text-primary">
                   Embroidery Full
                 </Text>
-                <Text className="text-sm font-medium top-2">Rs.500</Text>
+                <Text className="text-sm font-medium top-2 text-primary">
+                  Rs.500
+                </Text>
               </View>
 
               <View className="flex-row left-10">
                 <View className="top-2 right-2">
                   <CheckBox
                     value={embroideryNormal}
-                    onValueChange={setEmbroideryNormal}
+                    onValueChange={newValue => {
+                      setEmbroideryNormal(newValue);
+                      updateEmbroidery(newValue, 'EmbroideryNormal');
+                    }}
+                    tintColors={{true: 'blue', false: 'green'}}
                   />
                 </View>
                 <View>
-                  <Text className="text-sm font-medium top-2">
+                  <Text className="text-sm font-medium top-2 text-primary">
                     Embroidery Normal
                   </Text>
-                  <Text className="text-sm font-medium top-2">Rs.300</Text>
+                  <Text className="text-sm font-medium top-2 text-primary">
+                    Rs.300
+                  </Text>
                 </View>
               </View>
             </View>

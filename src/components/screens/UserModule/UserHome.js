@@ -255,31 +255,37 @@ const UserHome = () => {
 
           <View className="flex-row justify-around items-center">
             <View className="p-3 items-center">
-              <View>
+              <View className="p-3">
                 <Ionicons
                   name="phone-portrait-outline"
                   size={30}
                   color={'#539165'}
                 />
               </View>
-              <Text className="text-center">0333-1447770</Text>
-              <Text className="text-center">0345-8629967</Text>
+              <Text className="text-center text-gray-600 font-semibold">
+                0333-1447770
+              </Text>
+              <Text className="text-center text-gray-600 font-semibold">
+                0345-8629967
+              </Text>
             </View>
 
             <View className="p-3 items-center top-2">
-              <View>
+              <View className="p-3">
                 <FontAwesome5 name="heartbeat" size={30} color={'#539165'} />
               </View>
-              <Text className="w-28 text-center">
+              <Text className="w-28 text-center text-gray-600 font-semibold">
                 support@pickandstitches.com
               </Text>
             </View>
 
             <View className="p-3 items-center">
-              <View>
+              <View className="p-3">
                 <Ionicons name="map-outline" size={30} color={'#539165'} />
               </View>
-              <Text className="w-28 text-center">Peshawar Road Rawalpindi</Text>
+              <Text className="w-28 text-center text-gray-600 font-semibold">
+                Peshawar Road Rawalpindi
+              </Text>
             </View>
           </View>
         </View>

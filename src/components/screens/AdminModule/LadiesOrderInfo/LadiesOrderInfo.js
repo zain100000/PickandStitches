@@ -27,46 +27,64 @@ const LadiesOrderInfo = ({route}) => {
         />
         <View>
           <View className="flex-row border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg">Product Name:</Text>
-            <Text className="text-lg">{selectedOrder.product}</Text>
+            <Text className="text-lg text-black font-bold">Product Name:</Text>
+            <Text className="text-lg text-black font-bold">
+              {selectedOrder.product}
+            </Text>
           </View>
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg">Name:</Text>
-            <Text className="text-lg">{selectedOrder.name}</Text>
+            <Text className="text-lg text-black font-bold">Name:</Text>
+            <Text className="text-lg text-black font-bold">
+              {selectedOrder.name}
+            </Text>
           </View>
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg">Cell:</Text>
-            <Text className="text-lg">{selectedOrder.cell}</Text>
+            <Text className="text-lg text-black font-bold">Cell:</Text>
+            <Text className="text-lg text-black font-bold">
+              {selectedOrder.cell}
+            </Text>
           </View>
           <View className="flex-row  flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg">Address:</Text>
-            <Text className="text-lg">{selectedOrder.address}</Text>
+            <Text className="text-lg text-black font-bold">Address:</Text>
+            <Text className="text-lg text-black font-bold">
+              {selectedOrder.address}
+            </Text>
           </View>
           <View className="flex-row  flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg">Comments:</Text>
-            <Text className="text-lg">{selectedOrder.comments}</Text>
+            <Text className="text-lg text-black font-bold">Comments:</Text>
+            <Text className="text-lg text-black font-bold">
+              {selectedOrder.comments}
+            </Text>
           </View>
 
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg">Piko:</Text>
-            <Text className="text-lg">{selectedOrder.piko}</Text>
+            <Text className="text-lg text-black font-bold">Piko:</Text>
+            <Text className="text-lg text-black font-bold">
+              {selectedOrder.piko}
+            </Text>
           </View>
 
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg">Top:</Text>
-            <Text className="text-lg">{selectedOrder.Top}</Text>
+            <Text className="text-lg text-black font-bold">Top:</Text>
+            <Text className="text-lg text-black font-bold">
+              {selectedOrder.Top}
+            </Text>
           </View>
 
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg">Dupatta:</Text>
-            <Text className="text-lg">{selectedOrder.Dupatta}</Text>
+            <Text className="text-lg text-black font-bold">Dupatta:</Text>
+            <Text className="text-lg text-black font-bold">
+              {selectedOrder.Dupatta}
+            </Text>
           </View>
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg">Embroidery:</Text>
-            <Text className="text-lg">{selectedOrder.Embroidery}</Text>
+            <Text className="text-lg text-black font-bold">Embroidery:</Text>
+            <Text className="text-lg text-black font-bold">
+              {selectedOrder.Embroidery}
+            </Text>
           </View>
           <View className="flex-row  flex-wrap border-b-2 border-b-gray-400 p-5 justify-between items-center">
-            <Text className="text-lg">Samples:</Text>
+            <Text className="text-lg text-black font-bold">Samples:</Text>
             <TouchableOpacity onPress={toggleModal}>
               <Image
                 source={{uri: selectedOrder.sample}}
@@ -75,8 +93,10 @@ const LadiesOrderInfo = ({route}) => {
             </TouchableOpacity>
           </View>
           <View className="flex-row border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg">Total:</Text>
-            <Text className="text-lg">{selectedOrder.total}Rs/-</Text>
+            <Text className="text-lg text-black font-bold">Total:</Text>
+            <Text className="text-lg text-black font-bold">
+              {selectedOrder.total}Rs/-
+            </Text>
           </View>
         </View>
       </ScrollView>

@@ -15,50 +15,50 @@ const MenProducts = () => {
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         {/* Items Start */}
         <GentsItemsContainer
-          title="Shalwar Kameez (Simple)"
-          imgSrc={ShalwarKameezSimple}
+          product="Shalwar Kameez (Simple)"
+          product_pic={ShalwarKameezSimple}
           price={'1500'}
           onwards={'Onwards'}
         />
 
         <GentsItemsContainer
-          title="Shalwar Kameez (Cotton)"
-          imgSrc={ShalwarKameezCotton}
+          product="Shalwar Kameez (Cotton)"
+          product_pic={ShalwarKameezCotton}
           price={'1500'}
           onwards={'Onwards'}
         />
 
         <GentsItemsContainer
-          title="Shalwar Kameez (Kurta)"
-          imgSrc={ShalwarKameezKurta}
+          product="Shalwar Kameez (Kurta)"
+          product_pic={ShalwarKameezKurta}
           price={'1500'}
           onwards={'Onwards'}
         />
 
         <GentsItemsContainer
-          title="Shalwar Kameez (Khaddar)"
-          imgSrc={ShalwarKameezKhaddar}
+          product="Shalwar Kameez (Khaddar)"
+          product_pic={ShalwarKameezKhaddar}
           price={'1600'}
           onwards={'Onwards'}
         />
 
         <GentsItemsContainer
-          title="Shalwar Kameez (Karandi)"
-          imgSrc={ShalwarKameezKarandi}
+          product="Shalwar Kameez (Karandi)"
+          product_pic={ShalwarKameezKarandi}
           price={'1800'}
           onwards={'Onwards'}
         />
 
         <GentsItemsContainer
-          title="Shalwar Kameez (Silk)"
-          imgSrc={ShalwarKameezSilk}
+          product="Shalwar Kameez (Silk)"
+          product_pic={ShalwarKameezSilk}
           price={'1800'}
           onwards={'Onwards'}
         />
 
         <GentsItemsContainer
-          title="Gents Kids Suit"
-          imgSrc={GentsKidsSuit}
+          product="Gents Kids Suit"
+          product_pic={GentsKidsSuit}
           price={'1800'}
           onwards={'Onwards'}
         />

@@ -27,67 +27,91 @@ const GentsOrderInfo = ({route}) => {
         />
         <View>
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg">Product Name:</Text>
-            <Text className="text-lg">{selectedOrder.product}</Text>
+            <Text className="text-lg text-black font-bold">Product Name:</Text>
+            <Text className="text-lg text-black font-bold">
+              {selectedOrder.product}
+            </Text>
           </View>
 
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg">Name:</Text>
-            <Text className="text-lg">{selectedOrder.name}</Text>
+            <Text className="text-lg text-black font-bold">Name:</Text>
+            <Text className="text-lg text-black font-bold">
+              {selectedOrder.name}
+            </Text>
           </View>
 
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg">Cell:</Text>
-            <Text className="text-lg">{selectedOrder.cell}</Text>
+            <Text className="text-lg text-black font-bold">Cell:</Text>
+            <Text className="text-lg text-black font-bold">
+              {selectedOrder.cell}
+            </Text>
           </View>
 
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg">Address:</Text>
-            <Text className="text-lg">{selectedOrder.address}</Text>
+            <Text className="text-lg text-black font-bold">Address:</Text>
+            <Text className="text-lg text-black font-bold">
+              {selectedOrder.address}
+            </Text>
           </View>
 
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg">Comments:</Text>
-            <Text className="text-lg">{selectedOrder.comments}</Text>
+            <Text className="text-lg text-black font-bold">Comments:</Text>
+            <Text className="text-lg text-black font-bold">
+              {selectedOrder.comments}
+            </Text>
           </View>
 
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg">Neck:</Text>
-            <Text className="text-lg">{selectedOrder.neck}</Text>
+            <Text className="text-lg text-black font-bold">Neck:</Text>
+            <Text className="text-lg text-black font-bold">
+              {selectedOrder.neck}
+            </Text>
           </View>
 
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg">Pocket:</Text>
-            <Text className="text-lg">{selectedOrder.Pocket}</Text>
+            <Text className="text-lg text-black font-bold">Pocket:</Text>
+            <Text className="text-lg text-black font-bold">
+              {selectedOrder.Pocket}
+            </Text>
           </View>
 
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg">Daman:</Text>
-            <Text className="text-lg">{selectedOrder.Daman}</Text>
+            <Text className="text-lg text-black font-bold">Daman:</Text>
+            <Text className="text-lg text-black font-bold">
+              {selectedOrder.Daman}
+            </Text>
           </View>
 
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg">Wrist:</Text>
-            <Text className="text-lg">{selectedOrder.wrist}</Text>
+            <Text className="text-lg text-black font-bold">Wrist:</Text>
+            <Text className="text-lg text-black font-bold">
+              {selectedOrder.wrist}
+            </Text>
           </View>
 
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg">Leg Opening:</Text>
-            <Text className="text-lg">{selectedOrder.puncha}</Text>
+            <Text className="text-lg text-black font-bold">Leg Opening:</Text>
+            <Text className="text-lg text-black font-bold">
+              {selectedOrder.puncha}
+            </Text>
           </View>
 
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg">Double Stitch:</Text>
-            <Text className="text-lg">{selectedOrder.Tob_double_stitch}</Text>
+            <Text className="text-lg text-black font-bold">Double Stitch:</Text>
+            <Text className="text-lg text-black font-bold">
+              {selectedOrder.Tob_double_stitch}
+            </Text>
           </View>
 
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg">Embroidery:</Text>
-            <Text className="text-lg">{selectedOrder.Embroidery}</Text>
+            <Text className="text-lg text-black font-bold">Embroidery:</Text>
+            <Text className="text-lg text-black font-bold">
+              {selectedOrder.Embroidery}
+            </Text>
           </View>
 
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between items-center">
-            <Text className="text-lg">Samples:</Text>
+            <Text className="text-lg text-black font-bold">Samples:</Text>
             <TouchableOpacity onPress={toggleModal}>
               <Image
                 source={{uri: selectedOrder.sample}}
@@ -97,8 +121,10 @@ const GentsOrderInfo = ({route}) => {
           </View>
 
           <View className="flex-row border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg">Total:</Text>
-            <Text className="text-lg">{selectedOrder.total}Rs/-</Text>
+            <Text className="text-lg text-black font-bold">Total:</Text>
+            <Text className="text-lg text-black font-bold">
+              {selectedOrder.total}Rs/-
+            </Text>
           </View>
         </View>
       </ScrollView>
