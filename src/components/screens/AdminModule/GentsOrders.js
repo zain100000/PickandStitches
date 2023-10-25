@@ -8,6 +8,7 @@ import {
   TextInput,
   RefreshControl,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import axios from 'axios';
@@ -74,11 +75,12 @@ const GentsOrders = () => {
   };
 
   const handleSelectAll = () => {
-    setSelectAll(!selectAll);
+    const newSelectAll = !selectAll;
+    setSelectAll(newSelectAll);
 
     const newData = data.map(order => ({
       ...order,
-      selected: !selectAll,
+      selected: newSelectAll,
     }));
     setData(newData);
   };
@@ -89,33 +91,62 @@ const GentsOrders = () => {
     setData(newData);
   };
 
-  const handleDeleteOrder = async id => {
-    try {
-      const response = await axios.delete(
-        `https://pickandstitches.com/font-awesome/scss/scss/api_male_orders.php?delete_order=${id}`,
-      );
-      if (response.status === 200) {
-        const newData = data.filter(order => order.id !== id);
-        setData(newData);
-      } else {
-        console.error('Error deleting order from API:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Error deleting order from API:', error);
-    }
+  const handleDeleteOrder = async () => {
+    Alert.alert(
+      'Delete Order',
+      'Are you sure you want to delete selected orders?',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Delete',
+          onPress: async () => {
+            const selectedIds = data
+              .filter(order => order.selected)
+              .map(order => order.id);
+
+            if (selectedIds.length === 0) {
+              return; // No orders selected to delete
+            }
+
+            try {
+              const response = await axios.delete(
+                'https://pickandstitches.com/font-awesome/scss/scss/api_male_orders.php?delete_order=' +
+                  selectedIds.join(','),
+              );
+              if (response.status === 200) {
+                const newData = data.filter(order => !order.selected);
+                setData(newData);
+              } else {
+                console.error(
+                  'Error deleting orders from API:',
+                  response.statusText,
+                );
+              }
+            } catch (error) {
+              console.error('Error deleting orders from API:', error);
+            }
+          },
+        },
+      ],
+    );
   };
 
   return (
     <SafeAreaView className="flex-1 bg-white">
       <View className="flex-row justify-between items-center">
-        <TouchableOpacity className="left-4">
+        <TouchableOpacity
+          onPress={item => handleDeleteOrder(item.id)}
+          className="left-4">
           <FontAwesome5 name={'trash'} size={25} color={'red'} />
         </TouchableOpacity>
         <TextInput
           placeholder="Search by name or cell number"
           value={searchText}
           onChangeText={text => setSearchText(text)}
-          className="border-2 border-gray-400 w-80 border-l-2 border-r-0 border-t-0"
+          className="border-2 border-gray-400 w-80 border-l-2 border-r-0 border-t-0 p-2"
         />
       </View>
 
