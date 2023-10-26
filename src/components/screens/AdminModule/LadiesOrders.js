@@ -145,6 +145,7 @@ const LadiesOrders = () => {
         <TextInput
           placeholder="Search by name or cell number"
           value={searchText}
+          placeholderTextColor={'#00bcd4'}
           onChangeText={text => setSearchText(text)}
           className="border-2 border-gray-400 w-80 border-l-2 border-r-0 border-t-0 p-2"
         />

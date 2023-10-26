@@ -18,7 +18,7 @@ const GentsOrders = () => {
   const [data, setData] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [refreshing, setRefreshing] = useState(false);
-  const [selectAll, setSelectAll] = useState(false); // Keep track of the main checkbox
+  const [selectAll, setSelectAll] = useState(false); 
   const [isLoading, setIsLoading] = useState(true);
   const [showLoader, setShowLoader] = useState(true);
   const navigation = useNavigation();
@@ -145,6 +145,7 @@ const GentsOrders = () => {
         <TextInput
           placeholder="Search by name or cell number"
           value={searchText}
+          placeholderTextColor={'#00bcd4'}
           onChangeText={text => setSearchText(text)}
           className="border-2 border-gray-400 w-80 border-l-2 border-r-0 border-t-0 p-2"
         />
