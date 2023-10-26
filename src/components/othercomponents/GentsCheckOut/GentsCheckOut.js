@@ -265,12 +265,14 @@ const GentsCheckOut = () => {
         keyExtractor={(item, index) => index.toString()}
         renderItem={({item}) => (
           <View className="flex-row flex-wrap justify-between items-center p-4 border-b-2 border-b-gray-400">
-            <Text className="mb-2">{item.label}</Text>
-            <Text>{item.value}</Text>
+            <Text className="mb-2 font-semibold text-primary">
+              {item.label}
+            </Text>
+            <Text className="font-semibold text-primary">{item.value}</Text>
           </View>
         )}
       />
-      <Text className="text-lg font-semibold text-center">
+      <Text className="text-lg font-semibold text-center text-primary top-3">
         Total Price: {formatPriceAsCurrency(totalPrice)}
       </Text>
 

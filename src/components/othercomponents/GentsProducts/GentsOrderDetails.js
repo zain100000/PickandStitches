@@ -13,7 +13,6 @@ import {useNavigation, useRoute} from '@react-navigation/native';
 import CheckBox from '@react-native-community/checkbox';
 import {Picker} from '@react-native-picker/picker';
 import DocumentPicker from 'react-native-document-picker';
-import {color} from 'react-native-tailwindcss';
 
 const GentsOrderDetails = () => {
   const navigation = useNavigation();

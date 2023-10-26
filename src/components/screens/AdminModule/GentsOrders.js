@@ -187,7 +187,7 @@ const GentsOrders = () => {
                 <Text className='text-black font-bold text-md'>{item.cell}</Text>
               </View>
               <View className="w-16">
-                <Text className='text-black font-bold text-md'>{item.address}</Text>
+                <Text className='text-black font-bold text-md'>{item.adress}</Text>
               </View>
               <View className="w-16 flex-row item-center justify-between flex-wrap left-5">
                 <TouchableOpacity onPress={() => handleViewOrderDetails(item)}>

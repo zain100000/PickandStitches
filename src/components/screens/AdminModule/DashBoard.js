@@ -26,7 +26,7 @@ const DashBoard = () => {
         <Text className="text-center text-lg font-semibold text-dark right-2">
           Current Day:
         </Text>
-        <Text className="text-center text-lg font-semibold text-gray">
+        <Text className="text-center text-lg font-semibold text-ternary">
           {formattedDate}
         </Text>
       </View>

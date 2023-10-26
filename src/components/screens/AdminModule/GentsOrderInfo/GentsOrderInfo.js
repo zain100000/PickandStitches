@@ -50,7 +50,7 @@ const GentsOrderInfo = ({route}) => {
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
             <Text className="text-lg text-black font-bold">Address:</Text>
             <Text className="text-lg text-black font-bold">
-              {selectedOrder.address}
+              {selectedOrder.adress}
             </Text>
           </View>
 
