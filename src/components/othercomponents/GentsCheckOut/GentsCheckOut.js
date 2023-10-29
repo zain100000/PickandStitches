@@ -26,50 +26,22 @@ const GentsCheckOut = () => {
   const Daman = route.params?.Daman || 'Not selected';
   const wrist = route.params?.wrist || 'Not selected';
   const comments = route.params?.comments || 'Comment';
-  const puncha = route.params?.puncha || [];
-  const Tob_double_stitch = route.params?.Tob_double_stitch || false;
-  const Embroidery = route.params?.Embroidery || [];
   const sample = route.params?.sample;
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
 
   // Define pricing variables
   const basePrice = price;
-  const SingleKantaPrice = 100;
-  const DoubleKantaPrice = 200;
-  const tobStitchPrice = 200;
-  const embroideryFullPrice = 500;
-  const embroideryNormalPrice = 300;
 
   // Calculate the total price based on user selections
   const calculateTotalPrice = () => {
     let totalPrice = basePrice;
 
-    if (puncha.includes('Single Kanta')) {
-      totalPrice += SingleKantaPrice;
-    }
-
-    if (puncha.includes('Double Kanta')) {
-      totalPrice += DoubleKantaPrice;
-    }
-
-    if (Tob_double_stitch) {
-      totalPrice += tobStitchPrice;
-    }
-
-    if (Embroidery.includes('EmbroideryFull')) {
-      totalPrice += embroideryFullPrice;
-    }
-
-    if (Embroidery.includes('EmbroideryNormal')) {
-      totalPrice += embroideryNormalPrice;
-    }
-
     return totalPrice;
   };
 
   // Get the dynamically calculated total price
-  const totalPrice = calculateTotalPrice();
+  const total = calculateTotalPrice();
 
   // Function to format the price as currency
   const formatPriceAsCurrency = amount => {
@@ -77,32 +49,6 @@ const GentsCheckOut = () => {
       style: 'currency',
       currency: 'PKR',
     }).format(amount);
-  };
-
-  // Function to handle order submission
-
-  // Function to describe leg opening pricing
-  const getPriceDescription = (singleKanta, doubleKanta) => {
-    if (singleKanta && doubleKanta) {
-      return 'Single Kanta(Rs.100) and Double Kanta(Rs.200)';
-    } else if (singleKanta) {
-      return 'Single Kanta(Rs.100)';
-    } else if (doubleKanta) {
-      return 'Double Kanta(Rs.200)';
-    }
-    return 'Not selected';
-  };
-
-  // Function to describe embroidery pricing
-  const getEmbroideryDescription = (embroidaryFull, embroideryNormal) => {
-    if (embroidaryFull && embroideryNormal) {
-      return 'Embroidery Full(Rs.500) and Embroidery Normal(Rs.300)';
-    } else if (embroidaryFull) {
-      return 'Embroidery Full(Rs.500)';
-    } else if (embroideryNormal) {
-      return 'Embroidery Normal(Rs.300)';
-    }
-    return 'Not selected';
   };
 
   // Define order details for display
@@ -117,24 +63,6 @@ const GentsCheckOut = () => {
     {label: 'Wrist Type', value: wrist || 'Not selected'},
     {label: 'Comment', value: comments || 'No additional comment'},
     {label: 'Product Base Price', value: price},
-    {
-      label: 'Leg Opening (Puncha)',
-      value: getPriceDescription(
-        puncha.includes('Single Kanta'),
-        puncha.includes('Double Kanta'),
-      ),
-    },
-    {
-      label: 'Tob Stitch',
-      value: Tob_double_stitch ? 'Tob Double Stitch (Rs. 200)' : 'Not selected',
-    },
-    {
-      label: 'Embroidery',
-      value: getEmbroideryDescription(
-        Embroidery.includes('EmbroideryFull'),
-        Embroidery.includes('EmbroideryNormal'),
-      ),
-    },
     {
       label: 'Samples',
       value: (
@@ -193,19 +121,11 @@ const GentsCheckOut = () => {
           <p><b>Pocket Type:</b> ${Pocket || 'Not selected'}</p>
           <p><b>Daman Type:</b> ${Daman || 'Not selected'}</p>
           <p><b>Wrist Type:</b> ${wrist || 'Not selected'}</p>
-          <p><b>Comment:</b> ${comments || 'No additional comment'}</p>
-          <p><b>Product Base Price:</b> ${formatPriceAsCurrency(price)}</p>
-          <p><b>Leg Opening (Puncha):</b> ${getPriceDescription(
-            puncha.includes('Single Kanta'),
-            puncha.includes('Double Kanta'),
-          )}</p>
-          <p><b>Tob Stitch:</b> ${
-            Tob_double_stitch ? 'Tob Double Stitch (Rs. 200)' : 'Not selected'
-          }</p>
-          <p><b>Embroidery:</b> ${getEmbroideryDescription(
-            Embroidery.includes('EmbroideryFull'),
-            Embroidery.includes('EmbroideryNormal'),
-          )}</p>
+          <p><b>Comment:</b> ${comments || 'No additional comment'}</p>         
+          <p><b>Product Base Price:</b> ${formatPriceAsCurrency(
+            basePrice,
+          )}</p>   
+          <p><b>Total Price:</b> ${formatPriceAsCurrency(total)}</p>         
         </body>
       </html>
     `;
@@ -216,7 +136,7 @@ const GentsCheckOut = () => {
   const saveApiData = async () => {
     // Define the API endpoint URL
     const apiUrl =
-      'https://pickandstitches.com/font-awesome/scss/scss/api_male_orders.php';
+      'https://pickandstitches.com/font-awesome/scss/scss/api_endpoint.php';
 
     // Prepare the data to be sent to the API
     const orderData = {
@@ -228,9 +148,11 @@ const GentsCheckOut = () => {
       Daman,
       wrist,
       comments,
+      total,
     };
 
-    console.log(orderData);
+    console.log('Order Data:', orderData); // Add this console.log
+
     // Set loading to true while the request is in progress
     setLoading(true);
 
@@ -241,6 +163,8 @@ const GentsCheckOut = () => {
           'Content-Type': 'application/json',
         },
       });
+
+      console.log('API Response:', response); // Add this console.log
 
       if (response.status === 200) {
         // Data saved successfully
@@ -273,7 +197,7 @@ const GentsCheckOut = () => {
         )}
       />
       <Text className="text-lg font-semibold text-center text-primary top-3">
-        Total Price: {formatPriceAsCurrency(totalPrice)}
+        Total Price: {formatPriceAsCurrency(total)}
       </Text>
 
       <View className="flex-row justify-between">

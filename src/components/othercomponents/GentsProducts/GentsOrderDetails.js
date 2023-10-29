@@ -10,7 +10,6 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
-import CheckBox from '@react-native-community/checkbox';
 import {Picker} from '@react-native-picker/picker';
 import DocumentPicker from 'react-native-document-picker';
 
@@ -29,13 +28,6 @@ const GentsOrderDetails = () => {
   const [Daman, setDaman] = useState('');
   const [wrist, setWrist] = useState('');
   const [comments, setComments] = useState('');
-  const [puncha, setPuncha] = useState([]);
-  const [singleKanta, setSingleKanta] = useState(false);
-  const [doubleKanta, setDoubleKanta] = useState(false);
-  const [Tob_double_stitch, setTobDoubleStitch] = useState(false);
-  const [Embroidery, setEmbroidery] = useState([]);
-  const [embroideryFull, setEmbroideryFull] = useState(false);
-  const [embroideryNormal, setEmbroideryNormal] = useState(false);
   const [sample, setSample] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -138,34 +130,6 @@ const GentsOrderDetails = () => {
 
     setLoading(true);
 
-    // puncha
-    const selectedPuncha = [];
-
-    if (singleKanta) {
-      selectedPuncha.push('Single Kanta');
-    }
-
-    if (doubleKanta) {
-      selectedPuncha.push('Double Kanta');
-    }
-
-    // Set the puncha state with the selected values
-    setPuncha(selectedPuncha);
-
-    // Embroidery
-    const selectedEmbroidery = [];
-
-    if (embroideryFull) {
-      selectedEmbroidery.push('EmbroideryFull');
-    }
-
-    if (embroideryNormal) {
-      selectedEmbroidery.push('EmbroideryNormal');
-    }
-
-    // Set the puncha state with the selected values
-    setEmbroidery(selectedEmbroidery);
-
     setTimeout(() => {
       setLoading(false);
       navigation.navigate('GentsCheckOut', {
@@ -179,11 +143,8 @@ const GentsOrderDetails = () => {
         Daman,
         wrist,
         comments,
-        puncha,
-        Tob_double_stitch,
-        Embroidery,
-        price,
         sample,
+        price,
       });
 
       setName('');
@@ -194,33 +155,8 @@ const GentsOrderDetails = () => {
       setDaman('');
       setWrist('');
       setComments('');
-      setPuncha('');
-      setTobDoubleStitch('');
-      setEmbroidery('');
       setSample('');
     }, 2000);
-  };
-
-  const updatePuncha = (checked, option) => {
-    if (checked) {
-      // If the checkbox is checked, add the option to the puncha state
-      setPuncha(prevPuncha => [...prevPuncha, option]);
-    } else {
-      // If the checkbox is unchecked, remove the option from the puncha state
-      setPuncha(prevPuncha => prevPuncha.filter(item => item !== option));
-    }
-  };
-
-  const updateEmbroidery = (checked, option) => {
-    if (checked) {
-      // If the checkbox is checked, add the option to the puncha state
-      setEmbroidery(prevEmbroidery => [...prevEmbroidery, option]);
-    } else {
-      // If the checkbox is unchecked, remove the option from the puncha state
-      setEmbroidery(prevEmbroidery =>
-        prevEmbroidery.filter(item => item !== option),
-      );
-    }
   };
 
   return (
@@ -390,122 +326,6 @@ const GentsOrderDetails = () => {
               value={comments}
               onChangeText={setComments}
             />
-          </View>
-
-          {/* Leg Opening */}
-          <View className="mb-5 mt-5 left-3">
-            <Text className="text-sm text-dark font-medium">
-              Leg opening (Puncha)
-            </Text>
-            <View className="flex-row mt-3">
-              <View className="top-2 right-2">
-                <CheckBox
-                  value={singleKanta}
-                  onValueChange={newValue => {
-                    setSingleKanta(newValue);
-                    updatePuncha(newValue, 'Single Kanta');
-                  }}
-                  tintColors={{true: 'blue', false: 'green'}}
-                />
-              </View>
-              <View>
-                <Text className="text-sm font-medium top-2 text-primary">
-                  Single Kanta
-                </Text>
-                <Text className="text-sm font-medium top-2 text-primary">
-                  (Rs.100)
-                </Text>
-              </View>
-
-              <View className="flex-row left-10">
-                <View className="top-2 right-2">
-                  <CheckBox
-                    value={doubleKanta}
-                    onValueChange={newValue => {
-                      setDoubleKanta(newValue);
-                      updatePuncha(newValue, 'Double Kanta');
-                    }}
-                    tintColors={{true: 'blue', false: 'green'}}
-                  />
-                </View>
-                <View>
-                  <Text className="text-sm font-medium top-2 text-primary">
-                    Double Kanta
-                  </Text>
-                  <Text className="text-sm font-medium top-2 text-primary">
-                    (Rs.200)
-                  </Text>
-                </View>
-              </View>
-            </View>
-          </View>
-
-          {/* Tob Stitch */}
-          <View className="mb-5 mt-5 left-3">
-            <Text className="text-sm text-dark font-medium">Tob Stitch</Text>
-            <View className="flex-row mt-3">
-              <View className="top-2 right-2">
-                <CheckBox
-                  value={Tob_double_stitch}
-                  onValueChange={setTobDoubleStitch}
-                  tintColors={{true: 'blue', false: 'green'}}
-                />
-              </View>
-              <View>
-                <Text className="text-sm font-medium top-2 text-primary">
-                  Tob Double Stitch
-                </Text>
-                <Text className="text-sm font-medium top-2 text-primary">
-                  (Rs.200)
-                </Text>
-              </View>
-            </View>
-          </View>
-
-          {/* Embroidery */}
-          <View className="mt-5 mb-5 left-3">
-            <Text className="text-sm text-dark font-medium">Embroidery</Text>
-            <View className="flex-row mt-3">
-              <View className="top-2 right-2">
-                <CheckBox
-                  value={embroideryFull}
-                  onValueChange={newValue => {
-                    setEmbroideryFull(newValue);
-                    updateEmbroidery(newValue, 'EmbroideryFull');
-                  }}
-                  tintColors={{true: 'blue', false: 'green'}}
-                />
-              </View>
-              <View>
-                <Text className="text-sm font-medium top-2 text-primary">
-                  Embroidery Full
-                </Text>
-                <Text className="text-sm font-medium top-2 text-primary">
-                  Rs.500
-                </Text>
-              </View>
-
-              <View className="flex-row left-10">
-                <View className="top-2 right-2">
-                  <CheckBox
-                    value={embroideryNormal}
-                    onValueChange={newValue => {
-                      setEmbroideryNormal(newValue);
-                      updateEmbroidery(newValue, 'EmbroideryNormal');
-                    }}
-                    tintColors={{true: 'blue', false: 'green'}}
-                  />
-                </View>
-                <View>
-                  <Text className="text-sm font-medium top-2 text-primary">
-                    Embroidery Normal
-                  </Text>
-                  <Text className="text-sm font-medium top-2 text-primary">
-                    Rs.300
-                  </Text>
-                </View>
-              </View>
-            </View>
           </View>
 
           {/* Attachments */}
