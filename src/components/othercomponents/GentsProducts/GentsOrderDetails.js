@@ -193,7 +193,7 @@ const GentsOrderDetails = () => {
 
         {/* Check-Out Form */}
         <View className="flex-1 mt-14">
-          {/* Title */}
+          {/* Product Name */}
           <View>
             <Text className="text-sm mb-2">Product Name:-</Text>
             <View className="border-2 border-gray-500 mb-3">
