@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {useRoute} from '@react-navigation/native';
 import {
   View,
   Text,
@@ -9,7 +8,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import Print from 'react-native-print';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import axios from 'axios';
@@ -17,6 +16,7 @@ import axios from 'axios';
 const GentsCheckOut = () => {
   const route = useRoute();
   const product = route.params?.product || 'Default product';
+  const product_pic = route.params?.product_pic || 'Default product';
   const price = parseFloat(route.params?.price);
   const name = route.params?.name || 'Default name';
   const cell = route.params?.cell || 'Default cell';
@@ -26,16 +26,39 @@ const GentsCheckOut = () => {
   const Daman = route.params?.Daman || 'Not selected';
   const wrist = route.params?.wrist || 'Not selected';
   const comments = route.params?.comments || 'Comment';
+  const puncha = route.params?.puncha || 'Not Selected';
+  const Tob_double_stitch = route.params?.Tob_double_stitch || 'Not Selected';
+  const Embroidery = route.params?.Embroidery || 'Not Selected';
   const sample = route.params?.sample;
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
 
   // Define pricing variables
   const basePrice = price;
+  const singleKanta = 100;
+  const doubleKanta = 200;
+  const tob_double_stitch = 300;
+  const embroideryFull = 500;
+  const embroideryNormal = 300;
 
-  // Calculate the total price based on user selections
   const calculateTotalPrice = () => {
     let totalPrice = basePrice;
+
+    if (puncha === 'Single Kanta') {
+      totalPrice += singleKanta;
+    } else if (puncha === 'Double Kanta') {
+      totalPrice += doubleKanta;
+    }
+
+    if (Tob_double_stitch === 'Tob_double_stitch') {
+      totalPrice += tob_double_stitch;
+    }
+
+    if (Embroidery === 'Embroidery Full') {
+      totalPrice += embroideryFull;
+    } else if (Embroidery === 'Embroidery Normal') {
+      totalPrice += embroideryNormal;
+    }
 
     return totalPrice;
   };
@@ -56,13 +79,38 @@ const GentsCheckOut = () => {
     {label: 'Product Name', value: product},
     {label: 'Name', value: name},
     {label: 'Mobile', value: cell},
-    {label: 'Address', value: adress},
+    {label: 'adress', value: adress},
     {label: 'Neck Type', value: neck || 'Not selected'},
     {label: 'Pocket Type', value: Pocket || 'Not selected'},
     {label: 'Daman Type', value: Daman || 'Not selected'},
     {label: 'Wrist Type', value: wrist || 'Not selected'},
     {label: 'Comment', value: comments || 'No additional comment'},
-    {label: 'Product Base Price', value: price},
+    {label: 'Product Base Price', value: formatPriceAsCurrency(price)},
+    {
+      label: 'Puncha',
+      value: `${puncha || 'Not selected'} (Rs.${
+        puncha === 'Single Kanta' ? 100 : puncha === 'Double Kanta' ? 200 : 0
+      })`,
+    },
+
+    {
+      label: 'Tob Stitch',
+      value: `${Tob_double_stitch || 'Not selected'} (Rs.${
+        Tob_double_stitch === 'Tob Double Stitch' ? 0 : 300
+      })`,
+    },
+
+    {
+      label: 'Embroidery',
+      value: `${Embroidery || 'Not selected'} (Rs.${
+        Embroidery === 'Embroidery Full'
+          ? 500
+          : Embroidery === 'Embroidery Normal'
+          ? 300
+          : 0
+      })`,
+    },
+
     {
       label: 'Samples',
       value: (
@@ -103,42 +151,112 @@ const GentsCheckOut = () => {
   // Function to format the receipt content
   const getOrderReceiptContent = () => {
     // Implement the formatting of the receipt content here
-    // You can use HTML/CSS to structure and style the receipt
-    const receiptHtml = `
-      <html>
-        <head>
-          <style>
-            /* Define your receipt styles here */
-          </style>
-        </head>
-        <body>
-          <h1>Order Receipt</h1>
-          <p><b>Product Name:</b> ${product}</p>
-          <p><b>Name:</b> ${name}</p>
-          <p><b>Mobile:</b> ${cell}</p>
-          <p><b>Address:</b> ${adress}</p>
-          <p><b>Neck Type:</b> ${neck || 'Not selected'}</p>
-          <p><b>Pocket Type:</b> ${Pocket || 'Not selected'}</p>
-          <p><b>Daman Type:</b> ${Daman || 'Not selected'}</p>
-          <p><b>Wrist Type:</b> ${wrist || 'Not selected'}</p>
-          <p><b>Comment:</b> ${comments || 'No additional comment'}</p>         
-          <p><b>Product Base Price:</b> ${formatPriceAsCurrency(
-            basePrice,
-          )}</p>   
-          <p><b>Total Price:</b> ${formatPriceAsCurrency(total)}</p>         
-        </body>
-      </html>
-    `;
+    // You can use the order details from the state to create the receipt content
 
-    return receiptHtml;
+    const receiptContent = `
+    <html>
+      <head>
+        <style>
+          h1 {
+            font-size: 3rem;
+            text-align: center;
+          }          
+        </style>
+      </head>
+      <body>
+        <h1>Order Receipt</h1>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 style="font-size:2rem">Product Name</h4>
+        <p style="font-size:2rem">${product}</p>      
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 style="font-size:2rem">Name</h4>
+        <p style="font-size:2rem">${name}</p>      
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 style="font-size:2rem">Cell</h4>
+        <p style="font-size:2rem">${cell}</p>      
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 style="font-size:2rem">Address</h4>
+        <p style="font-size:2rem">${adress}</p>      
+        </div>        
+        
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 style="font-size:2rem">Neck Type</h4>
+        <p style="font-size:2rem">${neck || 'Not selected'}</p>
+        </div>    
+
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 style="font-size:2rem">Pocket Type</h4>
+        <p style="font-size:2rem">${Pocket || 'Not selected'}</p>
+        </div>      
+
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 style="font-size:2rem">Daman Type</h4>
+        <p style="font-size:2rem">${Daman || 'Not selected'}</p>
+        </div>      
+
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 style="font-size:2rem">Wrist Type</h4>
+        <p style="font-size:2rem">${wrist || 'Not selected'}</p>
+        </div>    
+
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 style="font-size:2rem">Comments</h4>
+        <p style="font-size:2rem">${comments || 'No Comment'}</p>
+        </div>  
+
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 style="font-size:2rem">Product Base Price</h4>
+        <p style="font-size:2rem">${formatPriceAsCurrency(basePrice)}</p>
+        </div>    
+
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 style="font-size:2rem">Leg Opening(Puncha)</h4>
+        <p style="font-size:2rem">${puncha || 'Not selected'} (Rs.${
+      puncha === 'Single Kanta' ? 100 : puncha === 'Double Kanta' ? 200 : 0
+    })</p>
+        </div>      
+
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 style="font-size:2rem">Tob Double Stitch</h4>
+        <p style="font-size:2rem">${Tob_double_stitch || 'Not selected'} (Rs.${
+      Tob_double_stitch === 'Tob Double Stitch' ? 0 : 300
+    })</p>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 style="font-size:2rem">Embroidery</h4>
+        <p style="font-size:2rem">${Embroidery || 'Not selected'} (Rs.${
+      Embroidery === 'Embroidery Full'
+        ? 500
+        : Embroidery === 'Embroidery Normal'
+        ? 300
+        : 0
+    })</p>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 style="font-size:2rem">Total Price</h4>
+        <p style="font-size:2rem">${formatPriceAsCurrency(total)}</p>
+      </div>            
+      </body>
+    </html>
+  `;
+
+    return receiptContent;
   };
 
-  const saveApiData = async () => {
-    // Define the API endpoint URL
+  const handleCheckOut = async () => {
     const apiUrl =
-      'https://pickandstitches.com/font-awesome/scss/scss/api_endpoint.php';
+      'https://pickandstitches.com/font-awesome/scss/scss/api_male_orders.php';
 
-    // Prepare the data to be sent to the API
+    const currentDate = new Date().toISOString().split('T')[0];
+
     const orderData = {
       name,
       cell,
@@ -148,36 +266,37 @@ const GentsCheckOut = () => {
       Daman,
       wrist,
       comments,
+      puncha,
+      Tob_double_stitch,
+      Embroidery,
+      type: 'male',
       total,
+      product,
+      product_pic,
+      sample,
+      date: currentDate,
     };
 
-    console.log('Order Data:', orderData); // Add this console.log
-
-    // Set loading to true while the request is in progress
     setLoading(true);
 
     try {
-      // Make a POST request to the API with the order data
       const response = await axios.post(apiUrl, orderData, {
         headers: {
           'Content-Type': 'application/json',
         },
       });
 
-      console.log('API Response:', response); // Add this console.log
-
       if (response.status === 200) {
-        // Data saved successfully
-        alert('Data Saved');
+        alert('Thank You! Your Order Has Been Successfully Placed!');
       } else {
-        // Handle the response status code or other error conditions
         console.error('API request failed with status code:', response.status);
+        console.log('API Response Data:', response.data);
+        alert('Error saving data. Please try again later.');
       }
     } catch (error) {
-      // Handle any errors that occur during the API request
       console.error('Error saving data:', error);
+      alert('Network error. Please check your connection and try again.');
     } finally {
-      // Set loading back to false when the request is completed (whether it's successful or not)
       setLoading(false);
     }
   };
@@ -202,7 +321,7 @@ const GentsCheckOut = () => {
 
       <View className="flex-row justify-between">
         <TouchableOpacity
-          onPress={saveApiData}
+          onPress={handleCheckOut}
           className="justify-center left-3 mb-5 mr-5 items-center mt-8 p-4 bg-primary rounded-xl w-80">
           {loading ? (
             <ActivityIndicator color={'#fff'} />

@@ -29,6 +29,11 @@ const GentsOrderDetails = () => {
   const [wrist, setWrist] = useState('');
   const [comments, setComments] = useState('');
   const [sample, setSample] = useState([]);
+  const [singleKanta, setSingleKanta] = useState(false);
+  const [doubleKanta, setDoubleKanta] = useState(false);
+  const [Tob_double_stitch, setTobDoubleStitch] = useState(false);
+  const [embroideryFull, setEmbroideryFull] = useState(false);
+  const [embroideryNormal, setEmbroideryNormal] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handlePickDocument = async () => {
@@ -145,6 +150,19 @@ const GentsOrderDetails = () => {
         comments,
         sample,
         price,
+        puncha:
+          (singleKanta ? 'Single Kanta' : '') +
+          (doubleKanta ? (singleKanta ? ', ' : '') + 'Double Kanta' : ''),
+
+        Tob_double_stitch: Tob_double_stitch ? 'Tob_double_stitch' : '',
+
+        Embroidery:
+          (embroideryFull ? 'Embroidery Full' : '') +
+          (embroideryNormal
+            ? (embroideryFull ? ', ' : '') + 'Embroidery Normal'
+            : ''),
+
+        sample,
       });
 
       setName('');
@@ -155,6 +173,12 @@ const GentsOrderDetails = () => {
       setDaman('');
       setWrist('');
       setComments('');
+      setSample('');
+      setSingleKanta(false);
+      setDoubleKanta(false);
+      setTobDoubleStitch(false);
+      setEmbroideryFull(false);
+      setEmbroideryNormal(false);
       setSample('');
     }, 2000);
   };
@@ -328,6 +352,250 @@ const GentsOrderDetails = () => {
             />
           </View>
 
+          {/* Puncha */}
+          <View>
+            <View className="left-3 mt-8">
+              <Text className="text-primary text-lg font-semibold">
+                Leg Opening (Puncha)
+              </Text>
+            </View>
+            <View className="flex-row items-center">
+              <View className="flex-row mb-3">
+                <TouchableOpacity
+                  onPress={() => setSingleKanta(!singleKanta)}
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    marginLeft: 10,
+                    marginTop: 15,
+                  }}>
+                  <View
+                    style={{
+                      height: 25,
+                      width: 25,
+                      borderWidth: 2,
+                      borderColor: '#539165',
+                      marginRight: 10,
+                      borderRadius: 4,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}>
+                    {singleKanta && (
+                      <View
+                        style={{
+                          height: 15,
+                          width: 15,
+                          backgroundColor: '#539165',
+                          borderRadius: 2,
+                        }}
+                      />
+                    )}
+                  </View>
+                </TouchableOpacity>
+                <View className="mt-5">
+                  <Text className="text-[15px] text-black font-semibold">
+                    Single Kanta
+                  </Text>
+                  <Text className="text-[15px] text-black font-semibold">
+                    (Rs.100)
+                  </Text>
+                </View>
+              </View>
+
+              <View className="flex-row">
+                <View className="flex-row mb-3 ml-8">
+                  <TouchableOpacity
+                    onPress={() => setDoubleKanta(!doubleKanta)}
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      marginLeft: 10,
+                      marginTop: 15,
+                    }}>
+                    <View
+                      style={{
+                        height: 25,
+                        width: 25,
+                        borderWidth: 2,
+                        borderColor: '#539165',
+                        marginRight: 10,
+                        borderRadius: 4,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}>
+                      {doubleKanta && (
+                        <View
+                          style={{
+                            height: 15,
+                            width: 15,
+                            backgroundColor: '#539165',
+                            borderRadius: 2,
+                          }}
+                        />
+                      )}
+                    </View>
+                  </TouchableOpacity>
+                  <View className="mt-5">
+                    <Text className="text-[15px] text-black font-semibold">
+                      Double Kanta
+                    </Text>
+                    <Text className="text-[15px] text-black font-semibold">
+                      (Rs.200)
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+
+          {/* Top Stitch */}
+          <View>
+            <View className="left-3 mt-8">
+              <Text className="text-primary text-lg font-semibold">
+                Tob Stitch
+              </Text>
+            </View>
+            <View className="flex-row items-center">
+              <View className="flex-row mb-3">
+                <TouchableOpacity
+                  onPress={() => setTobDoubleStitch(!Tob_double_stitch)}
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    marginLeft: 10,
+                    marginTop: 15,
+                  }}>
+                  <View
+                    style={{
+                      height: 25,
+                      width: 25,
+                      borderWidth: 2,
+                      borderColor: '#539165',
+                      marginRight: 10,
+                      borderRadius: 4,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}>
+                    {Tob_double_stitch && (
+                      <View
+                        style={{
+                          height: 15,
+                          width: 15,
+                          backgroundColor: '#539165',
+                          borderRadius: 2,
+                        }}
+                      />
+                    )}
+                  </View>
+                </TouchableOpacity>
+                <View className="mt-5">
+                  <Text className="text-[15px] text-black font-semibold">
+                    Tob Double Stitch
+                  </Text>
+                  <Text className="text-[15px] text-black font-semibold">
+                    (Rs.300)
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+
+          {/* Embroidery */}
+          <View>
+            <View className="left-3 mt-8">
+              <Text className="text-primary text-lg font-semibold">
+                Embroidery
+              </Text>
+            </View>
+            <View className="flex-row items-center">
+              <View className="flex-row mb-3">
+                <TouchableOpacity
+                  onPress={() => setEmbroideryFull(!embroideryFull)}
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    marginLeft: 10,
+                    marginTop: 15,
+                  }}>
+                  <View
+                    style={{
+                      height: 25,
+                      width: 25,
+                      borderWidth: 2,
+                      borderColor: '#539165',
+                      marginRight: 10,
+                      borderRadius: 4,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}>
+                    {embroideryFull && (
+                      <View
+                        style={{
+                          height: 15,
+                          width: 15,
+                          backgroundColor: '#539165',
+                          borderRadius: 2,
+                        }}
+                      />
+                    )}
+                  </View>
+                </TouchableOpacity>
+                <View className="mt-5">
+                  <Text className="text-[15px] text-black font-semibold">
+                    Embroidery Full
+                  </Text>
+                  <Text className="text-[15px] text-black font-semibold">
+                    (Rs.500)
+                  </Text>
+                </View>
+              </View>
+
+              <View className="flex-row">
+                <View className="flex-row mb-3 ml-8">
+                  <TouchableOpacity
+                    onPress={() => setEmbroideryNormal(!embroideryNormal)}
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      marginLeft: 10,
+                      marginTop: 15,
+                    }}>
+                    <View
+                      style={{
+                        height: 25,
+                        width: 25,
+                        borderWidth: 2,
+                        borderColor: '#539165',
+                        marginRight: 10,
+                        borderRadius: 4,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}>
+                      {embroideryNormal && (
+                        <View
+                          style={{
+                            height: 15,
+                            width: 15,
+                            backgroundColor: '#539165',
+                            borderRadius: 2,
+                          }}
+                        />
+                      )}
+                    </View>
+                  </TouchableOpacity>
+                  <View className="mt-5">
+                    <Text className="text-[15px] text-black font-semibold">
+                      Embroidery Normal
+                    </Text>
+                    <Text className="text-[15px] text-black font-semibold">
+                      (Rs.300)
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+
           {/* Attachments */}
           <View className="flex-1 flex-row p-5">
             {sample && sample.length > 0 ? (
@@ -345,7 +613,7 @@ const GentsOrderDetails = () => {
             )}
           </View>
 
-          {/* Attchment Button */}
+          {/* Attachment Button */}
           <View className="flex-row left-2 mb-5">
             <TouchableOpacity
               onPress={handlePickDocument}
