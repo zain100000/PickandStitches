@@ -150,17 +150,19 @@ const GentsOrderDetails = () => {
         comments,
         sample,
         price,
-        puncha:
-          (singleKanta ? 'Single Kanta' : '') +
-          (doubleKanta ? (singleKanta ? ', ' : '') + 'Double Kanta' : ''),
+        puncha: singleKanta
+          ? 'Single Kanta'
+          : doubleKanta
+          ? 'Double Kanta'
+          : '',
 
         Tob_double_stitch: Tob_double_stitch ? 'Tob_double_stitch' : '',
 
-        Embroidery:
-          (embroideryFull ? 'Embroidery Full' : '') +
-          (embroideryNormal
-            ? (embroideryFull ? ', ' : '') + 'Embroidery Normal'
-            : ''),
+        Embroidery: embroideryFull
+          ? 'Embroidery Full'
+          : embroideryNormal
+          ? 'Embroidery Normal'
+          : '',
 
         sample,
       });
@@ -362,7 +364,10 @@ const GentsOrderDetails = () => {
             <View className="flex-row items-center">
               <View className="flex-row mb-3">
                 <TouchableOpacity
-                  onPress={() => setSingleKanta(!singleKanta)}
+                  onPress={() => {
+                    setSingleKanta(!singleKanta);
+                    setDoubleKanta(false);
+                  }}
                   style={{
                     flexDirection: 'row',
                     alignItems: 'center',
@@ -381,14 +386,7 @@ const GentsOrderDetails = () => {
                       alignItems: 'center',
                     }}>
                     {singleKanta && (
-                      <View
-                        style={{
-                          height: 15,
-                          width: 15,
-                          backgroundColor: '#539165',
-                          borderRadius: 2,
-                        }}
-                      />
+                      <Text style={{color: '#539165'}}>&#10003;</Text>
                     )}
                   </View>
                 </TouchableOpacity>
@@ -405,7 +403,10 @@ const GentsOrderDetails = () => {
               <View className="flex-row">
                 <View className="flex-row mb-3 ml-8">
                   <TouchableOpacity
-                    onPress={() => setDoubleKanta(!doubleKanta)}
+                    onPress={() => {
+                      setDoubleKanta(!doubleKanta);
+                      setSingleKanta(false);
+                    }}
                     style={{
                       flexDirection: 'row',
                       alignItems: 'center',
@@ -424,14 +425,7 @@ const GentsOrderDetails = () => {
                         alignItems: 'center',
                       }}>
                       {doubleKanta && (
-                        <View
-                          style={{
-                            height: 15,
-                            width: 15,
-                            backgroundColor: '#539165',
-                            borderRadius: 2,
-                          }}
-                        />
+                        <Text style={{color: '#539165'}}>&#10003;</Text>
                       )}
                     </View>
                   </TouchableOpacity>
@@ -477,14 +471,7 @@ const GentsOrderDetails = () => {
                       alignItems: 'center',
                     }}>
                     {Tob_double_stitch && (
-                      <View
-                        style={{
-                          height: 15,
-                          width: 15,
-                          backgroundColor: '#539165',
-                          borderRadius: 2,
-                        }}
-                      />
+                      <Text style={{color: '#539165'}}>&#10003;</Text>
                     )}
                   </View>
                 </TouchableOpacity>
@@ -510,7 +497,10 @@ const GentsOrderDetails = () => {
             <View className="flex-row items-center">
               <View className="flex-row mb-3">
                 <TouchableOpacity
-                  onPress={() => setEmbroideryFull(!embroideryFull)}
+                  onPress={() => {
+                    setEmbroideryFull(!embroideryFull);
+                    setEmbroideryNormal(false);
+                  }}
                   style={{
                     flexDirection: 'row',
                     alignItems: 'center',
@@ -529,14 +519,7 @@ const GentsOrderDetails = () => {
                       alignItems: 'center',
                     }}>
                     {embroideryFull && (
-                      <View
-                        style={{
-                          height: 15,
-                          width: 15,
-                          backgroundColor: '#539165',
-                          borderRadius: 2,
-                        }}
-                      />
+                      <Text style={{color: '#539165'}}>&#10003;</Text>
                     )}
                   </View>
                 </TouchableOpacity>
@@ -553,7 +536,10 @@ const GentsOrderDetails = () => {
               <View className="flex-row">
                 <View className="flex-row mb-3 ml-8">
                   <TouchableOpacity
-                    onPress={() => setEmbroideryNormal(!embroideryNormal)}
+                    onPress={() => {
+                      setEmbroideryNormal(!embroideryNormal);
+                      setEmbroideryFull(false);
+                    }}
                     style={{
                       flexDirection: 'row',
                       alignItems: 'center',
@@ -572,14 +558,7 @@ const GentsOrderDetails = () => {
                         alignItems: 'center',
                       }}>
                       {embroideryNormal && (
-                        <View
-                          style={{
-                            height: 15,
-                            width: 15,
-                            backgroundColor: '#539165',
-                            borderRadius: 2,
-                          }}
-                        />
+                        <Text style={{color: '#539165'}}>&#10003;</Text>
                       )}
                     </View>
                   </TouchableOpacity>

@@ -26,9 +26,9 @@ const GentsCheckOut = () => {
   const Daman = route.params?.Daman || 'Not selected';
   const wrist = route.params?.wrist || 'Not selected';
   const comments = route.params?.comments || 'Comment';
-  const puncha = route.params?.puncha || 'Not Selected';
-  const Tob_double_stitch = route.params?.Tob_double_stitch || 'Not Selected';
-  const Embroidery = route.params?.Embroidery || 'Not Selected';
+  const puncha = route.params?.puncha || false;
+  const Tob_double_stitch = route.params?.Tob_double_stitch || false;
+  const Embroidery = route.params?.Embroidery || false;
   const sample = route.params?.sample;
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
@@ -87,9 +87,13 @@ const GentsCheckOut = () => {
     {label: 'Comment', value: comments || 'No additional comment'},
     {label: 'Product Base Price', value: formatPriceAsCurrency(price)},
     {
-      label: 'Puncha',
+      label: 'Leg Opening(Puncha)',
       value: `${puncha || 'Not selected'} (Rs.${
-        puncha === 'Single Kanta' ? 100 : puncha === 'Double Kanta' ? 200 : 0
+        puncha === 'Single Kanta'
+          ? singleKanta
+          : puncha === 'Double Kanta'
+          ? doubleKanta
+          : 0
       })`,
     },
 
