@@ -22,99 +22,99 @@ const WomenProducts = () => {
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         {/* Items Start */}
         <LadiesItemContainer
-          title="Ladies Shalwar Suit"
-          imgSrc={LadiesShalwarSuit}
+          product="Ladies Shalwar Suit"
+          product_pic={LadiesShalwarSuit}
           price={'1150'}
           onwards={'Onwards'}
         />
 
         <LadiesItemContainer
-          title="Ladies Trouser Suit"
-          imgSrc={LadiesTrouserSimple}
+          product="Ladies Trouser Suit"
+          product_pic={LadiesTrouserSimple}
           price={'1200'}
           onwards={'Onwards'}
         />
 
         <LadiesItemContainer
-          title="Frock(Simple)"
-          imgSrc={FrockSimple}
+          product="Frock(Simple)"
+          product_pic={FrockSimple}
           price={'1900'}
           onwards={'Onwards'}
         />
 
         <LadiesItemContainer
-          title="Double Shuit & Shalwar"
-          imgSrc={DoubleSuitAndShalwar}
+          product="Double Shuit & Shalwar"
+          product_pic={DoubleSuitAndShalwar}
           price={'1600'}
           onwards={'Onwards'}
         />
 
         <LadiesItemContainer
-          title="Double Suit & Trouser"
-          imgSrc={DoubleSuitAndTrouser}
+          product="Double Suit & Trouser"
+          product_pic={DoubleSuitAndTrouser}
           price={'1700'}
           onwards={'Onwards'}
         />
 
         <LadiesItemContainer
-          title="Frock Double Design"
-          imgSrc={DoubleFrockDesign}
+          product="Frock Double Design"
+          product_pic={DoubleFrockDesign}
           price={'2700'}
           onwards={'Onwards'}
         />
 
         <LadiesItemContainer
-          title="Maxi Suit"
-          imgSrc={MaxiSuit}
+          product="Maxi Suit"
+          product_pic={MaxiSuit}
           price={'3000'}
           onwards={'Onwards'}
         />
 
         <LadiesItemContainer
-          title="Sahri BLouse"
-          imgSrc={ShariBlouse}
+          product="Sahri BLouse"
+          product_pic={ShariBlouse}
           price={'3500'}
           onwards={'Onwards'}
         />
 
         <LadiesItemContainer
-          title="Lehnga Set"
-          imgSrc={LehngaSet}
+          product="Lehnga Set"
+          product_pic={LehngaSet}
           price={'5500'}
           onwards={'Onwards'}
         />
 
         <LadiesItemContainer
-          title="Ladies Shalwar"
-          imgSrc={LadiesShalwar}
+          product="Ladies Shalwar"
+          product_pic={LadiesShalwar}
           price={'500'}
           onwards={'Onwards'}
         />
 
         <LadiesItemContainer
-          title="Ladies Kameez"
-          imgSrc={LadiesKameez}
+          product="Ladies Kameez"
+          product_pic={LadiesKameez}
           price={'800'}
           onwards={'Onwards'}
         />
 
         <LadiesItemContainer
-          title="Ladies Kids Suit"
-          imgSrc={LadiesKidsSuit}
+          product="Ladies Kids Suit"
+          product_pic={LadiesKidsSuit}
           price={'800'}
           onwards={'Onwards'}
         />
 
         <LadiesItemContainer
-          title="Double Kameez"
-          imgSrc={DoubleKameez}
+          product="Double Kameez"
+          product_pic={DoubleKameez}
           price={'1100'}
           onwards={'Onwards'}
         />
 
         <LadiesItemContainer
-          title="Abaya"
-          imgSrc={LadiesAbaya}
+          product="Abaya"
+          product_pic={LadiesAbaya}
           price={'3000'}
           onwards={'Onwards'}
         />

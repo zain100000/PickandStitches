@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {useNavigation, useRoute} from '@react-navigation/native';
 import {
   View,
   Text,
@@ -8,105 +7,84 @@ import {
   Image,
   ActivityIndicator,
 } from 'react-native';
+
+import {useNavigation, useRoute} from '@react-navigation/native';
 import Print from 'react-native-print';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import axios from 'axios';
 
-const LadiesCheckOut = () => {
+const LediesCheckOut = () => {
   const route = useRoute();
-  const title = route.params?.title || 'Default Title';
+  const product = route.params?.product || 'Default product';
+  const product_pic = route.params?.product_pic || 'Default product_pic';
   const price = parseFloat(route.params?.price);
-  const fullname = route.params?.fullname || 'Default fullname';
-  const mobile = route.params?.mobile || 'Default mobile';
-  const address = route.params?.address || 'Default address';
-  const message = route.params?.message || 'Message';
-  const pikoFull = route.params?.pikoFull || false;
-  const pikoHalf = route.params?.pikoHalf || false;
-  const dupataPiping = route.params?.dupataPiping || false;
-  const dupataExtension = route.params?.dupataExtension || false;
-  const dupataFetta = route.params?.dupataFetta || false;
-  const fullTopPiping = route.params?.fullTopPiping || false;
-  const fullTopExtension = route.params?.fullTopExtension || false;
-  const fullTopFetta = route.params?.fullTopFetta || false;
-  const embroideryGala = route.params?.embroideryGala || false;
-  const embroideryDaman = route.params?.embroideryDaman || false;
-  const embroideryBazu = route.params?.embroideryBazu || false;
-  const embroideryBottom = route.params?.embroideryBottom || false;
-  const attachment = route.params?.attachment;
+  const name = route.params?.name || 'Default name';
+  const cell = route.params?.cell || 'Default cell';
+  const adress = route.params?.adress || 'Default adress';
+  const comments = route.params?.comments || 'Comment';
+  const peko = route.params?.peko || 'Not Selected';
+  const Dupata_Piping = route.params?.Dupata_Piping || 'Not Selected';
+  const Full_top_piping = route.params?.Full_top_piping || 'Not Selected';
+  const Embroidery = route.params?.Embroidery || 'Not Selected';
+  const sample = route.params?.sample;
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
 
   // Define pricing variables
   const basePrice = price;
-  const PikoFullPrice = 120;
-  const PikoHalfPrice = 60;
-  const DupattaPipingPrice = 300;
-  const DupattaExtensionPrice = 300;
-  const DupattaFettaPrice = 300;
-  const FullTopPipingPrice = 300;
-  const FullTopExtensionPrice = 300;
-  const FullTopFettaPrice = 300;
-  const EmbroideryGalaPrice = 300;
-  const EmbroideryDamanPrice = 300;
-  const EmbroideryBazuPrice = 300;
-  const EmbroideryBottomPrice = 300;
+  const pikoFull = 120;
+  const pikoHalf = 60;
+  const dupattaPiping = 300;
+  const dupattaExtension = 300;
+  const dupattaFetta = 300;
+  const fullTopPiping = 300;
+  const fullTopExtension = 300;
+  const fullTopFetta = 300;
+  const embroideryGalla = 300;
+  const embroideryDaman = 300;
+  const embroideryBazo = 300;
+  const embroideryBottom = 300;
 
-  // Calculate the total price based on user selections
   const calculateTotalPrice = () => {
     let totalPrice = basePrice;
 
-    if (pikoFull) {
-      totalPrice += PikoFullPrice;
+    if (peko === 'Piko Full') {
+      totalPrice += pikoFull;
+    } else if (peko === 'Piko Half') {
+      totalPrice += pikoHalf;
     }
 
-    if (pikoHalf) {
-      totalPrice += PikoHalfPrice;
+    if (Dupata_Piping === 'Dupatta Piping') {
+      totalPrice += dupattaPiping;
+    } else if (Dupata_Piping === 'Dupatta Extension') {
+      totalPrice += dupattaExtension;
+    } else if (Dupata_Piping === 'Dupatta Fetta') {
+      totalPrice += dupattaFetta;
     }
 
-    if (dupataPiping) {
-      totalPrice += DupattaPipingPrice;
+    if (Full_top_piping === 'Full Top Piping') {
+      totalPrice += fullTopPiping;
+    } else if (Full_top_piping === 'Full Top Extension') {
+      totalPrice += fullTopExtension;
+    } else if (Full_top_piping === 'Full Top Fetta') {
+      totalPrice += fullTopFetta;
     }
 
-    if (dupataExtension) {
-      totalPrice += DupattaExtensionPrice;
-    }
-
-    if (dupataFetta) {
-      totalPrice += DupattaFettaPrice;
-    }
-
-    if (fullTopPiping) {
-      totalPrice += FullTopPipingPrice;
-    }
-
-    if (fullTopExtension) {
-      totalPrice += FullTopExtensionPrice;
-    }
-
-    if (fullTopFetta) {
-      totalPrice += FullTopFettaPrice;
-    }
-
-    if (embroideryGala) {
-      totalPrice += EmbroideryGalaPrice;
-    }
-
-    if (embroideryDaman) {
-      totalPrice += EmbroideryDamanPrice;
-    }
-
-    if (embroideryBazu) {
-      totalPrice += EmbroideryBazuPrice;
-    }
-
-    if (embroideryBottom) {
-      totalPrice += EmbroideryBottomPrice;
+    if (Embroidery === 'Embroidery Galla') {
+      totalPrice += embroideryGalla;
+    } else if (Embroidery === 'Embroidery Daman') {
+      totalPrice += embroideryDaman;
+    } else if (Embroidery === 'Embroidery Bazo') {
+      totalPrice += embroideryBazo;
+    } else if (Embroidery === 'Embroidery Bottom') {
+      totalPrice += embroideryBottom;
     }
 
     return totalPrice;
   };
 
   // Get the dynamically calculated total price
-  const totalPrice = calculateTotalPrice();
+  const total = calculateTotalPrice();
 
   // Function to format the price as currency
   const formatPriceAsCurrency = amount => {
@@ -116,127 +94,68 @@ const LadiesCheckOut = () => {
     }).format(amount);
   };
 
-  // Function to handle order submission
-  const handleSubmit = () => {
-    setLoading(true);
-    alert('Thank You! Your Order has been placed successfully');
-    navigation.navigate('UserHome');
-    setLoading(false);
-  };
-
-  const getPikoPriceDescription = (pikoFull, pikoHalf) => {
-    if (pikoFull && pikoHalf) {
-      return 'Piko Full(Rs.120) and Piko Half(Rs.60)';
-    } else if (pikoFull) {
-      return 'Piko Full(Rs.120)';
-    } else if (pikoHalf) {
-      return 'Piko Half(Rs.60)';
-    }
-    return 'Not selected';
-  };
-
-  const getDupattaPriceDescription = (
-    depattaPiping,
-    dupataExtension,
-    dupataFetta,
-  ) => {
-    if (depattaPiping && dupataExtension && dupataFetta) {
-      return 'Dupatta Piping(Rs.300) and Dupatta Extension(Rs.300) and Dupatta Fetta(Rs.300)';
-    } else if (depattaPiping) {
-      return 'Dupatta Piping(Rs.300)';
-    } else if (dupataExtension) {
-      return 'Dupatta Extension(Rs.300)';
-    } else if (dupataFetta) {
-      return 'Dupatta Fetta(Rs.300)';
-    }
-    return 'Not selected';
-  };
-
-  const getTopPriceDescription = (
-    fullTopPiping,
-    fullTopExtension,
-    fullTopFetta,
-  ) => {
-    if (fullTopPiping && fullTopExtension && fullTopFetta) {
-      return 'Full Top Piping(Rs.300) and Full Top Extension(Rs.300) and Full Top Fetta(Rs.300)';
-    } else if (fullTopPiping) {
-      return 'Full Top Piping(Rs.300)';
-    } else if (fullTopExtension) {
-      return 'Full Top Extension(Rs.300)';
-    } else if (fullTopFetta) {
-      return 'Full Top Fetta(Rs.300)';
-    }
-    return 'Not selected';
-  };
-
-  const getEmbroideryPriceDescription = (
-    embroideryGala,
-    embroideryDaman,
-    embroideryBazu,
-    embroideryBottom,
-  ) => {
-    if (
-      embroideryGala &&
-      embroideryDaman &&
-      embroideryBazu &&
-      embroideryBottom
-    ) {
-      return 'Embroidery Gala(Rs.300) and Embroidery Daman(Rs.300) and Embroidery Bazu(Rs.300) and Embroidery Bottom (Rs.300) ';
-    } else if (embroideryGala) {
-      return 'Embroidery Gala(Rs.300)';
-    } else if (embroideryDaman) {
-      return 'Embroidery Daman(Rs.300)';
-    } else if (embroideryBazu) {
-      return 'Embroidery Bazu(Rs.300)';
-    } else if (embroideryBottom) {
-      return 'Embroidery Bottom(Rs.300)';
-    }
-    return 'Not selected';
-  };
-
+  // Define order details for display
   const orderDetails = [
-    {label: 'Product Name', value: title},
-    {label: 'Name', value: fullname},
-    {label: 'Mobile', value: mobile},
-    {label: 'Address', value: address},
-    {label: 'Message', value: message || 'No additional message'},
-    {label: 'Product Base Price', value: price},
-
+    {label: 'Product Name', value: product},
+    {label: 'Name', value: name},
+    {label: 'Mobile', value: cell},
+    {label: 'adress', value: adress},
+    {label: 'Comment', value: comments || 'No additional comment'},
+    {label: 'Product Base Price', value: formatPriceAsCurrency(price)},
     {
       label: 'Piko',
-      value: getPikoPriceDescription(pikoFull, pikoHalf),
+      value: `${peko || 'Not selected'} (Rs.${
+        peko === 'Piko Full' ? pikoFull : peko === 'Piko Half' ? pikoHalf : 0
+      })`,
     },
+
     {
       label: 'Dupatta',
-      value: getDupattaPriceDescription(
-        dupataPiping,
-        dupataExtension,
-        dupataFetta,
-      ),
+      value: `${Dupata_Piping || 'Not selected'} (Rs.${
+        Dupata_Piping === 'Dupatta Piping'
+          ? dupattaPiping
+          : Dupata_Piping === 'Dupatta Extension'
+          ? dupattaExtension
+          : Dupata_Piping === 'Dupatta Fetta'
+          ? dupattaFetta
+          : 0
+      })`,
     },
+
     {
       label: 'Top',
-      value: getTopPriceDescription(
-        fullTopPiping,
-        fullTopExtension,
-        fullTopFetta,
-      ),
+      value: `${Full_top_piping || 'Not selected'} (Rs.${
+        Full_top_piping === 'Full Top Piping'
+          ? fullTopPiping
+          : Full_top_piping === 'Full Top Extension'
+          ? fullTopExtension
+          : Full_top_piping === 'Full Top Fetta'
+          ? fullTopFetta
+          : 0
+      })`,
     },
+
     {
       label: 'Embroidery',
-      value: getEmbroideryPriceDescription(
-        embroideryGala,
-        embroideryDaman,
-        embroideryBazu,
-        embroideryBottom,
-      ),
+      value: `${Embroidery || 'Not selected'} (Rs.${
+        Embroidery === 'Embroidery Galla'
+          ? embroideryGalla
+          : Embroidery === 'Embroidery Daman'
+          ? embroideryDaman
+          : Embroidery === 'Embroidery Bazo'
+          ? embroideryBazo
+          : Embroidery === 'Embroidery Bottom'
+          ? embroideryBottom
+          : ''
+      })`,
     },
+
     {
       label: 'Samples',
       value: (
         <View className="flex-1 flex-row p-5">
-          {attachment && attachment.length > 0 ? (
-            attachment.map(uri => (
+          {sample && sample.length > 0 ? (
+            sample.map(uri => (
               <Image key={uri} source={{uri}} className="w-20 h-20" />
             ))
           ) : (
@@ -251,12 +170,11 @@ const LadiesCheckOut = () => {
 
   // Function to handle printing the receipt
   const printReceipt = async () => {
-    const receiptContent = getOrderReceiptContent(); // Implement a function to format the receipt content
+    const receiptContent = getOrderReceiptContent();
 
     try {
       const printJob = await Print.print({
         html: receiptContent,
-        // You can configure print options here, e.g., orientation, width, height, etc.
       });
 
       if (printJob) {
@@ -288,69 +206,140 @@ const LadiesCheckOut = () => {
         <h1>Order Receipt</h1>
         <div style="display: flex; justify-content: space-between; align-items: center;">
         <h4 style="font-size:2rem">Product Name</h4>
-        <p style="font-size:2rem">${title}</p>      
+        <p style="font-size:2rem">${product}</p>      
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center;">
         <h4 style="font-size:2rem">Name</h4>
-        <p style="font-size:2rem">${fullname}</p>      
+        <p style="font-size:2rem">${name}</p>      
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center;">
         <h4 style="font-size:2rem">Cell</h4>
-        <p style="font-size:2rem">${mobile}</p>      
+        <p style="font-size:2rem">${cell}</p>      
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center;">
         <h4 style="font-size:2rem">Address</h4>
-        <p style="font-size:2rem">${address}</p>      
-        </div>        
-        
+        <p style="font-size:2rem">${adress}</p>      
+        </div>                
+         
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 style="font-size:2rem">Comments</h4>
+        <p style="font-size:2rem">${comments || 'No Comment'}</p>
+        </div>  
+
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 style="font-size:2rem">Product Base Price</h4>
+        <p style="font-size:2rem">${formatPriceAsCurrency(basePrice)}</p>
+        </div>    
+
         <div style="display: flex; justify-content: space-between; align-items: center;">
         <h4 style="font-size:2rem">Piko</h4>
-        <p style="font-size:2rem">${getPikoPriceDescription(
-          pikoFull,
-          pikoHalf,
-        )}</p>
-      </div>      
+        <p style="font-size:2rem">${peko || 'Not selected'} (Rs.${
+      peko === 'Piko Full' ? pikoFull : peko === 'Piko Half' ? pikoHalf : 0
+    })
+    })</p>
+        </div>      
 
       <div style="display: flex; justify-content: space-between; align-items: center;">
         <h4 style="font-size:2rem">Dupatta</h4>
-        <p style="font-size:2rem">${getDupattaPriceDescription(
-          dupataPiping,
-          dupataExtension,
-          dupataFetta,
-        )}</p>
+        <p style="font-size:2rem">${Dupata_Piping || 'Not selected'} (Rs.${
+      Dupata_Piping === 'Dupatta Piping'
+        ? dupattaPiping
+        : Dupata_Piping === 'Dupatta Extension'
+        ? dupattaExtension
+        : Dupata_Piping === 'Dupatta Fetta'
+        ? dupattaFetta
+        : 0
+    })</p>
       </div>
 
       <div style="display: flex; justify-content: space-between; align-items: center;">
         <h4 style="font-size:2rem">Top</h4>
-        <p style="font-size:2rem">${getTopPriceDescription(
-          fullTopPiping,
-          fullTopExtension,
-          fullTopFetta,
-        )}</p>
+        <p style="font-size:2rem">${Full_top_piping || 'Not selected'} (Rs.${
+      Full_top_piping === 'Full Top Piping'
+        ? fullTopPiping
+        : Full_top_piping === 'Full Top Extension'
+        ? fullTopExtension
+        : Full_top_piping === 'Full Top Fetta'
+        ? fullTopFetta
+        : 0
+    })</p>
       </div>
 
       <div style="display: flex; justify-content: space-between; align-items: center;">
-        <h4 style="font-size:2rem">Embroidery</h4>
-        <p style="font-size:2rem">${getEmbroideryPriceDescription(
-          embroideryGala,
-          embroideryDaman,
-          embroideryBazu,
-          embroideryBottom,
-        )}</p>
-      </div>
-        
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-        <h4 style="font-size:2rem">Total Amount</h4>
-        <p style="font-size:2rem">${formatPriceAsCurrency(totalPrice)}</p>      
-        </div>
+      <h4 style="font-size:2rem">Top</h4>
+      <p style="font-size:2rem">${Embroidery || 'Not selected'} (Rs.${
+      Embroidery === 'Embroidery Galla'
+        ? embroideryGalla
+        : Embroidery === 'Embroidery Daman'
+        ? embroideryDaman
+        : Embroidery === 'Embroidery Bazo'
+        ? embroideryBazo
+        : Embroidery === 'Embroidery Bottom'
+        ? embroideryBottom
+        : ''
+    })</p>
+    </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 style="font-size:2rem">Total Price</h4>
+        <p style="font-size:2rem">${formatPriceAsCurrency(total)}</p>
+      </div>            
       </body>
     </html>
   `;
 
     return receiptContent;
+  };
+
+  const handleCheckOut = async () => {
+    const apiUrl =
+      'https://pickandstitches.com/font-awesome/scss/scss/api_female_orders.php';
+
+    const currentDate = new Date().toISOString().split('T')[0];
+
+    // Convert sample array to a string of image URLs separated by commas
+    const sampleString = sample && sample.length > 0 ? sample.join(',') : '';
+
+    const orderData = {
+      name,
+      cell,
+      adress,
+      comments,
+      type: 'female',
+      date: currentDate,
+      total,
+      product,
+      peko,
+      Dupata_Piping,
+      Full_top_piping,
+      Embroidery,
+    };
+
+    setLoading(true);
+
+    try {
+      const response = await axios.post(apiUrl, orderData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.status === 200) {
+        alert('Thank You! Your Order Has Been Successfully Placed!');
+      } else {
+        console.error('API request failed with status code:', response.status);
+        console.log('API Response Data:', response.data);
+        alert('Error saving data. Please try again later.');
+      }
+    } catch (error) {
+      console.error('Error saving data:', error);
+      alert('Network error. Please check your connection and try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -360,22 +349,25 @@ const LadiesCheckOut = () => {
         keyExtractor={(item, index) => index.toString()}
         renderItem={({item}) => (
           <View className="flex-row flex-wrap justify-between items-center p-4 border-b-2 border-b-gray-400">
-            <Text className="mb-2">{item.label}</Text>
-            <Text>{item.value}</Text>
+            <Text className="mb-2 font-semibold text-primary">
+              {item.label}
+            </Text>
+            <Text className="font-semibold text-primary">{item.value}</Text>
           </View>
         )}
       />
-      <Text className="text-lg font-semibold text-center">
-        Total Price: {formatPriceAsCurrency(totalPrice)}
+      <Text className="text-lg font-semibold text-center text-primary top-3">
+        Total Price: {formatPriceAsCurrency(total)}
       </Text>
+
       <View className="flex-row justify-between">
         <TouchableOpacity
-          className="justify-center left-3 mb-5 mr-5 items-center mt-8 p-4 bg-primary rounded-xl w-80"
-          onPress={handleSubmit}>
+          onPress={handleCheckOut}
+          className="justify-center left-3 mb-5 mr-5 items-center mt-8 p-4 bg-primary rounded-xl w-80">
           {loading ? (
-            <ActivityIndicator color={'#fff'} /> // Show loader while loading
+            <ActivityIndicator color={'#fff'} />
           ) : (
-            <Text className="text-white text-xl">Submit Order</Text> // Show Submit text when not loading
+            <Text className="text-white text-xl">Submit Order</Text>
           )}
         </TouchableOpacity>
 
@@ -390,4 +382,4 @@ const LadiesCheckOut = () => {
   );
 };
 
-export default LadiesCheckOut;
+export default LediesCheckOut;

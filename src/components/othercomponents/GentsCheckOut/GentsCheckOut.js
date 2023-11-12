@@ -261,6 +261,9 @@ const GentsCheckOut = () => {
 
     const currentDate = new Date().toISOString().split('T')[0];
 
+    // Convert sample array to a string of image URLs separated by commas
+    const sampleString = sample && sample.length > 0 ? sample.join(',') : '';
+
     const orderData = {
       name,
       cell,
@@ -277,7 +280,7 @@ const GentsCheckOut = () => {
       total,
       product,
       product_pic,
-      sample,
+      sample: sampleString, // Pass the sample data as a string
       date: currentDate,
     };
 

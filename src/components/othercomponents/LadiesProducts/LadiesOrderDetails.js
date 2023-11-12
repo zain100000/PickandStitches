@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useState, useRef} from 'react';
 import {
   View,
   Text,
@@ -10,33 +10,32 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
-import CheckBox from '@react-native-community/checkbox';
 import DocumentPicker from 'react-native-document-picker';
 
 const LadiesOrderDetails = () => {
   const navigation = useNavigation();
   const route = useRoute();
-  const imgSrc = route.params?.imgSrc;
-  const title = route.params?.title;
+  const product_pic = route.params?.product_pic;
+  const product = route.params?.product;
   const price = route.params?.price;
 
-  const [fullname, setFullName] = useState('');
-  const [mobile, setMobile] = useState('');
-  const [address, setAddress] = useState('');
-  const [message, setMessage] = useState('');
+  const [name, setName] = useState('');
+  const [cell, setCell] = useState('');
+  const [adress, setAdress] = useState('');
+  const [comments, setComments] = useState('');
+  const [sample, setSample] = useState([]);
   const [pikoFull, setPikoFull] = useState(false);
   const [pikoHalf, setPikoHalf] = useState(false);
-  const [dupataPiping, setDupataPiping] = useState(false);
-  const [dupataExtension, setDupataExtension] = useState(false);
-  const [dupataFetta, setDupataFetta] = useState(false);
+  const [dupattaPiping, setDupattaPiping] = useState(false);
+  const [dupattaExtension, setDupattaExtension] = useState(false);
+  const [dupattaFetta, setDupattaFetta] = useState(false);
   const [fullTopPiping, setFullTopPiping] = useState(false);
   const [fullTopExtension, setFullTopExtension] = useState(false);
   const [fullTopFetta, setFullTopFetta] = useState(false);
-  const [embroideryGala, setEmbroideryGala] = useState(false);
+  const [embroideryGalla, setEmbroideryGalla] = useState(false);
   const [embroideryDaman, setEmbroideryDaman] = useState(false);
-  const [embroideryBazu, setEmbroideryBazu] = useState(false);
+  const [embroideryBazo, setEmbroideryBazo] = useState(false);
   const [embroideryBottom, setEmbroideryBottom] = useState(false);
-  const [attachment, setAttachment] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const handlePickDocument = async () => {
@@ -47,7 +46,7 @@ const LadiesOrderDetails = () => {
       });
 
       const uris = result.map(file => file.uri);
-      setAttachment([...attachment, ...uris]);
+      setSample([...sample, ...uris]);
     } catch (error) {
       if (DocumentPicker.isCancel(error)) {
         // Handle cancel
@@ -59,75 +58,75 @@ const LadiesOrderDetails = () => {
   };
 
   // Declare and initialize refs
-  const fullnameRef = useRef();
-  const mobileRef = useRef();
-  const addressRef = useRef();
+  const nameRef = useRef();
+  const cellRef = useRef();
+  const adressRef = useRef();
 
   const ValidInput = () => {
-    const fullNamePattern = /^[a-zA-Z\s]*$/;
-    const mobilePattern = /^(\+92|92|0)(3\d{2}|\d{2})(\d{7})$/;
-    const addressPattern = /^[\w\s,'-]*$/;
+    const namePattern = /^[a-zA-Z\s]*$/;
+    const cellPattern = /^(\+92|92|0)(3\d{2}|\d{2})(\d{7})$/;
+    const adressPattern = /^[\w\s,'-]*$/;
 
     return (
-      fullNamePattern.test(fullname) &&
-      mobilePattern.test(mobile) &&
-      addressPattern.test(address)
+      namePattern.test(name) &&
+      cellPattern.test(cell) &&
+      adressPattern.test(adress)
     );
   };
 
-  const validateFullName = () => {
+  const validateName = () => {
     const regex = /^[a-zA-Z\s]*$/;
-    if (!fullname.match(regex)) {
+    if (!name.match(regex)) {
       return 'Special Characters Not Allowed';
     }
     return '';
   };
-  const fullnameError = validateFullName();
+  const nameError = validateName();
 
-  const handleMobileChange = value => {
-    setMobile(value);
+  const handleCellChange = value => {
+    setCell(value);
   };
-  const validateMobile = () => {
-    if (!mobile) {
+  const validateCell = () => {
+    if (!cell) {
       return '';
     }
-    const mobileRegex = /^(\+92|92|0)(3\d{2}|\d{2})(\d{7})$/;
-    if (!mobileRegex.test(mobile)) {
-      return 'Invalid Mobile Format';
+    const cellRegex = /^(\+92|92|0)(3\d{2}|\d{2})(\d{7})$/;
+    if (!cellRegex.test(cell)) {
+      return 'Invalid Cell Format';
     }
     return '';
   };
-  const mobileError = validateMobile();
+  const cellError = validateCell();
 
-  const handleAddressChange = value => {
-    setAddress(value);
+  const handleAdressChange = value => {
+    setAdress(value);
   };
-  const validateAddress = () => {
-    if (!address) {
+  const validateAdress = () => {
+    if (!adress) {
       return '';
     }
-    const addressRegex = /^[\w\s,'-]*$/;
-    if (!addressRegex.test(address)) {
+    const adressRegex = /^[\w\s,'-]*$/;
+    if (!adressRegex.test(adress)) {
       return 'Invalid Address Format';
     }
     return '';
   };
-  const addressError = validateAddress();
+  const adressError = validateAdress();
 
   const handleCheckOut = () => {
-    if (!fullname) {
+    if (!name) {
       alert('Fullname field is empty');
-      fullnameRef.current.focus();
+      nameRef.current.focus();
       return;
     }
-    if (!mobile) {
-      alert('Mobile field is empty');
-      mobileRef.current.focus();
+    if (!cell) {
+      alert('Cell field is empty');
+      cellRef.current.focus();
       return;
     }
-    if (!address) {
+    if (!adress) {
       alert('Address field is empty');
-      addressRef.current.focus();
+      adressRef.current.focus();
       return;
     }
 
@@ -141,44 +140,61 @@ const LadiesOrderDetails = () => {
     setTimeout(() => {
       setLoading(false);
       navigation.navigate('LadiesCheckOut', {
-        title,
-        fullname,
-        mobile,
-        address,
-        message,
-        pikoFull,
-        pikoHalf,
-        dupataPiping,
-        dupataExtension,
-        dupataFetta,
-        fullTopPiping,
-        fullTopExtension,
-        fullTopFetta,
-        embroideryGala,
-        embroideryDaman,
-        embroideryBazu,
-        embroideryBottom,
+        product_pic,
+        product,
+        name,
+        cell,
+        adress,
+        comments,
+        sample,
         price,
-        attachment,
+        peko: pikoFull ? 'Piko Full' : pikoHalf ? 'Piko Half' : '',
+
+        Dupata_Piping: dupattaPiping
+          ? 'Dupatta Piping'
+          : dupattaExtension
+          ? 'Dupatta Extension'
+          : dupattaFetta
+          ? 'Dupatta Fetta'
+          : '',
+
+        Full_top_piping: fullTopPiping
+          ? 'Full Top Piping'
+          : fullTopExtension
+          ? 'Full Top Extension'
+          : fullTopFetta
+          ? 'Full Top Fetta'
+          : '',
+
+        Embroidery: embroideryGalla
+          ? 'Embroidery Galla'
+          : embroideryDaman
+          ? 'Embroidery Daman'
+          : embroideryBazo
+          ? 'Embroidery Bazo'
+          : embroideryBottom
+          ? 'Embroidery Bottom'
+          : '',
+
+        sample,
       });
 
-      setFullName('');
-      setMobile('');
-      setAddress('');
-      setMessage('');
+      setName('');
+      setCell('');
+      setAdress('');
+      setComments('');
       setPikoFull('');
       setPikoHalf('');
-      setDupataPiping('');
-      setDupataExtension('');
-      setDupataFetta('');
-      setFullTopPiping('');
-      setFullTopExtension('');
-      setFullTopFetta('');
-      setEmbroideryGala('');
-      setEmbroideryDaman('');
-      setEmbroideryBazu('');
-      setEmbroideryBazu('');
-      setAttachment('');
+      setDupattaPiping(false);
+      setDupattaExtension(false);
+      setDupattaFetta(false);
+      setFullTopPiping(false);
+      setFullTopExtension(false);
+      setFullTopFetta(false);
+      setEmbroideryGalla(false);
+      setEmbroideryBazo(false);
+      setEmbroideryDaman(false);
+      setSample('');
     }, 2000);
   };
 
@@ -188,17 +204,17 @@ const LadiesOrderDetails = () => {
         className="flex-1 px-4 py-4"
         showsVerticalScrollIndicator={false}>
         {/* Image Start */}
-        <Image source={imgSrc} className="w-36 h-56 bg-contain" />
+        <Image source={product_pic} className="w-36 h-56 bg-contain" />
 
         {/* Check-Out Form */}
         <View className="flex-1 mt-14">
-          {/* Title */}
+          {/* Product Name */}
           <View>
-            <Text className="text-[16px] mb-2">Product Name:-</Text>
+            <Text className="text-sm mb-2">Product Name:-</Text>
             <View className="border-2 border-gray-500 mb-3">
               <TextInput
-                className="text-sm text-black left-2"
-                placeholder={title}
+                className="text-sm text-black left-2 "
+                placeholder={product}
                 placeholderTextColor={'#539165'}
               />
             </View>
@@ -209,14 +225,14 @@ const LadiesOrderDetails = () => {
               className="text-sm text-black left-3"
               placeholder="Ful Name"
               placeholderTextColor={'#539165'}
-              value={fullname}
-              onChangeText={setFullName}
-              ref={fullnameRef}
+              value={name}
+              onChangeText={setName}
+              ref={nameRef}
             />
           </View>
-          {fullnameError ? (
+          {nameError ? (
             <Text className="text-red-600 text-sm left-3 font-semibold">
-              {fullnameError}
+              {nameError}
             </Text>
           ) : null}
 
@@ -227,14 +243,14 @@ const LadiesOrderDetails = () => {
               placeholder="Mobile"
               keyboardType="number-pad"
               placeholderTextColor={'#539165'}
-              value={mobile}
-              onChangeText={handleMobileChange}
-              ref={mobileRef}
+              value={cell}
+              onChangeText={handleCellChange}
+              ref={cellRef}
             />
           </View>
-          {mobileError ? (
+          {cellError ? (
             <Text className="text-red-600 text-sm left-3 font-semibold">
-              {mobileError}
+              {cellError}
             </Text>
           ) : null}
 
@@ -242,262 +258,546 @@ const LadiesOrderDetails = () => {
           <View className="border-b-2 border-b-gray-500 mb-3">
             <TextInput
               className="text-sm text-black left-3"
-              placeholder="Complete Address "
+              placeholder="Complete Address"
               placeholderTextColor={'#539165'}
-              value={address}
-              onChangeText={handleAddressChange}
-              ref={addressRef}
+              value={adress}
+              onChangeText={handleAdressChange}
+              ref={adressRef}
             />
           </View>
-          {addressError ? (
+          {adressError ? (
             <Text className="text-red-600 text-sm left-3 font-semibold">
-              {addressError}
+              {adressError}
             </Text>
           ) : null}
 
           {/* Comment */}
           <View className="border-b-2 border-b-gray-500 mb-3">
             <TextInput
-              className="text-sm text-black left-3"
+              className="text-black left-3 text-sm"
               placeholder="Describe Anything Further In Your Mind"
-              placeholderTextColor="#539165"
+              placeholderTextColor="gray"
               multiline={true}
               numberOfLines={6}
-              value={message}
-              onChangeText={setMessage}
+              value={comments}
+              onChangeText={setComments}
             />
           </View>
 
           {/* Piko */}
-          <View className="mb-5 mt-5 left-3">
-            <Text className="text-sm text-dark font-medium">Piko</Text>
-            <View className="flex-row mt-3">
-              <View className="top-2 right-2">
-                <CheckBox
-                  value={pikoFull}
-                  onValueChange={setPikoFull}
-                  tintColors={{true: 'blue', false: 'green'}}
-                />
-              </View>
-              <View>
-                <Text className="text-sm font-medium top-1 text-primary">
-                  Piko Full
-                </Text>
-                <Text className="text-sm font-medium top-1 text-primary">
-                  (Rs.120)
-                </Text>
-              </View>
-
-              <View className="flex-row left-10">
-                <View className="top-2 right-2">
-                  <CheckBox
-                    value={pikoHalf}
-                    onValueChange={setPikoHalf}
-                    tintColors={{true: 'blue', false: 'green'}}
-                  />
-                </View>
-                <View>
-                  <Text className="text-sm font-medium top-1 text-primary">
+          <View>
+            <View className="left-3 mt-8">
+              <Text className="text-primary text-lg font-semibold">Piko</Text>
+            </View>
+            <View className="flex-row items-center">
+              <View className="flex-row mb-3">
+                <TouchableOpacity
+                  onPress={() => {
+                    setPikoFull(!pikoFull);
+                    setPikoHalf(false);
+                  }}
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    marginLeft: 10,
+                    marginTop: 15,
+                  }}>
+                  <View
+                    style={{
+                      height: 25,
+                      width: 25,
+                      borderWidth: 2,
+                      borderColor: '#539165',
+                      marginRight: 10,
+                      borderRadius: 4,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}>
+                    {pikoFull && (
+                      <Text style={{color: '#539165'}}>&#10003;</Text>
+                    )}
+                  </View>
+                </TouchableOpacity>
+                <View className="mt-5">
+                  <Text className="text-[15px] text-black font-semibold">
                     Piko Half
                   </Text>
-                  <Text className="text-sm font-medium top-1 text-primary">
-                    (Rs.60)
+                  <Text className="text-[15px] text-black font-semibold">
+                    (Rs.120)
                   </Text>
+                </View>
+              </View>
+
+              <View className="flex-row left-5">
+                <View className="flex-row mb-3 ml-8">
+                  <TouchableOpacity
+                    onPress={() => {
+                      setPikoHalf(!pikoHalf);
+                      setPikoFull(false);
+                    }}
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      marginLeft: 10,
+                      marginTop: 15,
+                    }}>
+                    <View
+                      style={{
+                        height: 25,
+                        width: 25,
+                        borderWidth: 2,
+                        borderColor: '#539165',
+                        marginRight: 10,
+                        borderRadius: 4,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}>
+                      {pikoHalf && (
+                        <Text style={{color: '#539165'}}>&#10003;</Text>
+                      )}
+                    </View>
+                  </TouchableOpacity>
+                  <View className="mt-5">
+                    <Text className="text-[15px] text-black font-semibold">
+                      Piko Half
+                    </Text>
+                    <Text className="text-[15px] text-black font-semibold">
+                      (Rs.60)
+                    </Text>
+                  </View>
                 </View>
               </View>
             </View>
           </View>
 
           {/* Dupatta */}
-          <View className="mb-5 mt-5 left-3">
-            <Text className="text-sm text-dark font-medium">Dupatta</Text>
-            <View className="flex-row mt-3">
-              <View className="top-2 right-2">
-                <CheckBox
-                  value={dupataPiping}
-                  onValueChange={setDupataPiping}
-                  tintColors={{true: 'blue', false: 'green'}}
-                />
-              </View>
-              <View>
-                <Text className="text-sm font-medium top-1 text-primary">
-                  Dupatta Piping
-                </Text>
-                <Text className="text-sm font-medium top-1 text-primary">
-                  (Rs.300)
-                </Text>
-              </View>
+          <View className="flex-1">
+            <View className="left-3 mt-8">
+              <Text className="text-primary text-lg font-semibold">
+                Dupatta
+              </Text>
             </View>
-
-            <View className="flex-row mt-3">
-              <View className="top-2 right-2">
-                <CheckBox
-                  value={dupataExtension}
-                  onValueChange={setDupataExtension}
-                  tintColors={{true: 'blue', false: 'green'}}
-                />
-              </View>
-              <View>
-                <Text className="text-sm font-medium top-1 text-primary">
-                  Dupatta Extension
-                </Text>
-                <Text className="text-sm font-medium top-1 text-primary">
-                  (Rs.300)
-                </Text>
-              </View>
-            </View>
-
-            <View className="flex-row mt-3">
-              <View className="top-2 right-2">
-                <CheckBox
-                  value={dupataFetta}
-                  onValueChange={setDupataFetta}
-                  tintColors={{true: 'blue', false: 'green'}}
-                />
-              </View>
-              <View>
-                <Text className="text-sm font-medium top-1 text-primary">
-                  Dupatta Fetta
-                </Text>
-                <Text className="text-sm font-medium top-1 text-primary">
-                  (Rs.300)
-                </Text>
-              </View>
-            </View>
-          </View>
-
-          {/* Top */}
-          <View className="mt-5 mb-5 left-3">
-            <Text className="text-sm text-dark font-medium">Top</Text>
-            <View className="flex-row mt-3">
-              <View className="top-2 right-2">
-                <CheckBox
-                  value={fullTopPiping}
-                  onValueChange={setFullTopPiping}
-                  tintColors={{true: 'blue', false: 'green'}}
-                />
-              </View>
-              <View>
-                <Text className="text-sm font-medium top-1 text-primary">
-                  Full Top Piping
-                </Text>
-                <Text className="text-sm font-medium top-1 text-primary">
-                  (Rs.300)
-                </Text>
-              </View>
-
-              <View className="flex-row left-10">
-                <View className="top-2 right-3">
-                  <CheckBox
-                    value={fullTopExtension}
-                    onValueChange={setFullTopExtension}
-                    tintColors={{true: 'blue', false: 'green'}}
-                  />
+            <View className="flex-col">
+              {/* First and second rows */}
+              <View className="flex-row">
+                <View className="flex-row mb-3">
+                  <TouchableOpacity
+                    onPress={() => {
+                      setDupattaPiping(!dupattaPiping);
+                      setDupattaExtension(false);
+                      setDupattaFetta(false);
+                    }}
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      marginLeft: 10,
+                      marginTop: 15,
+                    }}>
+                    <View
+                      style={{
+                        height: 25,
+                        width: 25,
+                        borderWidth: 2,
+                        borderColor: '#539165',
+                        marginRight: 10,
+                        borderRadius: 4,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}>
+                      {dupattaPiping && (
+                        <Text style={{color: '#539165'}}>&#10003;</Text>
+                      )}
+                    </View>
+                  </TouchableOpacity>
+                  <View className="mt-5">
+                    <Text className="text-[15px] text-black font-semibold">
+                      Dupatta Piping
+                    </Text>
+                    <Text className="text-[15px] text-black font-semibold">
+                      (Rs.300)
+                    </Text>
+                  </View>
                 </View>
-                <View className="right-2">
-                  <Text className="text-sm font-medium top-1 text-primary">
-                    Full Top Extension
+
+                <View className="flex-row mb-3 left-5">
+                  <TouchableOpacity
+                    onPress={() => {
+                      setDupattaExtension(!dupattaExtension);
+                      setDupattaPiping(false);
+                      setDupattaFetta(false);
+                    }}
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      marginLeft: 10,
+                      marginTop: 15,
+                    }}>
+                    <View
+                      style={{
+                        height: 25,
+                        width: 25,
+                        borderWidth: 2,
+                        borderColor: '#539165',
+                        marginRight: 10,
+                        borderRadius: 4,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}>
+                      {dupattaExtension && (
+                        <Text style={{color: '#539165'}}>&#10003;</Text>
+                      )}
+                    </View>
+                  </TouchableOpacity>
+                  <View className="mt-5">
+                    <Text className="text-[15px] text-black font-semibold">
+                      Dupatta Extension
+                    </Text>
+                    <Text className="text-[15px] text-black font-semibold">
+                      (Rs.300)
+                    </Text>
+                  </View>
+                </View>
+              </View>
+
+              {/* Third row (on a new line) */}
+              <View className="flex-row mb-3">
+                <TouchableOpacity
+                  onPress={() => {
+                    setDupattaFetta(!dupattaFetta);
+                    setDupattaExtension(false);
+                    setDupattaPiping(false);
+                  }}
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    marginLeft: 10,
+                    marginTop: 15,
+                  }}>
+                  <View
+                    style={{
+                      height: 25,
+                      width: 25,
+                      borderWidth: 2,
+                      borderColor: '#539165',
+                      marginRight: 10,
+                      borderRadius: 4,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}>
+                    {dupattaFetta && (
+                      <Text style={{color: '#539165'}}>&#10003;</Text>
+                    )}
+                  </View>
+                </TouchableOpacity>
+                <View className="mt-5">
+                  <Text className="text-[15px] text-black font-semibold">
+                    Dupatta Fetta
                   </Text>
-                  <Text className="text-sm font-medium top-1 text-primary">
+                  <Text className="text-[15px] text-black font-semibold">
                     (Rs.300)
                   </Text>
                 </View>
               </View>
             </View>
-            <View className="flex-row mt-5">
-              <View className="top-2 right-2">
-                <CheckBox
-                  value={fullTopFetta}
-                  onValueChange={setFullTopFetta}
-                  tintColors={{true: 'blue', false: 'green'}}
-                />
+          </View>
+
+          {/* Top */}
+          <View>
+            <View className="left-3 mt-8">
+              <Text className="text-primary text-lg font-semibold">Top</Text>
+            </View>
+            <View className="flex-col">
+              {/* First and second rows */}
+              <View className="flex-row">
+                <View className="flex-row mb-3">
+                  <TouchableOpacity
+                    onPress={() => {
+                      setFullTopPiping(!fullTopPiping);
+                      setFullTopExtension(false);
+                      setFullTopFetta(false);
+                    }}
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      marginLeft: 10,
+                      marginTop: 15,
+                    }}>
+                    <View
+                      style={{
+                        height: 25,
+                        width: 25,
+                        borderWidth: 2,
+                        borderColor: '#539165',
+                        marginRight: 10,
+                        borderRadius: 4,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}>
+                      {fullTopPiping && (
+                        <Text style={{color: '#539165'}}>&#10003;</Text>
+                      )}
+                    </View>
+                  </TouchableOpacity>
+                  <View className="mt-5">
+                    <Text className="text-[15px] text-black font-semibold">
+                      Full Top Piping
+                    </Text>
+                    <Text className="text-[15px] text-black font-semibold">
+                      (Rs.300)
+                    </Text>
+                  </View>
+                </View>
+
+                <View className="flex-row mb-3 left-5">
+                  <TouchableOpacity
+                    onPress={() => {
+                      setFullTopExtension(!fullTopExtension);
+                      setFullTopPiping(false);
+                      setFullTopFetta(false);
+                    }}
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      marginLeft: 10,
+                      marginTop: 15,
+                    }}>
+                    <View
+                      style={{
+                        height: 25,
+                        width: 25,
+                        borderWidth: 2,
+                        borderColor: '#539165',
+                        marginRight: 10,
+                        borderRadius: 4,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}>
+                      {fullTopExtension && (
+                        <Text style={{color: '#539165'}}>&#10003;</Text>
+                      )}
+                    </View>
+                  </TouchableOpacity>
+                  <View className="mt-5">
+                    <Text className="text-[15px] text-black font-semibold">
+                      Full Top Extension
+                    </Text>
+                    <Text className="text-[15px] text-black font-semibold">
+                      (Rs.300)
+                    </Text>
+                  </View>
+                </View>
               </View>
-              <View>
-                <Text className="text-sm font-medium top-1 text-primary">
-                  Full Top Fetta
-                </Text>
-                <Text className="text-sm font-medium top-1 text-primary">
-                  (Rs.300)
-                </Text>
+
+              {/* Third row (on a new line) */}
+              <View className="flex-row mb-3">
+                <TouchableOpacity
+                  onPress={() => {
+                    setFullTopFetta(!fullTopFetta);
+                    setFullTopPiping(false);
+                    setFullTopExtension(false);
+                  }}
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    marginLeft: 10,
+                    marginTop: 15,
+                  }}>
+                  <View
+                    style={{
+                      height: 25,
+                      width: 25,
+                      borderWidth: 2,
+                      borderColor: '#539165',
+                      marginRight: 10,
+                      borderRadius: 4,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}>
+                    {fullTopFetta && (
+                      <Text style={{color: '#539165'}}>&#10003;</Text>
+                    )}
+                  </View>
+                </TouchableOpacity>
+                <View className="mt-5">
+                  <Text className="text-[15px] text-black font-semibold">
+                    Full Top Fetta
+                  </Text>
+                  <Text className="text-[15px] text-black font-semibold">
+                    (Rs.300)
+                  </Text>
+                </View>
               </View>
             </View>
           </View>
 
           {/* Embroidery */}
-          <View className="flex-1 mt-5 mb-5 left-3">
-            <Text className="text-sm text-dark font-medium">Embroidery</Text>
-
-            <View className="flex-1 right-5">
-              <View className="flex-row justify-around mt-8">
-                <View className="flex-row">
-                  <View className="top-2 right-2">
-                    <CheckBox
-                      value={embroideryGala}
-                      onValueChange={setEmbroideryGala}
-                      tintColors={{true: 'blue', false: 'green'}}
-                    />
-                  </View>
-                  <View>
-                    <Text className="text-sm font-medium top-1 text-primary">
-                      Gala
+          <View>
+            <View className="left-3 mt-8">
+              <Text className="text-primary text-lg font-semibold">
+                Embroidery
+              </Text>
+            </View>
+            <View className="flex-col">
+              {/* First row */}
+              <View className="flex-row">
+                <View className="flex-row mb-3">
+                  <TouchableOpacity
+                    onPress={() => {
+                      setEmbroideryGalla(!embroideryGalla);
+                      setEmbroideryDaman(false);
+                      setEmbroideryBazo(false);
+                      setEmbroideryBottom(false);
+                    }}
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      marginLeft: 10,
+                      marginTop: 15,
+                    }}>
+                    <View
+                      style={{
+                        height: 25,
+                        width: 25,
+                        borderWidth: 2,
+                        borderColor: '#539165',
+                        marginRight: 10,
+                        borderRadius: 4,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}>
+                      {embroideryGalla && (
+                        <Text style={{color: '#539165'}}>&#10003;</Text>
+                      )}
+                    </View>
+                  </TouchableOpacity>
+                  <View className="mt-5">
+                    <Text className="text-[15px] text-black font-semibold">
+                      Embroidery Galla
                     </Text>
-                    <Text className="text-sm font-medium top-1 text-primary">
+                    <Text className="text-[15px] text-black font-semibold">
                       (Rs.300)
                     </Text>
                   </View>
                 </View>
 
-                <View className="flex-row">
-                  <View className="top-2 right-2">
-                    <CheckBox
-                      value={embroideryDaman}
-                      onValueChange={setEmbroideryDaman}
-                      tintColors={{true: 'blue', false: 'green'}}
-                    />
-                  </View>
-                  <View>
-                    <Text className="text-sm font-medium top-1 text-primary">
-                      Daman
+                <View className="flex-row mb-3 left-5">
+                  <TouchableOpacity
+                    onPress={() => {
+                      setEmbroideryDaman(!embroideryDaman);
+                      setEmbroideryGalla(false);
+                      setEmbroideryBazo(false);
+                      setEmbroideryBottom(false);
+                    }}
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      marginLeft: 10,
+                      marginTop: 15,
+                    }}>
+                    <View
+                      style={{
+                        height: 25,
+                        width: 25,
+                        borderWidth: 2,
+                        borderColor: '#539165',
+                        marginRight: 10,
+                        borderRadius: 4,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}>
+                      {embroideryDaman && (
+                        <Text style={{color: '#539165'}}>&#10003;</Text>
+                      )}
+                    </View>
+                  </TouchableOpacity>
+                  <View className="mt-5">
+                    <Text className="text-[15px] text-black font-semibold">
+                      Embroidery Daman
                     </Text>
-                    <Text className="text-sm font-medium top-1 text-primary">
+                    <Text className="text-[15px] text-black font-semibold">
                       (Rs.300)
                     </Text>
                   </View>
                 </View>
               </View>
 
-              <View className="flex-row justify-around mt-8">
-                <View className="flex-row">
-                  <View className="top-2 right-2">
-                    <CheckBox
-                      value={embroideryBazu}
-                      onValueChange={setEmbroideryBazu}
-                      tintColors={{true: 'blue', false: 'green'}}
-                    />
-                  </View>
-                  <View>
-                    <Text className="text-sm font-medium top-1 text-primary">
-                      Bazu
+              {/* Second row (on a new line) */}
+              <View className="flex-row">
+                <View className="flex-row mb-3">
+                  <TouchableOpacity
+                    onPress={() => {
+                      setEmbroideryBazo(!embroideryBazo);
+                      setEmbroideryGalla(false);
+                      setEmbroideryDaman(false);
+                      setEmbroideryBottom(false);
+                    }}
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      marginLeft: 10,
+                      marginTop: 15,
+                    }}>
+                    <View
+                      style={{
+                        height: 25,
+                        width: 25,
+                        borderWidth: 2,
+                        borderColor: '#539165',
+                        marginRight: 10,
+                        borderRadius: 4,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}>
+                      {embroideryBazo && (
+                        <Text style={{color: '#539165'}}>&#10003;</Text>
+                      )}
+                    </View>
+                  </TouchableOpacity>
+                  <View className="mt-5">
+                    <Text className="text-[15px] text-black font-semibold">
+                      Embroidery Bazu
                     </Text>
-                    <Text className="text-sm font-medium top-1 text-primary">
+                    <Text className="text-[15px] text-black font-semibold">
                       (Rs.300)
                     </Text>
                   </View>
                 </View>
 
-                <View className="flex-row">
-                  <View className="top-2 right-2">
-                    <CheckBox
-                      value={embroideryBottom}
-                      onValueChange={setEmbroideryBottom}
-                      tintColors={{true: 'blue', false: 'green'}}
-                    />
-                  </View>
-                  <View>
-                    <Text className="text-sm font-medium top-1 text-primary">
-                      Bottom
+                <View className="flex-row mb-3 left-5">
+                  <TouchableOpacity
+                    onPress={() => {
+                      setEmbroideryBottom(!embroideryBottom);
+                      setEmbroideryGalla(false);
+                      setEmbroideryDaman(false);
+                      setEmbroideryBazo(false);
+                    }}
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      marginLeft: 10,
+                      marginTop: 15,
+                    }}>
+                    <View
+                      style={{
+                        height: 25,
+                        width: 25,
+                        borderWidth: 2,
+                        borderColor: '#539165',
+                        marginRight: 10,
+                        borderRadius: 4,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}>
+                      {embroideryBottom && (
+                        <Text style={{color: '#539165'}}>&#10003;</Text>
+                      )}
+                    </View>
+                  </TouchableOpacity>
+                  <View className="mt-5">
+                    <Text className="text-[15px] text-black font-semibold">
+                      Embroidery Bottom
                     </Text>
-                    <Text className="text-sm font-medium top-1 text-primary">
+                    <Text className="text-[15px] text-black font-semibold">
                       (Rs.300)
                     </Text>
                   </View>
@@ -508,8 +808,8 @@ const LadiesOrderDetails = () => {
 
           {/* Attachments */}
           <View className="flex-1 flex-row p-5">
-            {attachment && attachment.length > 0 ? (
-              attachment.map(uri => (
+            {sample && sample.length > 0 ? (
+              sample.map(uri => (
                 <Image
                   key={uri}
                   source={{uri}}
@@ -523,7 +823,7 @@ const LadiesOrderDetails = () => {
             )}
           </View>
 
-          {/* Attchment Button */}
+          {/* Attachment Button */}
           <View className="flex-row left-2 mb-5">
             <TouchableOpacity
               onPress={handlePickDocument}
