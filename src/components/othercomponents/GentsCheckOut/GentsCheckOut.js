@@ -273,9 +273,20 @@ const GentsCheckOut = () => {
       Daman,
       wrist,
       comments,
-      puncha,
-      Tob_double_stitch,
-      Embroidery,
+      price,
+      puncha: singleKanta
+        ? 'Single Kanta(Rs.100)'
+        : doubleKanta
+        ? 'Double Kanta(Rs.100)'
+        : '',
+
+      Tob_double_stitch: Tob_double_stitch ? 'Tob_double_stitch(Rs.300)' : '',
+
+      Embroidery: embroideryFull
+        ? 'Embroidery Full(Rs.500)'
+        : embroideryNormal
+        ? 'Embroidery Normal(Rs.300)'
+        : '',
       type: 'male',
       total,
       product,

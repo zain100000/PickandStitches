@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-const GentsItemsContainer = ({product_pic, product, price, onwards, data}) => {
+const GentsItemsContainer = ({product_pic, product, price, onwards}) => {
   const navigation = useNavigation();
 
   const handleItemPress = () => {

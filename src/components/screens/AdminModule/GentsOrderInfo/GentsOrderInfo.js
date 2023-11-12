@@ -90,6 +90,13 @@ const GentsOrderInfo = ({route}) => {
           </View>
 
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
+            <Text className="text-lg text-black font-bold">Product Price:</Text>
+            <Text className="text-lg text-black font-bold">
+              Rs.{selectedOrder.product_price}
+            </Text>
+          </View>
+
+          <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
             <Text className="text-lg text-black font-bold">Leg Opening:</Text>
             <Text className="text-lg text-black font-bold">
               {selectedOrder.puncha}

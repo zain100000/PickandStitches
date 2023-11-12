@@ -101,7 +101,7 @@ const App = () => {
               fontSize: 20,
             },
             headerStyle: {
-              backgroundColor: '#539165',
+              backgroundColor: '#00bcd4',
             },
           }}
         />
@@ -117,7 +117,7 @@ const App = () => {
               fontSize: 20,
             },
             headerStyle: {
-              backgroundColor: '#539165',
+              backgroundColor: '#00bcd4',
             },
           }}
         />
