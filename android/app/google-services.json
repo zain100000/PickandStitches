@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "335277084277",
+    "project_id": "pickandstitches-742e2",
+    "storage_bucket": "pickandstitches-742e2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:335277084277:android:cdd1ddbf09f5de63cbf23c",
+        "android_client_info": {
+          "package_name": "com.pickandstitche"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwlhaNh3A7RjN2qESPC5e5jkXhoJ677NU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

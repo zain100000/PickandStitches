@@ -213,7 +213,7 @@ const LadiesOrderDetails = () => {
             <Text className="text-sm mb-2">Product Name:-</Text>
             <View className="border-2 border-gray-500 mb-3">
               <TextInput
-                className="text-sm text-black left-2 "
+                className="text-sm text-primary left-2 "
                 placeholder={product}
                 placeholderTextColor={'#539165'}
               />
@@ -222,7 +222,7 @@ const LadiesOrderDetails = () => {
           {/* FullName */}
           <View className="border-b-2 border-b-gray-500 mb-3">
             <TextInput
-              className="text-sm text-black left-3"
+              className="text-sm text-primary left-3"
               placeholder="Ful Name"
               placeholderTextColor={'#539165'}
               value={name}
@@ -239,7 +239,7 @@ const LadiesOrderDetails = () => {
           {/* Mobile */}
           <View className="border-b-2 border-b-gray-500 mb-3">
             <TextInput
-              className="text-sm text-black left-3"
+              className="text-sm text-primary left-3"
               placeholder="Mobile"
               keyboardType="number-pad"
               placeholderTextColor={'#539165'}
@@ -257,7 +257,7 @@ const LadiesOrderDetails = () => {
           {/* Address */}
           <View className="border-b-2 border-b-gray-500 mb-3">
             <TextInput
-              className="text-sm text-black left-3"
+              className="text-sm text-primary left-3"
               placeholder="Complete Address"
               placeholderTextColor={'#539165'}
               value={adress}
@@ -274,7 +274,7 @@ const LadiesOrderDetails = () => {
           {/* Comment */}
           <View className="border-b-2 border-b-gray-500 mb-3">
             <TextInput
-              className="text-black left-3 text-sm"
+              className="text-primary left-3 text-sm"
               placeholder="Describe Anything Further In Your Mind"
               placeholderTextColor="gray"
               multiline={true}

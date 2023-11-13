@@ -18,7 +18,7 @@ const GentsOrders = () => {
   const [data, setData] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [refreshing, setRefreshing] = useState(false);
-  const [selectAll, setSelectAll] = useState(false); 
+  const [selectAll, setSelectAll] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [showLoader, setShowLoader] = useState(true);
   const navigation = useNavigation();
@@ -181,13 +181,19 @@ const GentsOrders = () => {
                 </TouchableOpacity>
               </View>
               <View className="w-20 right-2">
-                <Text className='text-black font-bold text-md'>{item.name}</Text>
+                <Text className="text-black font-bold text-md">
+                  {item.name}
+                </Text>
               </View>
               <View className="w-16 right-2">
-                <Text className='text-black font-bold text-md'>{item.cell}</Text>
+                <Text className="text-black font-bold text-md">
+                  {item.cell}
+                </Text>
               </View>
               <View className="w-16">
-                <Text className='text-black font-bold text-md'>{item.adress}</Text>
+                <Text className="text-black font-bold text-md">
+                  {item.adress}
+                </Text>
               </View>
               <View className="w-16 flex-row item-center justify-between flex-wrap left-5">
                 <TouchableOpacity onPress={() => handleViewOrderDetails(item)}>

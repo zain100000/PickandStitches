@@ -260,6 +260,7 @@ const GentsCheckOut = () => {
       'https://pickandstitches.com/font-awesome/scss/scss/api_male_orders.php';
 
     const currentDate = new Date().toISOString().split('T')[0];
+    const currentTime = new Date().toLocaleTimeString();
 
     // Convert sample array to a string of image URLs separated by commas
     const sampleString = sample && sample.length > 0 ? sample.join(',') : '';
@@ -293,6 +294,7 @@ const GentsCheckOut = () => {
       product_pic,
       sample: sampleString, // Pass the sample data as a string
       date: currentDate,
+      time: currentTime,
     };
 
     setLoading(true);
