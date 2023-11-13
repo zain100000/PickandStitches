@@ -25,8 +25,8 @@ const GentsCheckOut = () => {
   const Pocket = route.params?.Pocket || 'Not selected';
   const Daman = route.params?.Daman || 'Not selected';
   const wrist = route.params?.wrist || 'Not selected';
-  const comments = route.params?.comments || 'Comment';
-  const puncha = route.params?.puncha || false;
+  const comments = route.params?.comments || 'No Additional Comment';
+  const puncha = route.params?.puncha || 'false';
   const Tob_double_stitch = route.params?.Tob_double_stitch || false;
   const Embroidery = route.params?.Embroidery || false;
   const sample = route.params?.sample;
@@ -50,7 +50,7 @@ const GentsCheckOut = () => {
       totalPrice += doubleKanta;
     }
 
-    if (Tob_double_stitch === 'Tob_double_stitch') {
+    if (Tob_double_stitch === 'Tob Double Stitch') {
       totalPrice += tob_double_stitch;
     }
 
@@ -84,7 +84,7 @@ const GentsCheckOut = () => {
     {label: 'Pocket Type', value: Pocket || 'Not selected'},
     {label: 'Daman Type', value: Daman || 'Not selected'},
     {label: 'Wrist Type', value: wrist || 'Not selected'},
-    {label: 'Comment', value: comments || 'No additional comment'},
+    {label: 'Comment', value: comments || 'No Additional Comment'},
     {label: 'Product Base Price', value: formatPriceAsCurrency(price)},
     {
       label: 'Leg Opening(Puncha)',
@@ -100,7 +100,7 @@ const GentsCheckOut = () => {
     {
       label: 'Tob Stitch',
       value: `${Tob_double_stitch || 'Not selected'} (Rs.${
-        Tob_double_stitch === 'Tob Double Stitch' ? 0 : 300
+        Tob_double_stitch === 'Tob Double Stitch' ? 300 : 0
       })`,
     },
 
@@ -229,7 +229,7 @@ const GentsCheckOut = () => {
       <div style="display: flex; justify-content: space-between; align-items: center;">
         <h4 style="font-size:2rem">Tob Double Stitch</h4>
         <p style="font-size:2rem">${Tob_double_stitch || 'Not selected'} (Rs.${
-      Tob_double_stitch === 'Tob Double Stitch' ? 0 : 300
+      Tob_double_stitch === 'Tob Double Stitch' ? 300 : 0
     })</p>
       </div>
 
@@ -280,7 +280,7 @@ const GentsCheckOut = () => {
         ? 'Double Kanta(Rs.100)'
         : '',
 
-      Tob_double_stitch: Tob_double_stitch ? 'Tob_double_stitch(Rs.300)' : '',
+      Tob_double_stitch: Tob_double_stitch ? 'Tob Double Stitch(Rs.300)' : '',
 
       Embroidery: embroideryFull
         ? 'Embroidery Full(Rs.500)'
@@ -306,6 +306,7 @@ const GentsCheckOut = () => {
 
       if (response.status === 200) {
         alert('Thank You! Your Order Has Been Successfully Placed!');
+        console.log('Order Data:', orderData);
       } else {
         console.error('API request failed with status code:', response.status);
         console.log('API Response Data:', response.data);

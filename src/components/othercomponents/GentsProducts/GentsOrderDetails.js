@@ -156,7 +156,7 @@ const GentsOrderDetails = () => {
           ? 'Double Kanta'
           : '',
 
-        Tob_double_stitch: Tob_double_stitch ? 'Tob_double_stitch' : '',
+        Tob_double_stitch: Tob_double_stitch ? 'Tob Double Stitch' : '',
 
         Embroidery: embroideryFull
           ? 'Embroidery Full'

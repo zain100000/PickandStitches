@@ -21,7 +21,7 @@ const LediesCheckOut = () => {
   const name = route.params?.name || 'Default name';
   const cell = route.params?.cell || 'Default cell';
   const adress = route.params?.adress || 'Default adress';
-  const comments = route.params?.comments || 'Comment';
+  const comments = route.params?.comments || 'No Additional Comment';
   const peko = route.params?.peko || 'Not Selected';
   const Dupata_Piping = route.params?.Dupata_Piping || 'Not Selected';
   const Full_top_piping = route.params?.Full_top_piping || 'Not Selected';
@@ -310,12 +310,36 @@ const LediesCheckOut = () => {
       comments,
       type: 'female',
       date: currentDate,
+      price,
       total,
       product,
-      peko,
-      Dupata_Piping,
-      Full_top_piping,
-      Embroidery,
+      peko: pikoFull ? 'Piko Full(Rs.120)' : pikoHalf ? 'Piko Half(Rs.60)' : '',
+
+      Dupata_Piping: dupattaPiping
+        ? 'Dupatta Piping(Rs.300)'
+        : dupattaExtension
+        ? 'Dupatta Extension(Rs.300)'
+        : dupattaFetta
+        ? 'Dupatta Fetta(Rs.300)'
+        : '',
+
+      Full_top_piping: fullTopPiping
+        ? 'Full Top Piping(Rs.300)'
+        : fullTopExtension
+        ? 'Full Top Extension(Rs.300)'
+        : fullTopFetta
+        ? 'Full Top Fetta(Rs.300)'
+        : '',
+
+      Embroidery: embroideryGalla
+        ? 'Embroidery Galla(Rs.300)'
+        : embroideryDaman
+        ? 'Embroidery Daman(Rs.300)'
+        : embroideryBazo
+        ? 'Embroidery Bazo(Rs.300)'
+        : embroideryBottom
+        ? 'Embroidery Bottom(Rs.300)'
+        : '',
     };
 
     setLoading(true);
