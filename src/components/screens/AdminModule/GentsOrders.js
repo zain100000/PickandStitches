@@ -134,6 +134,15 @@ const GentsOrders = () => {
     );
   };
 
+  function formatDate(dateString) {
+    const options = {day: '2-digit', month: 'short', year: 'numeric'};
+    const formattedDate = new Date(dateString).toLocaleDateString(
+      'en-US',
+      options,
+    );
+    return formattedDate;
+  }
+
   return (
     <SafeAreaView className="flex-1 bg-white">
       <View className="flex-row justify-between items-center">
@@ -159,10 +168,11 @@ const GentsOrders = () => {
             color={selectAll ? 'blue' : '#000'}
           />
         </TouchableOpacity>
-        <Text className="text-dark font-semibold">Name:</Text>
-        <Text className="text-dark font-semibold">Cell:</Text>
-        <Text className="text-dark font-semibold">Address:</Text>
-        <Text className="text-dark font-semibold">Action:</Text>
+        <Text className="text-dark font-semibold left-2">Name</Text>
+        <Text className="text-dark font-semibold left-3">Cell</Text>
+        <Text className="text-dark font-semibold left-5">Address</Text>
+        <Text className="text-dark font-semibold left-6">Time</Text>
+        <Text className="text-dark font-semibold left-4">Action</Text>
       </View>
 
       <View className="flex-1 justify-center">
@@ -190,12 +200,22 @@ const GentsOrders = () => {
                   {item.cell}
                 </Text>
               </View>
-              <View className="w-16">
+              <View className="w-16 left-2">
                 <Text className="text-black font-bold text-md">
                   {item.adress}
                 </Text>
               </View>
-              <View className="w-16 flex-row item-center justify-between flex-wrap left-5">
+              <View className="w-16 left-5">
+                <Text className="text-black font-bold text-md">
+                  {item.time}
+                  {'\n'}
+                  {'\n'}
+                  <Text className="text-black font-bold text-md">
+                    {formatDate(item.date)}
+                  </Text>
+                </Text>
+              </View>
+              <View className="w-16 flex-row item-center justify-between flex-wrap left-4">
                 <TouchableOpacity onPress={() => handleViewOrderDetails(item)}>
                   <FontAwesome5 name="eye" size={20} color={'#000'} />
                 </TouchableOpacity>

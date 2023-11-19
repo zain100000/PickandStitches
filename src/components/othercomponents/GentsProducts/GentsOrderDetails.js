@@ -267,22 +267,22 @@ const GentsOrderDetails = () => {
               <Picker.Item
                 label="Select Neck Type"
                 value=""
-                style={{color: 'white', fontSize: 15}}
+                style={{color: 'black', fontSize: 15}}
               />
               <Picker.Item
                 label="Collar"
                 value="Collar"
-                style={{color: 'white', fontSize: 15}}
+                style={{color: 'black', fontSize: 15}}
               />
               <Picker.Item
                 label="Ban"
                 value="Ban"
-                style={{color: 'white', fontSize: 15}}
+                style={{color: 'black', fontSize: 15}}
               />
               <Picker.Item
                 label="Ban Round Cut"
                 value="Ban Round Cut"
-                style={{color: 'white', fontSize: 15}}
+                style={{color: 'black', fontSize: 15}}
               />
             </Picker>
           </View>
@@ -296,47 +296,47 @@ const GentsOrderDetails = () => {
               <Picker.Item
                 label="Select Pocket Type"
                 value=""
-                style={{color: 'white', fontSize: 15}}
+                style={{color: 'black', fontSize: 15}}
               />
               <Picker.Item
                 label="Front Single"
                 value="Front Single"
-                style={{color: 'white', fontSize: 15}}
+                style={{color: 'black', fontSize: 15}}
               />
               <Picker.Item
                 label="Front Double"
                 value="Front Double"
-                style={{color: 'white', fontSize: 15}}
+                style={{color: 'black', fontSize: 15}}
               />
               <Picker.Item
                 label="Side Single"
                 value="Side Single"
-                style={{color: 'white', fontSize: 15}}
+                style={{color: 'black', fontSize: 15}}
               />
               <Picker.Item
                 label="Side Double"
                 value="Side Double"
-                style={{color: 'white', fontSize: 15}}
+                style={{color: 'black', fontSize: 15}}
               />
               <Picker.Item
                 label="Front Single, Side Single"
                 value="Front Single, Side Single"
-                style={{color: 'white', fontSize: 15}}
+                style={{color: 'black', fontSize: 15}}
               />
               <Picker.Item
                 label="Front Double, Side Double"
                 value="Front Double, Side Double"
-                style={{color: 'white', fontSize: 15}}
+                style={{color: 'black', fontSize: 15}}
               />
               <Picker.Item
                 label="Front Single, Side Double"
                 value="Front Single, Side Double"
-                style={{color: 'white', fontSize: 15}}
+                style={{color: 'black', fontSize: 15}}
               />
               <Picker.Item
                 label="Front Double, Side Single"
                 value="Front Double, Side Single"
-                style={{color: 'white', fontSize: 15}}
+                style={{color: 'black', fontSize: 15}}
               />
             </Picker>
           </View>
@@ -350,17 +350,17 @@ const GentsOrderDetails = () => {
               <Picker.Item
                 label="Select Daman Type"
                 value=""
-                style={{color: 'white', fontSize: 15}}
+                style={{color: 'black', fontSize: 15}}
               />
               <Picker.Item
                 label="Round"
                 value="Round"
-                style={{color: 'white', fontSize: 15}}
+                style={{color: 'black', fontSize: 15}}
               />
               <Picker.Item
                 label="Straight"
                 value="Straight"
-                style={{color: 'white', fontSize: 15}}
+                style={{color: 'black', fontSize: 15}}
               />
             </Picker>
           </View>
@@ -374,17 +374,17 @@ const GentsOrderDetails = () => {
               <Picker.Item
                 label="Select Wrist Type"
                 value=""
-                style={{color: 'white', fontSize: 15}}
+                style={{color: 'black', fontSize: 15}}
               />
               <Picker.Item
                 label="Open"
                 value="Open"
-                style={{color: 'white', fontSize: 15}}
+                style={{color: 'black', fontSize: 15}}
               />
               <Picker.Item
                 label="Cuff"
                 value="Cuff"
-                style={{color: 'white', fontSize: 15}}
+                style={{color: 'black', fontSize: 15}}
               />
             </Picker>
           </View>

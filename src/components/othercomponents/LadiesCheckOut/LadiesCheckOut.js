@@ -299,6 +299,8 @@ const LediesCheckOut = () => {
       'https://pickandstitches.com/font-awesome/scss/scss/api_female_orders.php';
 
     const currentDate = new Date().toISOString().split('T')[0];
+    const currentTime = new Date().toLocaleTimeString();'';
+
 
     // Convert sample array to a string of image URLs separated by commas
     const sampleString = sample && sample.length > 0 ? sample.join(',') : '';
@@ -310,6 +312,7 @@ const LediesCheckOut = () => {
       comments,
       type: 'female',
       date: currentDate,
+      time: currentTime,
       price,
       total,
       product,

@@ -134,6 +134,15 @@ const LadiesOrders = () => {
     );
   };
 
+  function formatDate(dateString) {
+    const options = {day: '2-digit', month: 'short', year: 'numeric'};
+    const formattedDate = new Date(dateString).toLocaleDateString(
+      'en-US',
+      options,
+    );
+    return formattedDate;
+  }
+
   return (
     <SafeAreaView className="flex-1 bg-white">
       <View className="flex-row justify-between items-center">
@@ -159,18 +168,17 @@ const LadiesOrders = () => {
             color={selectAll ? 'blue' : '#000'}
           />
         </TouchableOpacity>
-        <Text className="text-dark font-semibold">Name:</Text>
-        <Text className="text-dark font-semibold">Cell:</Text>
-        <Text className="text-dark font-semibold">Address:</Text>
-        <Text className="text-dark font-semibold">Action:</Text>
+        <Text className="text-dark font-semibold left-2">Name</Text>
+        <Text className="text-dark font-semibold left-3">Cell</Text>
+        <Text className="text-dark font-semibold left-5">Address</Text>
+        <Text className="text-dark font-semibold left-6">Time</Text>
+        <Text className="text-dark font-semibold left-4">Action</Text>
       </View>
 
       <View className="flex-1 justify-center">
         <FlatList
           data={filterData()}
-          keyExtractor={(item, index) =>
-            item.id ? item.id.toString() : index.toString()
-          }
+          keyExtractor={item => item.id.toString()}
           renderItem={({item, index}) => (
             <View className="flex-row justify-between items-center p-5 border-b-2 border-b-gray-400">
               <View className="w-14">
@@ -192,18 +200,28 @@ const LadiesOrders = () => {
                   {item.cell}
                 </Text>
               </View>
-              <View className="w-16">
+              <View className="w-16 left-2">
                 <Text className="text-black font-bold text-md">
                   {item.address}
                 </Text>
               </View>
-              <View className="w-16 flex-row item-center justify-between flex-wrap left-5">
+              <View className="w-16 left-5">
+                <Text className="text-black font-bold text-md">
+                  {item.time}
+                  {'\n'}
+                  {'\n'}
+                  <Text className="text-black font-bold text-md">
+                    {formatDate(item.date)}
+                  </Text>
+                </Text>
+              </View>
+              <View className="w-16 flex-row item-center justify-between flex-wrap left-4">
                 <TouchableOpacity onPress={() => handleViewOrderDetails(item)}>
                   <FontAwesome5 name="eye" size={20} color={'#000'} />
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                  onPress={item => handleDeleteOrder(item.id)}
+                  onPress={() => handleDeleteOrder(item.id)}
                   className="right-5">
                   <FontAwesome5 name={'trash'} size={20} color={'red'} />
                 </TouchableOpacity>
@@ -223,7 +241,7 @@ const LadiesOrders = () => {
         )}
         {!showLoader && !data.length && !isLoading && (
           <Text className="flex-1 text-center text-xl text-gray-600">
-            No Ladies Orders Yet
+            No Gents Orders Yet
           </Text>
         )}
       </View>
