@@ -1,10 +1,12 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {useNavigation} from '@react-navigation/native';
 import DashBoard from '../../screens/AdminModule/DashBoard';
 import GentsOrders from '../../screens/AdminModule/GentsOrders';
 import LadiesOrders from '../../screens/AdminModule/LadiesOrders';
+import ManageProducts from '../../screens/AdminModule/ManageProducts';
 
 const Tab = createBottomTabNavigator();
 
@@ -73,6 +75,20 @@ const AdminBottomNavigator = () => {
         }}
         name="Ladies Orders"
         component={LadiesOrders}
+      />
+
+      <Tab.Screen
+        options={{
+          tabBarIcon: ({focused}) => (
+            <FontAwesome
+              name={focused ? 'gear' : 'gear'}
+              color={focused ? '#fff' : '#000'}
+              size={30}
+            />
+          ),
+        }}
+        name="Manage Products"
+        component={ManageProducts}
       />
     </Tab.Navigator>
   );

@@ -16,6 +16,7 @@ import {useNavigation} from '@react-navigation/native';
 
 const LadiesOrders = () => {
   const [data, setData] = useState([]);
+  const [deleting, setDeleting] = useState(false);
   const [searchText, setSearchText] = useState('');
   const [refreshing, setRefreshing] = useState(false);
   const [selectAll, setSelectAll] = useState(false);
@@ -103,11 +104,14 @@ const LadiesOrders = () => {
         {
           text: 'Delete',
           onPress: async () => {
+            setDeleting(true);
+
             const selectedIds = data
               .filter(order => order.selected)
               .map(order => order.id);
 
             if (selectedIds.length === 0) {
+              setDeleting(false);
               return; // No orders selected to delete
             }
 
@@ -116,17 +120,26 @@ const LadiesOrders = () => {
                 'https://pickandstitches.com/font-awesome/scss/scss/api_female_orders.php?delete_order=' +
                   selectedIds.join(','),
               );
+
               if (response.status === 200) {
                 const newData = data.filter(order => !order.selected);
                 setData(newData);
+                setDeleting(false);
+                // Show success message
+                Alert.alert(
+                  'Success',
+                  'Selected orders have been deleted successfully',
+                );
               } else {
                 console.error(
                   'Error deleting orders from API:',
                   response.statusText,
                 );
+                setDeleting(false);
               }
             } catch (error) {
               console.error('Error deleting orders from API:', error);
+              setDeleting(false);
             }
           },
         },
@@ -156,7 +169,7 @@ const LadiesOrders = () => {
           value={searchText}
           placeholderTextColor={'#00bcd4'}
           onChangeText={text => setSearchText(text)}
-          className="border-2 border-gray-400 w-80 border-l-2 border-r-0 border-t-0 p-2"
+          className="border-2 border-gray-400 w-80 border-l-2 border-r-0 border-t-0 p-2 text-primary font-semibold"
         />
       </View>
 
@@ -245,6 +258,14 @@ const LadiesOrders = () => {
           </Text>
         )}
       </View>
+
+      {deleting && (
+        <ActivityIndicator
+          size="large"
+          color="blue"
+          className="absolute top-0 bottom-0 left-0 right-0 justify-center items-center bg-opacity-50 bg-white"
+        />
+      )}
     </SafeAreaView>
   );
 };
