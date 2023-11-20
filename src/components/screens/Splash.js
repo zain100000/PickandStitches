@@ -24,7 +24,9 @@ const Splash = () => {
       setIsConnected(false);
     } else {
       // If there is an internet connection, navigate to UserHome after 2 seconds
-      setTimeout(() => {}, 2000);
+      setTimeout(() => {
+        navigation.navigate('UserHome')
+      }, 2000);
     }
   }, [navigation]);
 
