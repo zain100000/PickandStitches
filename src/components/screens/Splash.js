@@ -13,22 +13,18 @@ import {useNavigation} from '@react-navigation/native';
 
 const Splash = () => {
   const [isConnected, setIsConnected] = useState(null);
+  const [buttonPressed, setButtonPressed] = useState(false);
   const navigation = useNavigation();
 
   const checkInternetConnection = useCallback(async () => {
     const netInfoState = await NetInfo.fetch();
     setIsConnected(netInfoState.isConnected);
 
-    if (!netInfoState.isConnected) {
-      // If no internet connection, set isConnected to false
-      setIsConnected(false);
-    } else {
-      // If there is an internet connection, navigate to UserHome after 2 seconds
-      setTimeout(() => {
-        navigation.navigate('UserHome')
-      }, 2000);
+    if (!netInfoState.isConnected && buttonPressed) {
+      // If no internet connection and button is pressed, navigate to UserHome
+      navigation.navigate('UserHome');
     }
-  }, [navigation]);
+  }, [navigation, buttonPressed]);
 
   useEffect(() => {
     const unsubscribe = NetInfo.addEventListener(state => {
@@ -45,10 +41,17 @@ const Splash = () => {
     };
   }, [checkInternetConnection]);
 
+  useEffect(() => {
+    if (isConnected === true) {
+      // Navigate to UserHome when isConnected becomes true
+      navigation.navigate('UserHome');
+    }
+  }, [isConnected, navigation]);
+
   const handleTryAgain = () => {
-    // Re-mount the splash screen to check the internet connection again
-    setIsConnected(null);
-    checkInternetConnection();
+    setButtonPressed(true); // Set the buttonPressed state to true
+    setIsConnected(null); // Reset isConnected state
+    checkInternetConnection(); // Check the internet connection again
   };
 
   return (
@@ -61,7 +64,7 @@ const Splash = () => {
       />
 
       {isConnected === false && (
-        <View style={styles.overlay}>
+        <View className={styles.overlay}>
           {/* Image for no internet connection */}
           <Image
             source={require('../../assets/svg_image.webp')}
