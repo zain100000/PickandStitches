@@ -8,6 +8,7 @@ import MenProducts from '../../screens/UserModule/MenProducts/MenProducts';
 import WomenProducts from '../../screens/UserModule/WomenProducts/WomenProducts';
 import HowItWorks from '../../screens/UserModule/extrascreens/HowItWorks';
 import FeedBack from '../../screens/UserModule/extrascreens/FeedBack';
+import {Text} from 'react-native-animatable';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,7 +19,11 @@ const UserBottomNavigator = () => {
     <Tab.Navigator
       screenOptions={({route}) => ({
         headerShown: true,
-        tabBarLabel: '',
+        tabBarLabelStyle: {
+          fontSize: 10,
+          marginBottom: 5,
+          color: '#fff',
+        },
         tabBarActiveTintColor: '#000',
         tabBarInactiveTintColor: '#908e8c',
         tabBarStyle: {

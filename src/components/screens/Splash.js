@@ -1,35 +1,31 @@
-import React, {useEffect, useState, useCallback} from 'react';
-import {
-  View,
-  Text,
-  ActivityIndicator,
-  TouchableOpacity,
-  Image,
-  StyleSheet,
-} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, Text, ActivityIndicator, Image, StyleSheet} from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import NetInfo from '@react-native-community/netinfo';
 import {useNavigation} from '@react-navigation/native';
 
 const Splash = () => {
   const [isConnected, setIsConnected] = useState(null);
-  const [buttonPressed, setButtonPressed] = useState(false);
   const navigation = useNavigation();
 
-  const checkInternetConnection = useCallback(async () => {
-    const netInfoState = await NetInfo.fetch();
-    setIsConnected(netInfoState.isConnected);
-
-    if (!netInfoState.isConnected && buttonPressed) {
-      // If no internet connection and button is pressed, navigate to UserHome
-      navigation.navigate('UserHome');
-    }
-  }, [navigation, buttonPressed]);
-
   useEffect(() => {
+    const checkInternetConnection = async () => {
+      const netInfoState = await NetInfo.fetch();
+      setIsConnected(netInfoState.isConnected);
+
+      if (netInfoState.isConnected) {
+        setTimeout(() => {
+          navigation.navigate('UserHome');
+        }, 2000);
+      }
+    };
+
     const unsubscribe = NetInfo.addEventListener(state => {
-      // Update the isConnected state when the connection status changes
       setIsConnected(state.isConnected);
+
+      if (state.isConnected) {
+        checkInternetConnection();
+      }
     });
 
     // Check the internet connection status when the component mounts
@@ -39,20 +35,7 @@ const Splash = () => {
     return () => {
       unsubscribe();
     };
-  }, [checkInternetConnection]);
-
-  useEffect(() => {
-    if (isConnected === true) {
-      // Navigate to UserHome when isConnected becomes true
-      navigation.navigate('UserHome');
-    }
-  }, [isConnected, navigation]);
-
-  const handleTryAgain = () => {
-    setButtonPressed(true); // Set the buttonPressed state to true
-    setIsConnected(null); // Reset isConnected state
-    checkInternetConnection(); // Check the internet connection again
-  };
+  }, [navigation]);
 
   return (
     <View className="flex-1 justify-center items-center">
@@ -60,26 +43,20 @@ const Splash = () => {
         source={require('../../assets/logo.png')}
         animation={'fadeIn'}
         duration={2000}
-        className="w-[285px] h-[130px] object-contain bg-contain"
+        className="w-[285px] h-[130px] object-contain"
       />
 
       {isConnected === false && (
-        <View className={styles.overlay}>
+        <View style={styles.overlay}>
           {/* Image for no internet connection */}
           <Image
             source={require('../../assets/svg_image.webp')}
-            className="w-36 h-36 object-contain bg-white"
+            className="w-36 h-36 object-contain"
           />
 
-          <Text className="text-red-600 font-semibold text-lg">
+          <Text className="text-red-500 font-semibold text-lg">
             No internet connection
           </Text>
-
-          <TouchableOpacity
-            className="w-60 justify-center items-center rounded-lg p-3 mt-5 mb-5 bg-ternary"
-            onPress={handleTryAgain}>
-            <Text className="text-white text-lg font-medium">Try Again</Text>
-          </TouchableOpacity>
         </View>
       )}
 
