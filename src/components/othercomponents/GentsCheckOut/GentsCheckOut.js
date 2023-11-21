@@ -308,7 +308,6 @@ const GentsCheckOut = () => {
 
       if (response.status === 200) {
         alert('Thank You! Your Order Has Been Successfully Placed!');
-        navigation.navigate('UserHome');
       } else {
         console.error('API request failed with status code:', response.status);
         console.log('API Response Data:', response.data);
