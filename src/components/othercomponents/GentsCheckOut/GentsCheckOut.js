@@ -26,7 +26,7 @@ const GentsCheckOut = () => {
   const Daman = route.params?.Daman || 'Not selected';
   const wrist = route.params?.wrist || 'Not selected';
   const comments = route.params?.comments || 'No Additional Comment';
-  const puncha = route.params?.puncha || 'false';
+  const puncha = route.params?.puncha || false;
   const Tob_double_stitch = route.params?.Tob_double_stitch || false;
   const Embroidery = route.params?.Embroidery || false;
   const sample = route.params?.sample;
