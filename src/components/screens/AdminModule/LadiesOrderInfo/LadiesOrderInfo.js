@@ -59,30 +59,40 @@ const LadiesOrderInfo = ({route}) => {
 
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
             <Text className="text-lg text-black font-bold">Piko:</Text>
-            <Text className="text-lg text-black font-bold">
+            <Text className="text-lg text-black font-bold left-4">
               {selectedOrder.piko}
             </Text>
           </View>
 
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
             <Text className="text-lg text-black font-bold">Top:</Text>
-            <Text className="text-lg text-black font-bold">
+            <Text className="text-lg text-black font-bold left-6">
               {selectedOrder.Top}
             </Text>
           </View>
 
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
             <Text className="text-lg text-black font-bold">Dupatta:</Text>
-            <Text className="text-lg text-black font-bold">
+            <Text className="text-lg text-black font-bold left-6">
               {selectedOrder.Dupatta}
             </Text>
           </View>
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg text-black font-bold">Embroidery:</Text>
-            <Text className="text-lg text-black font-bold">
+            <Text className="text-lg text-black font-bold ">Embroidery:</Text>
+            <Text className="text-lg text-black font-bold left-6">
               {selectedOrder.Embroidery}
             </Text>
           </View>
+
+          <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
+            <Text className="text-lg text-black font-bold">
+              Delivery Charges:
+            </Text>
+            <Text className="text-lg text-black font-bold">
+              Rs.{selectedOrder.deliverycharges}
+            </Text>
+          </View>
+
           <View className="flex-row  flex-wrap border-b-2 border-b-gray-400 p-5 justify-between items-center">
             <Text className="text-lg text-black font-bold">Samples:</Text>
             <TouchableOpacity onPress={toggleModal}>

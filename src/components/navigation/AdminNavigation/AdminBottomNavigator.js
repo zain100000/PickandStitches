@@ -6,7 +6,6 @@ import {useNavigation} from '@react-navigation/native';
 import DashBoard from '../../screens/AdminModule/DashBoard';
 import GentsOrders from '../../screens/AdminModule/GentsOrders';
 import LadiesOrders from '../../screens/AdminModule/LadiesOrders';
-import ManageProducts from '../../screens/AdminModule/ManageProducts';
 
 const Tab = createBottomTabNavigator();
 
@@ -75,20 +74,6 @@ const AdminBottomNavigator = () => {
         }}
         name="Ladies Orders"
         component={LadiesOrders}
-      />
-
-      <Tab.Screen
-        options={{
-          tabBarIcon: ({focused}) => (
-            <FontAwesome
-              name={focused ? 'gear' : 'gear'}
-              color={focused ? '#fff' : '#000'}
-              size={30}
-            />
-          ),
-        }}
-        name="Manage Products"
-        component={ManageProducts}
       />
     </Tab.Navigator>
   );

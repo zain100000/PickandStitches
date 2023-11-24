@@ -117,6 +117,15 @@ const GentsOrderInfo = ({route}) => {
             </Text>
           </View>
 
+          <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
+            <Text className="text-lg text-black font-bold">
+              Delivery Charges:
+            </Text>
+            <Text className="text-lg text-black font-bold">
+              Rs.{selectedOrder.deliverycharges}
+            </Text>
+          </View>
+
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between items-center">
             <Text className="text-lg text-black font-bold">Samples:</Text>
             <TouchableOpacity onPress={toggleModal}>

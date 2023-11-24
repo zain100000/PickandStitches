@@ -40,6 +40,7 @@ const GentsCheckOut = () => {
   const tob_double_stitch = 300;
   const embroideryFull = 500;
   const embroideryNormal = 300;
+  const deliverycharges = 300;
 
   const calculateTotalPrice = () => {
     let totalPrice = basePrice;
@@ -58,6 +59,10 @@ const GentsCheckOut = () => {
       totalPrice += embroideryFull;
     } else if (Embroidery === 'Embroidery Normal') {
       totalPrice += embroideryNormal;
+    }
+
+    if (deliverycharges) {
+      totalPrice += deliverycharges;
     }
 
     return totalPrice;
@@ -114,6 +119,8 @@ const GentsCheckOut = () => {
           : 0
       })`,
     },
+
+    {label: 'Delivery Charges', value: formatPriceAsCurrency(deliverycharges)},
 
     {
       label: 'Samples',
@@ -245,6 +252,11 @@ const GentsCheckOut = () => {
       </div>
 
       <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 style="font-size:2rem">Delivery Charges</h4>
+        <p style="font-size:2rem">${formatPriceAsCurrency(deliverycharges)}</p>
+      </div>      
+
+      <div style="display: flex; justify-content: space-between; align-items: center;">
         <h4 style="font-size:2rem">Total Price</h4>
         <p style="font-size:2rem">${formatPriceAsCurrency(total)}</p>
       </div>            
@@ -292,9 +304,10 @@ const GentsCheckOut = () => {
       total,
       product,
       product_pic,
-      sample: sampleString, // Pass the sample data as a string
+      sample: sampleString,
       date: currentDate,
       time: currentTime,
+      Delivery_Charges: deliverycharges,
     };
 
     setLoading(true);
@@ -308,7 +321,7 @@ const GentsCheckOut = () => {
 
       if (response.status === 200) {
         alert('Thank You! Your Order Has Been Successfully Placed!');
-        navigation.navigate('UserHome')
+        navigation.navigate('UserHome');
       } else {
         console.error('API request failed with status code:', response.status);
         console.log('API Response Data:', response.data);

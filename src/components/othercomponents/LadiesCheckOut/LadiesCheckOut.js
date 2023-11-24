@@ -44,6 +44,7 @@ const LediesCheckOut = () => {
   const embroideryDaman = 300;
   const embroideryBazo = 300;
   const embroideryBottom = 300;
+  const deliverycharges = 300;
 
   const calculateTotalPrice = () => {
     let totalPrice = basePrice;
@@ -78,6 +79,10 @@ const LediesCheckOut = () => {
       totalPrice += embroideryBazo;
     } else if (Embroidery === 'Embroidery Bottom') {
       totalPrice += embroideryBottom;
+    }
+
+    if (deliverycharges) {
+      totalPrice += deliverycharges;
     }
 
     return totalPrice;
@@ -149,6 +154,8 @@ const LediesCheckOut = () => {
           : ''
       })`,
     },
+
+    {label: 'Delivery Charges', value: formatPriceAsCurrency(deliverycharges)},
 
     {
       label: 'Samples',
@@ -282,6 +289,11 @@ const LediesCheckOut = () => {
         : ''
     })</p>
     </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h4 style="font-size:2rem">Delivery Charges</h4>
+    <p style="font-size:2rem">${formatPriceAsCurrency(deliverycharges)}</p>
+  </div> 
 
       <div style="display: flex; justify-content: space-between; align-items: center;">
         <h4 style="font-size:2rem">Total Price</h4>
