@@ -13,6 +13,7 @@ import LadiesCheckOut from './src/components/othercomponents/LadiesCheckOut/Ladi
 import AdminBottomNavigator from './src/components/navigation/AdminNavigation/AdminBottomNavigator';
 import LadiesOrderInfo from './src/components/screens/AdminModule/LadiesOrderInfo/LadiesOrderInfo';
 import GentsOrderInfo from './src/components/screens/AdminModule/GentsOrderInfo/GentsOrderInfo';
+import Login from './src/components/screens/Login';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,7 @@ const App = () => {
       <StatusBar backgroundColor={'#000'} />
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="Splash" component={Splash} />
+        <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="UserHome" component={UserBottomNavigator} />
         <Stack.Screen name="MenProducts" component={MenProducts} />
         <Stack.Screen name="WomenProducts" component={WomenProducts} />
