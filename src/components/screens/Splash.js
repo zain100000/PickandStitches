@@ -4,7 +4,6 @@ import * as Animatable from 'react-native-animatable';
 import NetInfo from '@react-native-community/netinfo';
 import {useNavigation} from '@react-navigation/native';
 import '../../../Config';
-import {firebase} from '@react-native-firebase/app';
 import '@react-native-firebase/auth';
 import '@react-native-firebase/database';
 
