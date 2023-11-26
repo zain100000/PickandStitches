@@ -307,7 +307,7 @@ const GentsCheckOut = () => {
       sample: sampleString,
       date: currentDate,
       time: currentTime,
-      Delivery_Charges: deliverycharges,
+      deliverycharges,
     };
 
     setLoading(true);

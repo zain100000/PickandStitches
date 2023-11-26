@@ -325,6 +325,7 @@ const LediesCheckOut = () => {
       type: 'female',
       date: currentDate,
       time: currentTime,
+      deliverycharges,
       price,
       total,
       product,
