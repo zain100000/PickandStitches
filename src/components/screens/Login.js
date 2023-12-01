@@ -21,7 +21,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       // Check if the entered credentials are the default admin credentials
-      if (email === 'superadmin@gmail.com' && password === '54321') {
+      if (email === 'superadmin@gmail.com' && password === '654321') {
         // Navigate to Dashboard for the default admin
         navigation.navigate('DashBoard');
         return;
