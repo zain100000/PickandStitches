@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 
-import {useNavigation, useRoute} from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import Print from 'react-native-print';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import axios from 'axios';
@@ -19,6 +19,7 @@ const GentsCheckOut = () => {
   const product_pic = route.params?.product_pic || 'Default product';
   const price = parseFloat(route.params?.price);
   const name = route.params?.name || 'Default name';
+  const email = route.params?.email || 'Default email';
   const cell = route.params?.cell || 'Default cell';
   const adress = route.params?.adress || 'Default adress';
   const neck = route.params?.neck || 'Not selected';
@@ -81,46 +82,44 @@ const GentsCheckOut = () => {
 
   // Define order details for display
   const orderDetails = [
-    {label: 'Product Name', value: product},
-    {label: 'Name', value: name},
-    {label: 'Mobile', value: cell},
-    {label: 'adress', value: adress},
-    {label: 'Neck Type', value: neck || 'Not selected'},
-    {label: 'Pocket Type', value: Pocket || 'Not selected'},
-    {label: 'Daman Type', value: Daman || 'Not selected'},
-    {label: 'Wrist Type', value: wrist || 'Not selected'},
-    {label: 'Comment', value: comments || 'No Additional Comment'},
-    {label: 'Product Base Price', value: formatPriceAsCurrency(price)},
+    { label: 'Product Name', value: product },
+    { label: 'Name', value: name },
+    { label: 'Email', value: email },
+    { label: 'Mobile', value: cell },
+    { label: 'Address', value: adress },
+    { label: 'Neck Type', value: neck || 'Not selected' },
+    { label: 'Pocket Type', value: Pocket || 'Not selected' },
+    { label: 'Daman Type', value: Daman || 'Not selected' },
+    { label: 'Wrist Type', value: wrist || 'Not selected' },
+    { label: 'Comment', value: comments || 'No Additional Comment' },
+    { label: 'Product Base Price', value: formatPriceAsCurrency(price) },
     {
       label: 'Leg Opening(Puncha)',
-      value: `${puncha || 'Not selected'} (Rs.${
-        puncha === 'Single Kanta'
-          ? singleKanta
-          : puncha === 'Double Kanta'
+      value: `${puncha || 'Not selected'} (Rs.${puncha === 'Single Kanta'
+        ? singleKanta
+        : puncha === 'Double Kanta'
           ? doubleKanta
           : 0
-      })`,
+        })`,
     },
 
     {
       label: 'Tob Stitch',
-      value: `${Tob_double_stitch || 'Not selected'} (Rs.${
-        Tob_double_stitch === 'Tob Double Stitch' ? 300 : 0
-      })`,
+      value: `${Tob_double_stitch || 'Not selected'} (Rs.${Tob_double_stitch === 'Tob Double Stitch' ? 300 : 0
+        })`,
     },
 
     {
       label: 'Embroidery',
-      value: `${Embroidery || 'Not selected'} (Rs.${
-        Embroidery === 'Embroidery Full'
-          ? 500
-          : Embroidery === 'Embroidery Normal'
+      value: `${Embroidery || 'Not selected'} (Rs.${Embroidery === 'Embroidery Full'
+        ? 500
+        : Embroidery === 'Embroidery Normal'
           ? 300
           : 0
-      })`,
+        })`,
     },
 
-    {label: 'Delivery Charges', value: formatPriceAsCurrency(deliverycharges)},
+    { label: 'Delivery Charges', value: formatPriceAsCurrency(deliverycharges) },
 
     {
       label: 'Samples',
@@ -128,7 +127,7 @@ const GentsCheckOut = () => {
         <View className="flex-1 flex-row p-5">
           {sample && sample.length > 0 ? (
             sample.map(uri => (
-              <Image key={uri} source={{uri}} className="w-20 h-20" />
+              <Image key={uri} source={{ uri }} className="w-20 h-20" />
             ))
           ) : (
             <Text className="text-gray-400 font-medium text-sm">
@@ -187,6 +186,11 @@ const GentsCheckOut = () => {
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 style="font-size:2rem">Email</h4>
+        <p style="font-size:2rem">${email}</p>      
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center;">
         <h4 style="font-size:2rem">Cell</h4>
         <p style="font-size:2rem">${cell}</p>      
         </div>
@@ -228,27 +232,24 @@ const GentsCheckOut = () => {
 
         <div style="display: flex; justify-content: space-between; align-items: center;">
         <h4 style="font-size:2rem">Leg Opening(Puncha)</h4>
-        <p style="font-size:2rem">${puncha || 'Not selected'} (Rs.${
-      puncha === 'Single Kanta' ? 100 : puncha === 'Double Kanta' ? 200 : 0
-    })</p>
+        <p style="font-size:2rem">${puncha || 'Not selected'} (Rs.${puncha === 'Single Kanta' ? 100 : puncha === 'Double Kanta' ? 200 : 0
+      })</p>
         </div>      
 
       <div style="display: flex; justify-content: space-between; align-items: center;">
         <h4 style="font-size:2rem">Tob Double Stitch</h4>
-        <p style="font-size:2rem">${Tob_double_stitch || 'Not selected'} (Rs.${
-      Tob_double_stitch === 'Tob Double Stitch' ? 300 : 0
-    })</p>
+        <p style="font-size:2rem">${Tob_double_stitch || 'Not selected'} (Rs.${Tob_double_stitch === 'Tob Double Stitch' ? 300 : 0
+      })</p>
       </div>
 
       <div style="display: flex; justify-content: space-between; align-items: center;">
         <h4 style="font-size:2rem">Embroidery</h4>
-        <p style="font-size:2rem">${Embroidery || 'Not selected'} (Rs.${
-      Embroidery === 'Embroidery Full'
+        <p style="font-size:2rem">${Embroidery || 'Not selected'} (Rs.${Embroidery === 'Embroidery Full'
         ? 500
         : Embroidery === 'Embroidery Normal'
-        ? 300
-        : 0
-    })</p>
+          ? 300
+          : 0
+      })</p>
       </div>
 
       <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -268,69 +269,84 @@ const GentsCheckOut = () => {
   };
 
   const handleCheckOut = async () => {
-    const apiUrl =
-      'https://pickandstitches.com/font-awesome/scss/scss/api_male_orders.php';
-
-    const currentDate = new Date().toISOString().split('T')[0];
-    const currentTime = new Date().toLocaleTimeString();
-
-    // Convert sample array to a string of image URLs separated by commas
-    const sampleString = sample && sample.length > 0 ? sample.join(',') : '';
-
-    const orderData = {
-      name,
-      cell,
-      adress,
-      neck,
-      Pocket,
-      Daman,
-      wrist,
-      comments,
-      price,
-      puncha: singleKanta
-        ? 'Single Kanta(Rs.100)'
-        : doubleKanta
-        ? 'Double Kanta(Rs.100)'
-        : '',
-
-      Tob_double_stitch: Tob_double_stitch ? 'Tob Double Stitch(Rs.300)' : '',
-
-      Embroidery: embroideryFull
-        ? 'Embroidery Full(Rs.500)'
-        : embroideryNormal
-        ? 'Embroidery Normal(Rs.300)'
-        : '',
-      type: 'male',
-      total,
-      product,
-      product_pic,
-      sample: sampleString,
-      date: currentDate,
-      time: currentTime,
-      deliverycharges,
-    };
-
-    setLoading(true);
-
     try {
-      const response = await axios.post(apiUrl, orderData, {
+      // Show loading indicator
+      setLoading(true);
+
+      // Define the order data
+      const orderData = {
+        name,
+        email,
+        cell,
+        adress,
+        neck,
+        Pocket,
+        Daman,
+        wrist,
+        comments,
+        price,
+        puncha: puncha ? 'Single Kanta(Rs.100)' : '', // Adjusted this part based on your logic
+        Tob_double_stitch: Tob_double_stitch ? 'Tob Double Stitch(Rs.300)' : '',
+        Embroidery: Embroidery ? 'Embroidery Full(Rs.500)' : '',
+        type: 'male',
+        total: calculateTotalPrice(),
+        product,
+        product_pic,
+        sample: sample && sample.length > 0 ? sample.join(',') : '',
+      };
+
+      // Send order details to the backend API
+      const orderApiUrl = 'https://pickandstitches.com/font-awesome/scss/scss/api_male_orders.php';
+      const response = await axios.post(orderApiUrl, orderData, {
         headers: {
           'Content-Type': 'application/json',
         },
       });
 
       if (response.status === 200) {
-        alert('Thank You! Your Order Has Been Successfully Placed!');
-        navigation.navigate('UserHome');
+        // Order submission successful
+        // Now, send a notification to the admin
+        const notificationApiUrl = 'https://pickandstitches.com/font-awesome/scss/scss/notifications.php';
+        const notificationResponse = await axios.post(notificationApiUrl, {
+          product,
+          name,
+          email,
+          cell,
+          adress,
+          neck,
+          Pocket,
+          Daman,
+          wrist,
+          comments,
+          price,
+          puncha,
+          Tob_double_stitch,
+          Embroidery,
+          deliverycharges,
+          total,
+        });
+
+        console.log('Notification Response:', notificationResponse);
+
+        if (notificationResponse.data.success) {
+          // Notification sent successfully
+          alert('Thank You! Your Order Has Been Successfully Placed!');
+        } else {
+          console.error('Error sending notification:', notificationResponse.data.error);
+          alert('Error sending notification. Please try again later.');
+        }
       } else {
+        // Order submission failed
         console.error('API request failed with status code:', response.status);
         console.log('API Response Data:', response.data);
         alert('Error saving data. Please try again later.');
       }
     } catch (error) {
-      console.error('Error saving data:', error);
-      alert('Network error. Please check your connection and try again.');
+      // Handle any errors that occurred during the process
+      console.error('Error handling checkout:', error);
+      alert('An error occurred during checkout. Please try again.');
     } finally {
+      // Hide loading indicator
       setLoading(false);
     }
   };
@@ -340,7 +356,7 @@ const GentsCheckOut = () => {
       <FlatList
         data={orderDetails}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({item}) => (
+        renderItem={({ item }) => (
           <View className="flex-row flex-wrap justify-between items-center p-4 border-b-2 border-b-gray-400">
             <Text className="mb-2 font-semibold text-primary">
               {item.label}

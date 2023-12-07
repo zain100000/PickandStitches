@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   ScrollView,
   SafeAreaView,
@@ -11,7 +11,7 @@ import {
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import '../../../Config';
 import auth from '@react-native-firebase/auth';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -86,7 +86,7 @@ const Login = () => {
 
             <TouchableOpacity
               className="flex-1 justify-center items-center p-4 rounded-lg mt-10"
-              style={[{backgroundColor: '#00bcd4'}]}
+              style={[{ backgroundColor: '#00bcd4' }]}
               onPress={handleLogin}>
               <Text className="text-white text-xl">Login</Text>
             </TouchableOpacity>
@@ -105,8 +105,8 @@ const Login = () => {
         </View>
 
         <TouchableOpacity
-          className="flex-1 justify-center items-center w-[200px] p-2 rounded-md ml-[100px]"
-          style={[{backgroundColor: '#539165'}]}
+          className="flex-1 justify-center items-center w-[240px] p-2 rounded-md ml-[100px]"
+          style={[{ backgroundColor: '#539165' }]}
           onPress={() => navigation.navigate('UserHome')}>
           <Text className="text-white text-lg text-center">
             Proceed To Home

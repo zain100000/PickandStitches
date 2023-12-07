@@ -1,11 +1,11 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {NavigationContainer} from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { StatusBar } from 'react-native';
 import Splash from './src/components/screens/Splash';
 import UserBottomNavigator from './src/components/navigation/UserNavigation/UserBottomNavigator';
 import MenProducts from './src/components/screens/UserModule/MenProducts/MenProducts';
 import WomenProducts from './src/components/screens/UserModule/WomenProducts/WomenProducts';
-import {StatusBar} from 'react-native';
 import GentsCheckOut from './src/components/othercomponents/GentsCheckOut/GentsCheckOut';
 import GentsOrderDetails from './src/components/othercomponents/GentsProducts/GentsOrderDetails';
 import LadiesOrderDetails from './src/components/othercomponents/LadiesProducts/LadiesOrderDetails';
@@ -21,7 +21,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <StatusBar backgroundColor={'#000'} />
-      <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="UserHome" component={UserBottomNavigator} />

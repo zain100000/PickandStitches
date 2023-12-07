@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, { useState, useRef } from 'react';
 import {
   View,
   Text,
@@ -9,8 +9,8 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
-import {useNavigation, useRoute} from '@react-navigation/native';
-import {Picker} from '@react-native-picker/picker';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { Picker } from '@react-native-picker/picker';
 import DocumentPicker from 'react-native-document-picker';
 
 const GentsOrderDetails = () => {
@@ -21,6 +21,7 @@ const GentsOrderDetails = () => {
   const price = route.params?.price;
 
   const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [cell, setCell] = useState('');
   const [adress, setAdress] = useState('');
   const [neck, setNeck] = useState('');
@@ -57,16 +58,19 @@ const GentsOrderDetails = () => {
 
   // Declare and initialize refs
   const nameRef = useRef();
+  const emailRef = useRef();
   const cellRef = useRef();
   const adressRef = useRef();
 
   const ValidInput = () => {
     const namePattern = /^[a-zA-Z\s]*$/;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const cellPattern = /^(\+92|92|0)(3\d{2}|\d{2})(\d{7})$/;
     const adressPattern = /^[\w\s,'-]*$/;
 
     return (
       namePattern.test(name) &&
+      emailPattern.test(email) &&
       cellPattern.test(cell) &&
       adressPattern.test(adress)
     );
@@ -80,6 +84,19 @@ const GentsOrderDetails = () => {
     return '';
   };
   const nameError = validateName();
+
+  const validateEmail = () => {
+    if (!email) {
+      return ''; // Return an empty string if the email is empty
+    }
+
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!regex.test(email)) {
+      return 'Invalid Email Format';
+    }
+    return '';
+  };
+  const emailError = validateEmail();
 
   const handleCellChange = value => {
     setCell(value);
@@ -117,6 +134,11 @@ const GentsOrderDetails = () => {
       nameRef.current.focus();
       return;
     }
+    if (!email) {
+      alert('Email field is empty');
+      emailRef.current.focus();
+      return;
+    }
     if (!cell) {
       alert('Cell field is empty');
       cellRef.current.focus();
@@ -141,6 +163,7 @@ const GentsOrderDetails = () => {
         product_pic,
         product,
         name,
+        email,
         cell,
         adress,
         neck,
@@ -153,21 +176,22 @@ const GentsOrderDetails = () => {
         puncha: singleKanta
           ? 'Single Kanta'
           : doubleKanta
-          ? 'Double Kanta'
-          : '',
+            ? 'Double Kanta'
+            : '',
 
         Tob_double_stitch: Tob_double_stitch ? 'Tob Double Stitch' : '',
 
         Embroidery: embroideryFull
           ? 'Embroidery Full'
           : embroideryNormal
-          ? 'Embroidery Normal'
-          : '',
+            ? 'Embroidery Normal'
+            : '',
 
         sample,
       });
 
       setName('');
+      setEmail('');
       setCell('');
       setAdress('');
       setNeck('');
@@ -223,6 +247,23 @@ const GentsOrderDetails = () => {
             </Text>
           ) : null}
 
+          {/* Email */}
+          <View className="border-b-2 border-b-gray-500 mb-3">
+            <TextInput
+              className="text-sm text-primary left-3"
+              placeholder="Email"
+              placeholderTextColor={'#539165'}
+              value={email}
+              onChangeText={setEmail}
+              ref={emailRef}
+            />
+          </View>
+          {emailError ? (
+            <Text className="text-red-600 text-sm left-3 font-semibold">
+              {emailError}
+            </Text>
+          ) : null}
+
           {/* Mobile */}
           <View className="border-b-2 border-b-gray-500 mb-3">
             <TextInput
@@ -263,26 +304,26 @@ const GentsOrderDetails = () => {
             <Picker
               selectedValue={neck}
               onValueChange={setNeck}
-              style={{color: '#539165'}}>
+              style={{ color: '#539165' }}>
               <Picker.Item
                 label="Select Neck Type"
                 value=""
-                style={{color: 'black', fontSize: 15}}
+                style={{ color: 'black', fontSize: 15 }}
               />
               <Picker.Item
                 label="Collar"
                 value="Collar"
-                style={{color: 'black', fontSize: 15}}
+                style={{ color: 'black', fontSize: 15 }}
               />
               <Picker.Item
                 label="Ban"
                 value="Ban"
-                style={{color: 'black', fontSize: 15}}
+                style={{ color: 'black', fontSize: 15 }}
               />
               <Picker.Item
                 label="Ban Round Cut"
                 value="Ban Round Cut"
-                style={{color: 'black', fontSize: 15}}
+                style={{ color: 'black', fontSize: 15 }}
               />
             </Picker>
           </View>
@@ -292,51 +333,51 @@ const GentsOrderDetails = () => {
             <Picker
               selectedValue={Pocket}
               onValueChange={setPocket}
-              style={{color: '#539165'}}>
+              style={{ color: '#539165' }}>
               <Picker.Item
                 label="Select Pocket Type"
                 value=""
-                style={{color: 'black', fontSize: 15}}
+                style={{ color: 'black', fontSize: 15 }}
               />
               <Picker.Item
                 label="Front Single"
                 value="Front Single"
-                style={{color: 'black', fontSize: 15}}
+                style={{ color: 'black', fontSize: 15 }}
               />
               <Picker.Item
                 label="Front Double"
                 value="Front Double"
-                style={{color: 'black', fontSize: 15}}
+                style={{ color: 'black', fontSize: 15 }}
               />
               <Picker.Item
                 label="Side Single"
                 value="Side Single"
-                style={{color: 'black', fontSize: 15}}
+                style={{ color: 'black', fontSize: 15 }}
               />
               <Picker.Item
                 label="Side Double"
                 value="Side Double"
-                style={{color: 'black', fontSize: 15}}
+                style={{ color: 'black', fontSize: 15 }}
               />
               <Picker.Item
                 label="Front Single, Side Single"
                 value="Front Single, Side Single"
-                style={{color: 'black', fontSize: 15}}
+                style={{ color: 'black', fontSize: 15 }}
               />
               <Picker.Item
                 label="Front Double, Side Double"
                 value="Front Double, Side Double"
-                style={{color: 'black', fontSize: 15}}
+                style={{ color: 'black', fontSize: 15 }}
               />
               <Picker.Item
                 label="Front Single, Side Double"
                 value="Front Single, Side Double"
-                style={{color: 'black', fontSize: 15}}
+                style={{ color: 'black', fontSize: 15 }}
               />
               <Picker.Item
                 label="Front Double, Side Single"
                 value="Front Double, Side Single"
-                style={{color: 'black', fontSize: 15}}
+                style={{ color: 'black', fontSize: 15 }}
               />
             </Picker>
           </View>
@@ -346,21 +387,21 @@ const GentsOrderDetails = () => {
             <Picker
               selectedValue={Daman}
               onValueChange={setDaman}
-              style={{color: '#539165'}}>
+              style={{ color: '#539165' }}>
               <Picker.Item
                 label="Select Daman Type"
                 value=""
-                style={{color: 'black', fontSize: 15}}
+                style={{ color: 'black', fontSize: 15 }}
               />
               <Picker.Item
                 label="Round"
                 value="Round"
-                style={{color: 'black', fontSize: 15}}
+                style={{ color: 'black', fontSize: 15 }}
               />
               <Picker.Item
                 label="Straight"
                 value="Straight"
-                style={{color: 'black', fontSize: 15}}
+                style={{ color: 'black', fontSize: 15 }}
               />
             </Picker>
           </View>
@@ -370,21 +411,21 @@ const GentsOrderDetails = () => {
             <Picker
               selectedValue={wrist}
               onValueChange={setWrist}
-              style={{color: '#539165'}}>
+              style={{ color: '#539165' }}>
               <Picker.Item
                 label="Select Wrist Type"
                 value=""
-                style={{color: 'black', fontSize: 15}}
+                style={{ color: 'black', fontSize: 15 }}
               />
               <Picker.Item
                 label="Open"
                 value="Open"
-                style={{color: 'black', fontSize: 15}}
+                style={{ color: 'black', fontSize: 15 }}
               />
               <Picker.Item
                 label="Cuff"
                 value="Cuff"
-                style={{color: 'black', fontSize: 15}}
+                style={{ color: 'black', fontSize: 15 }}
               />
             </Picker>
           </View>
@@ -434,7 +475,7 @@ const GentsOrderDetails = () => {
                       alignItems: 'center',
                     }}>
                     {singleKanta && (
-                      <Text style={{color: '#539165'}}>&#10003;</Text>
+                      <Text style={{ color: '#539165' }}>&#10003;</Text>
                     )}
                   </View>
                 </TouchableOpacity>
@@ -473,7 +514,7 @@ const GentsOrderDetails = () => {
                         alignItems: 'center',
                       }}>
                       {doubleKanta && (
-                        <Text style={{color: '#539165'}}>&#10003;</Text>
+                        <Text style={{ color: '#539165' }}>&#10003;</Text>
                       )}
                     </View>
                   </TouchableOpacity>
@@ -519,7 +560,7 @@ const GentsOrderDetails = () => {
                       alignItems: 'center',
                     }}>
                     {Tob_double_stitch && (
-                      <Text style={{color: '#539165'}}>&#10003;</Text>
+                      <Text style={{ color: '#539165' }}>&#10003;</Text>
                     )}
                   </View>
                 </TouchableOpacity>
@@ -567,7 +608,7 @@ const GentsOrderDetails = () => {
                       alignItems: 'center',
                     }}>
                     {embroideryFull && (
-                      <Text style={{color: '#539165'}}>&#10003;</Text>
+                      <Text style={{ color: '#539165' }}>&#10003;</Text>
                     )}
                   </View>
                 </TouchableOpacity>
@@ -606,7 +647,7 @@ const GentsOrderDetails = () => {
                         alignItems: 'center',
                       }}>
                       {embroideryNormal && (
-                        <Text style={{color: '#539165'}}>&#10003;</Text>
+                        <Text style={{ color: '#539165' }}>&#10003;</Text>
                       )}
                     </View>
                   </TouchableOpacity>
@@ -629,7 +670,7 @@ const GentsOrderDetails = () => {
               sample.map(uri => (
                 <Image
                   key={uri}
-                  source={{uri}}
+                  source={{ uri }}
                   className="w-32 h-32 right-3 mr-3"
                 />
               ))
