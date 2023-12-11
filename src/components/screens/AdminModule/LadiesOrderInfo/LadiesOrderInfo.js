@@ -85,6 +85,13 @@ const LadiesOrderInfo = ({route}) => {
           </View>
 
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
+            <Text className="text-lg text-black font-bold ">Product Price:</Text>
+            <Text className="text-lg text-black font-bold left-0">
+              {selectedOrder.product_price}
+            </Text>
+          </View>
+
+          <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
             <Text className="text-lg text-black font-bold">
               Delivery Charges:
             </Text>

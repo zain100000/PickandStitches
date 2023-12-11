@@ -254,7 +254,7 @@ const LadiesOrders = () => {
         )}
         {!showLoader && !data.length && !isLoading && (
           <Text className="flex-1 text-center text-xl text-gray-600">
-            No Gents Orders Yet
+            No Ladies Orders Yet
           </Text>
         )}
       </View>
