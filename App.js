@@ -1,7 +1,7 @@
 import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
-import { StatusBar } from 'react-native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {NavigationContainer} from '@react-navigation/native';
+import {StatusBar} from 'react-native';
 import Splash from './src/components/screens/Splash';
 import UserBottomNavigator from './src/components/navigation/UserNavigation/UserBottomNavigator';
 import MenProducts from './src/components/screens/UserModule/MenProducts/MenProducts';
@@ -13,7 +13,6 @@ import LadiesCheckOut from './src/components/othercomponents/LadiesCheckOut/Ladi
 import AdminBottomNavigator from './src/components/navigation/AdminNavigation/AdminBottomNavigator';
 import LadiesOrderInfo from './src/components/screens/AdminModule/LadiesOrderInfo/LadiesOrderInfo';
 import GentsOrderInfo from './src/components/screens/AdminModule/GentsOrderInfo/GentsOrderInfo';
-import Login from './src/components/screens/Login';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,9 +20,8 @@ const App = () => {
   return (
     <NavigationContainer>
       <StatusBar backgroundColor={'#000'} />
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="Splash" component={Splash} />
-        <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="UserHome" component={UserBottomNavigator} />
         <Stack.Screen name="MenProducts" component={MenProducts} />
         <Stack.Screen name="WomenProducts" component={WomenProducts} />

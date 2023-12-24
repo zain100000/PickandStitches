@@ -3,9 +3,6 @@ import {View, Text, ActivityIndicator, Image, StyleSheet} from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import NetInfo from '@react-native-community/netinfo';
 import {useNavigation} from '@react-navigation/native';
-import '../../../Config';
-import '@react-native-firebase/auth';
-import '@react-native-firebase/database';
 
 const Splash = () => {
   const [isConnected, setIsConnected] = useState(null);
@@ -18,7 +15,7 @@ const Splash = () => {
 
       if (netInfoState.isConnected) {
         setTimeout(() => {
-          navigation.navigate('Login');
+          navigation.navigate('UserHome');
         }, 2000);
       }
     };

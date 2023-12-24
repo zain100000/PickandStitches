@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, {useState, useRef} from 'react';
 import {
   View,
   Text,
@@ -9,8 +9,8 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
-import { useNavigation, useRoute } from '@react-navigation/native';
-import { Picker } from '@react-native-picker/picker';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import {Picker} from '@react-native-picker/picker';
 import DocumentPicker from 'react-native-document-picker';
 
 const GentsOrderDetails = () => {
@@ -176,16 +176,16 @@ const GentsOrderDetails = () => {
         puncha: singleKanta
           ? 'Single Kanta'
           : doubleKanta
-            ? 'Double Kanta'
-            : '',
+          ? 'Double Kanta'
+          : '',
 
         Tob_double_stitch: Tob_double_stitch ? 'Tob Double Stitch' : '',
 
         Embroidery: embroideryFull
           ? 'Embroidery Full'
           : embroideryNormal
-            ? 'Embroidery Normal'
-            : '',
+          ? 'Embroidery Normal'
+          : '',
 
         sample,
       });
@@ -304,26 +304,26 @@ const GentsOrderDetails = () => {
             <Picker
               selectedValue={neck}
               onValueChange={setNeck}
-              style={{ color: '#539165' }}>
+              style={{color: '#539165'}}>
               <Picker.Item
                 label="Select Neck Type"
                 value=""
-                style={{ color: 'black', fontSize: 15 }}
+                style={{color: '#fff', fontSize: 15}}
               />
               <Picker.Item
                 label="Collar"
                 value="Collar"
-                style={{ color: 'black', fontSize: 15 }}
+                style={{color: '#fff', fontSize: 15}}
               />
               <Picker.Item
                 label="Ban"
                 value="Ban"
-                style={{ color: 'black', fontSize: 15 }}
+                style={{color: '#fff', fontSize: 15}}
               />
               <Picker.Item
                 label="Ban Round Cut"
                 value="Ban Round Cut"
-                style={{ color: 'black', fontSize: 15 }}
+                style={{color: '#fff', fontSize: 15}}
               />
             </Picker>
           </View>
@@ -333,51 +333,51 @@ const GentsOrderDetails = () => {
             <Picker
               selectedValue={Pocket}
               onValueChange={setPocket}
-              style={{ color: '#539165' }}>
+              style={{color: '#539165'}}>
               <Picker.Item
                 label="Select Pocket Type"
                 value=""
-                style={{ color: 'black', fontSize: 15 }}
+                style={{color: '#fff', fontSize: 15}}
               />
               <Picker.Item
                 label="Front Single"
                 value="Front Single"
-                style={{ color: 'black', fontSize: 15 }}
+                style={{color: '#fff', fontSize: 15}}
               />
               <Picker.Item
                 label="Front Double"
                 value="Front Double"
-                style={{ color: 'black', fontSize: 15 }}
+                style={{color: '#fff', fontSize: 15}}
               />
               <Picker.Item
                 label="Side Single"
                 value="Side Single"
-                style={{ color: 'black', fontSize: 15 }}
+                style={{color: '#fff', fontSize: 15}}
               />
               <Picker.Item
                 label="Side Double"
                 value="Side Double"
-                style={{ color: 'black', fontSize: 15 }}
+                style={{color: '#fff', fontSize: 15}}
               />
               <Picker.Item
                 label="Front Single, Side Single"
                 value="Front Single, Side Single"
-                style={{ color: 'black', fontSize: 15 }}
+                style={{color: '#fff', fontSize: 15}}
               />
               <Picker.Item
                 label="Front Double, Side Double"
                 value="Front Double, Side Double"
-                style={{ color: 'black', fontSize: 15 }}
+                style={{color: '#fff', fontSize: 15}}
               />
               <Picker.Item
                 label="Front Single, Side Double"
                 value="Front Single, Side Double"
-                style={{ color: 'black', fontSize: 15 }}
+                style={{color: '#fff', fontSize: 15}}
               />
               <Picker.Item
                 label="Front Double, Side Single"
                 value="Front Double, Side Single"
-                style={{ color: 'black', fontSize: 15 }}
+                style={{color: '#fff', fontSize: 15}}
               />
             </Picker>
           </View>
@@ -387,21 +387,21 @@ const GentsOrderDetails = () => {
             <Picker
               selectedValue={Daman}
               onValueChange={setDaman}
-              style={{ color: '#539165' }}>
+              style={{color: '#539165'}}>
               <Picker.Item
                 label="Select Daman Type"
                 value=""
-                style={{ color: 'black', fontSize: 15 }}
+                style={{color: '#fff', fontSize: 15}}
               />
               <Picker.Item
                 label="Round"
                 value="Round"
-                style={{ color: 'black', fontSize: 15 }}
+                style={{color: '#fff', fontSize: 15}}
               />
               <Picker.Item
                 label="Straight"
                 value="Straight"
-                style={{ color: 'black', fontSize: 15 }}
+                style={{color: '#fff', fontSize: 15}}
               />
             </Picker>
           </View>
@@ -411,21 +411,21 @@ const GentsOrderDetails = () => {
             <Picker
               selectedValue={wrist}
               onValueChange={setWrist}
-              style={{ color: '#539165' }}>
+              style={{color: '#539165'}}>
               <Picker.Item
                 label="Select Wrist Type"
                 value=""
-                style={{ color: 'black', fontSize: 15 }}
+                style={{color: '#fff', fontSize: 15}}
               />
               <Picker.Item
                 label="Open"
                 value="Open"
-                style={{ color: 'black', fontSize: 15 }}
+                style={{color: '#fff', fontSize: 15}}
               />
               <Picker.Item
                 label="Cuff"
                 value="Cuff"
-                style={{ color: 'black', fontSize: 15 }}
+                style={{color: '#fff', fontSize: 15}}
               />
             </Picker>
           </View>
@@ -475,7 +475,7 @@ const GentsOrderDetails = () => {
                       alignItems: 'center',
                     }}>
                     {singleKanta && (
-                      <Text style={{ color: '#539165' }}>&#10003;</Text>
+                      <Text style={{color: '#539165'}}>&#10003;</Text>
                     )}
                   </View>
                 </TouchableOpacity>
@@ -514,7 +514,7 @@ const GentsOrderDetails = () => {
                         alignItems: 'center',
                       }}>
                       {doubleKanta && (
-                        <Text style={{ color: '#539165' }}>&#10003;</Text>
+                        <Text style={{color: '#539165'}}>&#10003;</Text>
                       )}
                     </View>
                   </TouchableOpacity>
@@ -560,7 +560,7 @@ const GentsOrderDetails = () => {
                       alignItems: 'center',
                     }}>
                     {Tob_double_stitch && (
-                      <Text style={{ color: '#539165' }}>&#10003;</Text>
+                      <Text style={{color: '#539165'}}>&#10003;</Text>
                     )}
                   </View>
                 </TouchableOpacity>
@@ -608,7 +608,7 @@ const GentsOrderDetails = () => {
                       alignItems: 'center',
                     }}>
                     {embroideryFull && (
-                      <Text style={{ color: '#539165' }}>&#10003;</Text>
+                      <Text style={{color: '#539165'}}>&#10003;</Text>
                     )}
                   </View>
                 </TouchableOpacity>
@@ -647,7 +647,7 @@ const GentsOrderDetails = () => {
                         alignItems: 'center',
                       }}>
                       {embroideryNormal && (
-                        <Text style={{ color: '#539165' }}>&#10003;</Text>
+                        <Text style={{color: '#539165'}}>&#10003;</Text>
                       )}
                     </View>
                   </TouchableOpacity>
@@ -670,7 +670,7 @@ const GentsOrderDetails = () => {
               sample.map(uri => (
                 <Image
                   key={uri}
-                  source={{ uri }}
+                  source={{uri}}
                   className="w-32 h-32 right-3 mr-3"
                 />
               ))

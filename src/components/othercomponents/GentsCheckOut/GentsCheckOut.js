@@ -297,9 +297,11 @@ const GentsCheckOut = () => {
         wrist,
         comments,
         price,
-        puncha: puncha ? 'Single Kanta(Rs.100)' : '', // Adjusted this part based on your logic
+        puncha: puncha ? 'Single Kanta(Rs.100)' : 'Double Kanta(Rs.200)', // Adjusted this part based on your logic
         Tob_double_stitch: Tob_double_stitch ? 'Tob Double Stitch(Rs.300)' : '',
-        Embroidery: Embroidery ? 'Embroidery Full(Rs.500)' : '',
+        Embroidery: Embroidery
+          ? 'Embroidery Full(Rs.500)'
+          : 'Embroidery Normal(Rs.300)',
         type: 'male',
         total: calculateTotalPrice(),
         date: currentDate,

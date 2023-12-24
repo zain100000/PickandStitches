@@ -315,7 +315,6 @@ const LediesCheckOut = () => {
     ('');
 
     // Convert sample array to a string of image URLs separated by commas
-    const sampleString = sample && sample.length > 0 ? sample.join(',') : '';
 
     const orderData = {
       name,
