@@ -169,7 +169,8 @@ const LadiesOrders = () => {
           value={searchText}
           placeholderTextColor={'#00bcd4'}
           onChangeText={text => setSearchText(text)}
-          className="border-2 border-gray-400 w-80 border-l-2 border-r-0 border-t-0 p-2 text-primary font-semibold"
+          className="border-2 border-gray-400 w-80 border-l-2 border-r-0 border-t-0 p-2 text-primary "
+          style={{fontFamily: 'Montserrat-SemiBold'}}
         />
       </View>
 
@@ -181,11 +182,31 @@ const LadiesOrders = () => {
             color={selectAll ? 'blue' : '#000'}
           />
         </TouchableOpacity>
-        <Text className="text-dark font-semibold left-2">Name</Text>
-        <Text className="text-dark font-semibold left-3">Cell</Text>
-        <Text className="text-dark font-semibold left-5">Address</Text>
-        <Text className="text-dark font-semibold left-6">Time</Text>
-        <Text className="text-dark font-semibold left-4">Action</Text>
+        <Text
+          className="text-dark left-2"
+          style={{fontFamily: 'Montserrat-SemiBold'}}>
+          Name
+        </Text>
+        <Text
+          className="text-dark left-3"
+          style={{fontFamily: 'Montserrat-SemiBold'}}>
+          Cell
+        </Text>
+        <Text
+          className="text-dark left-5"
+          style={{fontFamily: 'Montserrat-SemiBold'}}>
+          Address
+        </Text>
+        <Text
+          className="text-dark left-6"
+          style={{fontFamily: 'Montserrat-SemiBold'}}>
+          Time
+        </Text>
+        <Text
+          className="text-dark left-4"
+          style={{fontFamily: 'Montserrat-SemiBold'}}>
+          Action
+        </Text>
       </View>
 
       <View className="flex-1 justify-center">
@@ -204,26 +225,36 @@ const LadiesOrders = () => {
                 </TouchableOpacity>
               </View>
               <View className="w-20 right-2">
-                <Text className="text-black font-bold text-md">
+                <Text
+                  className="text-black text-md"
+                  style={{fontFamily: 'Montserrat-SemiBold'}}>
                   {item.name}
                 </Text>
               </View>
               <View className="w-16 right-2">
-                <Text className="text-black font-bold text-md">
+                <Text
+                  className="text-black text-md"
+                  style={{fontFamily: 'Montserrat-SemiBold'}}>
                   {item.cell}
                 </Text>
               </View>
               <View className="w-16 left-2">
-                <Text className="text-black font-bold text-md">
+                <Text
+                  className="text-black text-md"
+                  style={{fontFamily: 'Montserrat-SemiBold'}}>
                   {item.address}
                 </Text>
               </View>
               <View className="w-16 left-5">
-                <Text className="text-black font-bold text-md">
+                <Text
+                  className="text-black text-md"
+                  style={{fontFamily: 'Montserrat-SemiBold'}}>
                   {item.time}
                   {'\n'}
                   {'\n'}
-                  <Text className="text-black font-bold text-md">
+                  <Text
+                    className="text-black text-md"
+                    style={{fontFamily: 'Montserrat-SemiBold'}}>
                     {formatDate(item.date)}
                   </Text>
                 </Text>
@@ -253,7 +284,9 @@ const LadiesOrders = () => {
           />
         )}
         {!showLoader && !data.length && !isLoading && (
-          <Text className="flex-1 text-center text-xl text-gray-600">
+          <Text
+            className="flex-1 text-center text-xl text-gray-600"
+            style={{fontFamily: 'Montserrat-SemiBold'}}>
             No Ladies Orders Yet
           </Text>
         )}

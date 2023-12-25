@@ -93,12 +93,16 @@ const UserHome = () => {
         <View className="flex-1 p-5">
           <View className="flex-1">
             <View className="border-b-primary border-4 border-t-0 border-l-0 border-r-0 w-[70%] left-[52px]">
-              <Text className="text-primary text-[25px] font-medium text-center ">
+              <Text
+                className="text-primary text-[25px] text-center"
+                style={{fontFamily: 'Montserrat-SemiBold'}}>
                 Hi! We’re Tailor Online
               </Text>
             </View>
 
-            <Text className="text-gray-400 text-[16px] font-medium justify-center text-center top-5">
+            <Text
+              className="text-gray-400 text-[16px] justify-center text-center top-5"
+              style={{fontFamily: 'Montserrat-Medium'}}>
               We offer the modern-day woman and man an unparalleled
               made-to-measure online tailoring service. It is a unique
               experience that lets you express your personal sense of style
@@ -122,7 +126,9 @@ const UserHome = () => {
         {/* Men-Women Products */}
         <View className="flex-1 items-center">
           <View className="flex-1 items-center border-b-primary border-4 border-t-0 border-l-0 border-r-0">
-            <Text className="text-[25px] font-bold text-primary ">
+            <Text
+              className="text-[25px] text-primary"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
               Products
             </Text>
           </View>
@@ -134,7 +140,9 @@ const UserHome = () => {
             <TouchableOpacity
               onPress={() => navigation.navigate('MenProducts')}>
               <View className="bg-primary pl-10 pr-10 pt-5 pb-5 rounded-xl m-5">
-                <Text className="text-center text-light text-[18px] font-semibold">
+                <Text
+                  className="text-center text-light text-[18px]"
+                  style={{fontFamily: 'Montserrat-Medium'}}>
                   Gents Products
                 </Text>
               </View>
@@ -149,7 +157,9 @@ const UserHome = () => {
             <TouchableOpacity
               onPress={() => navigation.navigate('WomenProducts')}>
               <View className="bg-primary pl-10 pr-10 pt-5 pb-5 rounded-xl m-5">
-                <Text className="text-center text-light text-[18px] font-semibold">
+                <Text
+                  className="text-center text-light text-[18px]"
+                  style={{fontFamily: 'Montserrat-Medium'}}>
                   Ladies Products
                 </Text>
               </View>
@@ -161,7 +171,9 @@ const UserHome = () => {
         {/* Tailor Works */}
         <View className="flex-1 items-center">
           <View className="flex-1 items-center border-b-primary border-4 border-t-0 border-l-0 border-r-0 mt-10">
-            <Text className="text-[25px] font-bold text-primary ">
+            <Text
+              className="text-[25px] text-primary"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
               How Tailor Works Online
             </Text>
           </View>
@@ -172,10 +184,14 @@ const UserHome = () => {
                 source={require('../../../assets/tailorworks/work1.png')}
                 className="w-36 h-36 bg-contain object-contain"
               />
-              <Text className="text-dark text-[20px] font-bold text-center">
+              <Text
+                className="text-dark text-[20px] text-center"
+                style={{fontFamily: 'Montserrat-Bold'}}>
                 CUSTOMISE & PLACE ORDER ONLINE
               </Text>
-              <Text className="text-gray-600 text-[16px] font-semibold text-center top-3">
+              <Text
+                className="text-gray-600 text-[16px] text-center top-3"
+                style={{fontFamily: 'Montserrat-Medium'}}>
                 Choose your product and personalize it with custom necklines,
                 sleeves, etc.
               </Text>
@@ -186,10 +202,14 @@ const UserHome = () => {
                 source={require('../../../assets/tailorworks/work2.png')}
                 className="w-36 h-36 bg-contain object-contain"
               />
-              <Text className="text-dark text-[20px] font-bold text-center">
+              <Text
+                className="text-dark text-[20px] text-center"
+                style={{fontFamily: 'Montserrat-Bold'}}>
                 GIVE US YOUR MEASUREMENT GARMENT
               </Text>
-              <Text className="text-gray-600 text-[16px] font-semibold text-center top-3">
+              <Text
+                className="text-gray-600 text-[16px] text-center top-3"
+                style={{fontFamily: 'Montserrat-Medium'}}>
                 While we pick up your dress material, give us a perfectly
                 fitting garment to stitch as per your measurements
               </Text>
@@ -200,10 +220,14 @@ const UserHome = () => {
                 source={require('../../../assets/tailorworks/work3.png')}
                 className="w-36 h-36 bg-contain object-contain"
               />
-              <Text className="text-dark text-[20px] font-bold text-center">
+              <Text
+                className="text-dark text-[20px] text-center"
+                style={{fontFamily: 'Montserrat-Bold'}}>
                 3 To 5 DAYS TO STITCH & DELIVER
               </Text>
-              <Text className="text-gray-600 text-[16px] font-semibold text-center top-3">
+              <Text
+                className="text-gray-600 text-[16px] text-center top-3"
+                style={{fontFamily: 'Montserrat-Medium'}}>
                 Each material is individually hand-cut, stitched, and finished
                 by professional tailors and delivered to your doorstep
               </Text>
@@ -214,10 +238,14 @@ const UserHome = () => {
                 source={require('../../../assets/tailorworks/work4.png')}
                 className="w-36 h-36 bg-contain object-contain"
               />
-              <Text className="text-dark text-[20px] font-bold text-center">
+              <Text
+                className="text-dark text-[20px] text-center"
+                style={{fontFamily: 'Montserrat-Bold'}}>
                 PAY ON DELIVERY
               </Text>
-              <Text className="text-gray-600 text-[16px] font-semibold text-center top-3">
+              <Text
+                className="text-gray-600 text-[16px] text-center top-3"
+                style={{fontFamily: 'Montserrat-Medium'}}>
                 Pay by cash after you receive your newly stitched outfit along
                 with the measurement garment.
               </Text>
@@ -229,11 +257,15 @@ const UserHome = () => {
         {/* About Us */}
         <View className="flex-1 items-center">
           <View className="flex-1 items-center border-b-primary border-4 border-t-0 border-l-0 border-r-0 mt-10">
-            <Text className="text-[25px] font-bold text-primary ">
+            <Text
+              className="text-[25px] text-primary"
+              style={{fontFamily: 'Montserrat-Bold'}}>
               About Us
             </Text>
           </View>
-          <Text className="text-gray-500 text-sm font-semibold text-center top-3">
+          <Text
+            className="text-gray-500 text-sm text-center top-3"
+            style={{fontFamily: 'Montserrat-Medium'}}>
             We offer the modern-day woman and man an unparalleled
             made-to-measure online tailoring service. It is a unique experience
             that lets you express your personal sense of style without having to
@@ -248,7 +280,9 @@ const UserHome = () => {
         {/* Our Contact */}
         <View className="flex-1 items-center">
           <View className="flex-1 items-center border-b-primary border-4 border-t-0 border-l-0 border-r-0 mt-10 mb-2">
-            <Text className="text-[25px] font-bold text-primary ">
+            <Text
+              className="text-[25px] text-primary"
+              style={{fontFamily: 'Montserrat-Bold'}}>
               Our Contact
             </Text>
           </View>
@@ -262,10 +296,14 @@ const UserHome = () => {
                   color={'#539165'}
                 />
               </View>
-              <Text className="text-center text-gray-600 font-semibold">
+              <Text
+                className="text-center text-gray-600"
+                style={{fontFamily: 'Montserrat-Medium'}}>
                 0333-1447770
               </Text>
-              <Text className="text-center text-gray-600 font-semibold">
+              <Text
+                className="text-center text-gray-600"
+                style={{fontFamily: 'Montserrat-Medium'}}>
                 0345-8629967
               </Text>
             </View>
@@ -274,7 +312,9 @@ const UserHome = () => {
               <View className="p-3">
                 <FontAwesome5 name="heartbeat" size={30} color={'#539165'} />
               </View>
-              <Text className="w-28 text-center text-gray-600 font-semibold">
+              <Text
+                className="w-28 text-center text-gray-600"
+                style={{fontFamily: 'Montserrat-Medium'}}>
                 support@pickandstitches.com
               </Text>
             </View>
@@ -283,7 +323,9 @@ const UserHome = () => {
               <View className="p-3">
                 <Ionicons name="map-outline" size={30} color={'#539165'} />
               </View>
-              <Text className="w-28 text-center text-gray-600 font-semibold">
+              <Text
+                className="w-28 text-center text-gray-600"
+                style={{fontFamily: 'Montserrat-Medium'}}>
                 Peshawar Road Rawalpindi
               </Text>
             </View>

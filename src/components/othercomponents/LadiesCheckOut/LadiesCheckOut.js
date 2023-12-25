@@ -19,6 +19,7 @@ const LediesCheckOut = () => {
   const product_pic = route.params?.product_pic || 'Default product_pic';
   const price = parseFloat(route.params?.price);
   const name = route.params?.name || 'Default name';
+  const email = route.params?.email || 'Default email';
   const cell = route.params?.cell || 'Default cell';
   const adress = route.params?.adress || 'Default adress';
   const comments = route.params?.comments || 'No Additional Comment';
@@ -103,6 +104,7 @@ const LediesCheckOut = () => {
   const orderDetails = [
     {label: 'Product Name', value: product},
     {label: 'Name', value: name},
+    {label: 'Email', value: email},
     {label: 'Mobile', value: cell},
     {label: 'adress', value: adress},
     {label: 'Comment', value: comments || 'No additional comment'},
@@ -222,6 +224,11 @@ const LediesCheckOut = () => {
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 style="font-size:2rem">Email</h4>
+        <p style="font-size:2rem">${email}</p>      
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center;">
         <h4 style="font-size:2rem">Cell</h4>
         <p style="font-size:2rem">${cell}</p>      
         </div>
@@ -307,77 +314,114 @@ const LediesCheckOut = () => {
   };
 
   const handleCheckOut = async () => {
-    const apiUrl =
-      'https://pickandstitches.com/font-awesome/scss/scss/api_female_orders.php';
-
-    const currentDate = new Date().toISOString().split('T')[0];
-    const currentTime = new Date().toLocaleTimeString();
-    ('');
-
-    // Convert sample array to a string of image URLs separated by commas
-
-    const orderData = {
-      name,
-      cell,
-      adress,
-      comments,
-      type: 'female',
-      date: currentDate,
-      time: currentTime,
-      deliverycharges,
-      price,
-      total,
-      product,
-      peko: pikoFull ? 'Piko Full(Rs.120)' : pikoHalf ? 'Piko Half(Rs.60)' : '',
-
-      Dupata_Piping: dupattaPiping
-        ? 'Dupatta Piping(Rs.300)'
-        : dupattaExtension
-        ? 'Dupatta Extension(Rs.300)'
-        : dupattaFetta
-        ? 'Dupatta Fetta(Rs.300)'
-        : '',
-
-      Full_top_piping: fullTopPiping
-        ? 'Full Top Piping(Rs.300)'
-        : fullTopExtension
-        ? 'Full Top Extension(Rs.300)'
-        : fullTopFetta
-        ? 'Full Top Fetta(Rs.300)'
-        : '',
-
-      Embroidery: embroideryGalla
-        ? 'Embroidery Galla(Rs.300)'
-        : embroideryDaman
-        ? 'Embroidery Daman(Rs.300)'
-        : embroideryBazo
-        ? 'Embroidery Bazo(Rs.300)'
-        : embroideryBottom
-        ? 'Embroidery Bottom(Rs.300)'
-        : '',
-    };
-
-    setLoading(true);
-
     try {
-      const response = await axios.post(apiUrl, orderData, {
+      // Show loading indicator
+      setLoading(true);
+
+      const currentDate = new Date().toISOString().split('T')[0];
+      const currentTime = new Date().toLocaleTimeString();
+      ('');
+
+      const formData = new FormData();
+
+      // Define the order data
+      const orderData = {
+        name,
+        email,
+        cell,
+        adress,
+        comments,
+        type: 'female',
+        date: currentDate,
+        time: currentTime,
+        deliverycharges,
+        price,
+        total,
+        product,
+        peko: pikoFull
+          ? 'Piko Full(Rs.120)'
+          : pikoHalf
+          ? 'Piko Half(Rs.60)'
+          : '',
+
+        Dupata_Piping: dupattaPiping
+          ? 'Dupatta Piping(Rs.300)'
+          : dupattaExtension
+          ? 'Dupatta Extension(Rs.300)'
+          : dupattaFetta
+          ? 'Dupatta Fetta(Rs.300)'
+          : '',
+
+        Full_top_piping: fullTopPiping
+          ? 'Full Top Piping(Rs.300)'
+          : fullTopExtension
+          ? 'Full Top Extension(Rs.300)'
+          : fullTopFetta
+          ? 'Full Top Fetta(Rs.300)'
+          : '',
+
+        Embroidery: embroideryGalla
+          ? 'Embroidery Galla(Rs.300)'
+          : embroideryDaman
+          ? 'Embroidery Daman(Rs.300)'
+          : embroideryBazo
+          ? 'Embroidery Bazo(Rs.300)'
+          : embroideryBottom
+          ? 'Embroidery Bottom(Rs.300)'
+          : '',
+        sample: sample.forEach((uri, index) => {
+          const sample = `sample_${index + 1}.jpg`;
+          formData.append('sample[]', {
+            uri: uri,
+            type: 'image/jpeg',
+            name: sample,
+          });
+        }),
+      };
+
+      // Send order details to the backend API
+      const orderApiUrl =
+        'https://pickandstitches.com/font-awesome/scss/scss/api_female_orders.php';
+      const response = await axios.post(orderApiUrl, orderData, {
         headers: {
           'Content-Type': 'application/json',
         },
       });
 
       if (response.status === 200) {
-        alert('Thank You! Your Order Has Been Successfully Placed!');
-        navigation.navigate('UserHome');
+        // Order submission successful
+        // Now, send a notification to the admin
+        const notificationApiUrl =
+          'https://pickandstitches.com/font-awesome/scss/scss/notifications.php';
+        const notificationResponse = await axios.post(notificationApiUrl, {
+          name,
+          email,
+          cell,
+          adress,
+        });
+
+        if (notificationResponse.data.success) {
+          // Notification sent successfully
+          alert('Thank You! Your Order Has Been Placed Successfully!');
+        } else {
+          console.error(
+            'Error sending notification:',
+            notificationResponse.data.error,
+          );
+          alert('Error sending notification. Please try again later.');
+        }
       } else {
+        // Order submission failed
         console.error('API request failed with status code:', response.status);
         console.log('API Response Data:', response.data);
         alert('Error saving data. Please try again later.');
       }
     } catch (error) {
-      console.error('Error saving data:', error);
-      alert('Network error. Please check your connection and try again.');
+      // Handle any errors that occurred during the process
+      console.error('Error handling checkout:', error);
+      alert('An error occurred during checkout. Please try again.');
     } finally {
+      // Hide loading indicator
       setLoading(false);
     }
   };
@@ -389,14 +433,22 @@ const LediesCheckOut = () => {
         keyExtractor={(item, index) => index.toString()}
         renderItem={({item}) => (
           <View className="flex-row flex-wrap justify-between items-center p-4 border-b-2 border-b-gray-400">
-            <Text className="mb-2 font-semibold text-primary">
+            <Text
+              className="mb-2 text-primary"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
               {item.label}
             </Text>
-            <Text className="font-semibold text-primary">{item.value}</Text>
+            <Text
+              className="text-primary"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
+              {item.value}
+            </Text>
           </View>
         )}
       />
-      <Text className="text-lg font-semibold text-center text-primary top-3">
+      <Text
+        className="text-lg text-center text-primary top-3"
+        style={{fontFamily: 'Montserrat-SemiBold'}}>
         Total Price: {formatPriceAsCurrency(total)}
       </Text>
 
@@ -407,7 +459,11 @@ const LediesCheckOut = () => {
           {loading ? (
             <ActivityIndicator color={'#fff'} />
           ) : (
-            <Text className="text-white text-xl">Submit Order</Text>
+            <Text
+              className="text-white text-xl"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
+              Submit Order
+            </Text>
           )}
         </TouchableOpacity>
 
@@ -415,7 +471,11 @@ const LediesCheckOut = () => {
           className="right-5 top-2 justify-center items-center"
           onPress={printReceipt}>
           <AntDesign name="printer" size={30} color="#000" />
-          <Text className="text-ternary font-bold">Print</Text>
+          <Text
+            className="text-ternary"
+            style={{fontFamily: 'Montserrat-SemiBold'}}>
+            Print
+          </Text>
         </TouchableOpacity>
       </View>
     </View>

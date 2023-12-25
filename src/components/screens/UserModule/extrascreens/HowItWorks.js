@@ -7,12 +7,16 @@ const HowItWorks = () => {
       <ScrollView showsVerticalScrollIndicator={false} className="flex-1">
         <View className="flex-1 items-center">
           <View className="flex-1 items-center border-b-primary border-4 border-t-0 border-l-0 border-r-0 mt-10">
-            <Text className="text-[30px] font-bold text-primary ">
+            <Text
+              className="text-[30px] text-primary"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
               How Pick & Stitches Works
             </Text>
           </View>
 
-          <Text className="text-gray-500 text-sm font-normal text-center mt-5">
+          <Text
+            className="text-gray-500 text-sm text-center mt-5"
+            style={{fontFamily: 'Montserrat-Medium'}}>
             We offer quality & convenient factory finished sewing services for
             man & women. Kurtas, Shalwar Suits & Trousers stitched to perfection
             as per your measurements. We collect your fabric, sew, finish &
@@ -25,10 +29,14 @@ const HowItWorks = () => {
                 source={require('../../../../assets/howitwork/01.png')}
                 className="w-36 h-36 bg-contain object-contain"
               />
-              <Text className="text-dark text-[20px] font-bold text-center top-2">
+              <Text
+                className="text-dark text-[20px] text-center top-2"
+                style={{fontFamily: 'Montserrat-Bold'}}>
                 01. Place Your Order Online
               </Text>
-              <Text className="text-gray-500 text-[16px] font-normal text-center top-3">
+              <Text
+                className="text-gray-500 text-[16px] text-center top-3"
+                style={{fontFamily: 'Montserrat-SemiBold'}}>
                 Place your order online or give us a call to schedule a free
                 pickup.we are always ready to serve you
               </Text>
@@ -39,10 +47,14 @@ const HowItWorks = () => {
                 source={require('../../../../assets/howitwork/02.jpg')}
                 className="w-48 h-48 bg-contain object-contain"
               />
-              <Text className="text-dark text-[20px] font-bold text-center top-2">
+              <Text
+                className="text-dark text-[20px] text-center top-2"
+                style={{fontFamily: 'Montserrat-Bold'}}>
                 02.Pick Stuff From Your Door Step
               </Text>
-              <Text className="text-gray-500 text-[16px] font-normal text-center top-3">
+              <Text
+                className="text-gray-500 text-[16px] text-center top-3"
+                style={{fontFamily: 'Montserrat-SemiBold'}}>
                 Your dress material and the sample garment that fits you
                 perfectly will be picked up by our representative as soon as you
                 place an order. Your custom tailored outfit and the sample
@@ -57,10 +69,14 @@ const HowItWorks = () => {
                 source={require('../../../../assets/howitwork/03.jpg')}
                 className="w-36 h-36 bg-contain object-contain"
               />
-              <Text className="text-dark text-[20px] font-bold text-center top-2">
+              <Text
+                className="text-dark text-[20px] text-center top-2"
+                style={{fontFamily: 'Montserrat-Bold'}}>
                 03.Stitch Your Stuff
               </Text>
-              <Text className="text-gray-500 text-[16px] font-normal text-center top-3">
+              <Text
+                className="text-gray-500 text-[16px] text-center top-3"
+                style={{fontFamily: 'Montserrat-SemiBold'}}>
                 Our highly skilled and professional tailors have years of
                 experience of making custom made dresses with the trendiest
                 designs for men, women and children alike. Our experts work
@@ -74,10 +90,14 @@ const HowItWorks = () => {
                 source={require('../../../../assets/howitwork/04.png')}
                 className="w-36 h-36 bg-contain object-contain"
               />
-              <Text className="text-dark text-[20px] font-bold text-center top-2">
+              <Text
+                className="text-dark text-[20px] text-center top-2"
+                style={{fontFamily: 'Montserrat-Bold'}}>
                 04.Deliver Your Order At Your Door Step
               </Text>
-              <Text className="text-gray-500 text-[16px] font-normal text-center top-3">
+              <Text
+                className="text-gray-500 text-[16px] text-center top-3"
+                style={{fontFamily: 'Montserrat-SemiBold'}}>
                 Enjoy a hassle experience of getting your desired outfit
                 stitched and delivered at your doorstep.
               </Text>

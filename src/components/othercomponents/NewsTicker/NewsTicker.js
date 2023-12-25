@@ -45,7 +45,9 @@ class NewsTicker extends Component {
       <View className="flex flex-col">
         <View className="flex-row items-center w-100 overflow-hidden ">
           <View className="bg-yellow-500 p-9 w-42 z-10">
-            <Text className="text-dark text-base font-semibold">
+            <Text
+              className="text-dark text-base"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
               Latest News
             </Text>
           </View>
@@ -61,7 +63,8 @@ class NewsTicker extends Component {
               {this.state.newsItems.map((item, index) => (
                 <Text
                   key={index}
-                  className="text-[16px] text-light font-medium">
+                  className="text-[16px] text-light"
+                  style={{fontFamily: 'Montserrat-SemiBold'}}>
                   {item}
                 </Text>
               ))}

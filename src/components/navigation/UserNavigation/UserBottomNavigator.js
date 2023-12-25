@@ -8,7 +8,6 @@ import MenProducts from '../../screens/UserModule/MenProducts/MenProducts';
 import WomenProducts from '../../screens/UserModule/WomenProducts/WomenProducts';
 import HowItWorks from '../../screens/UserModule/extrascreens/HowItWorks';
 import FeedBack from '../../screens/UserModule/extrascreens/FeedBack';
-import {Text} from 'react-native-animatable';
 
 const Tab = createBottomTabNavigator();
 
@@ -27,7 +26,7 @@ const UserBottomNavigator = () => {
         tabBarActiveTintColor: '#000',
         tabBarInactiveTintColor: '#908e8c',
         tabBarStyle: {
-          height: 60,
+          height: 55,
           paddingTop: 5,
           backgroundColor: '#000',
         },
@@ -35,6 +34,7 @@ const UserBottomNavigator = () => {
         headerTitleStyle: {
           color: '#fff',
           fontSize: 25,
+          fontFamily: 'Montserrat-Bold',
         },
         headerStyle: {
           backgroundColor: '#539165',
@@ -43,6 +43,11 @@ const UserBottomNavigator = () => {
       })}>
       <Tab.Screen
         options={{
+          tabBarLabelStyle: {
+            color: '#fff',
+            fontFamily: 'Montserrat-Medium',
+            bottom: 3,
+          },
           tabBarIcon: ({focused}) => (
             <Ionicons
               name={focused ? 'home-outline' : 'home-outline'}
@@ -57,6 +62,11 @@ const UserBottomNavigator = () => {
 
       <Tab.Screen
         options={{
+          tabBarLabelStyle: {
+            color: '#fff',
+            fontFamily: 'Montserrat-Medium',
+            bottom: 3,
+          },
           tabBarIcon: ({focused}) => (
             <Ionicons
               name={focused ? 'man-outline' : 'man-outline'}
@@ -71,6 +81,11 @@ const UserBottomNavigator = () => {
 
       <Tab.Screen
         options={{
+          tabBarLabelStyle: {
+            color: '#fff',
+            fontFamily: 'Montserrat-Medium',
+            bottom: 3,
+          },
           tabBarIcon: ({focused}) => (
             <Ionicons
               name={focused ? 'woman-outline' : 'woman-outline'}
@@ -85,6 +100,11 @@ const UserBottomNavigator = () => {
 
       <Tab.Screen
         options={{
+          tabBarLabelStyle: {
+            color: '#fff',
+            fontFamily: 'Montserrat-Medium',
+            bottom: 3,
+          },
           tabBarIcon: ({focused}) => (
             <Ionicons
               name={focused ? 'alert-circle-outline' : 'alert-circle-outline'}
@@ -99,6 +119,11 @@ const UserBottomNavigator = () => {
 
       <Tab.Screen
         options={{
+          tabBarLabelStyle: {
+            color: '#fff',
+            fontFamily: 'Montserrat-Medium',
+            bottom: 3,
+          },
           tabBarIcon: ({focused}) => (
             <Ionicons
               name={focused ? 'chatbubble-outline' : 'chatbubble-outline'}

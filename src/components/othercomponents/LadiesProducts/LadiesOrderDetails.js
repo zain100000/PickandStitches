@@ -20,6 +20,7 @@ const LadiesOrderDetails = () => {
   const price = route.params?.price;
 
   const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [cell, setCell] = useState('');
   const [adress, setAdress] = useState('');
   const [comments, setComments] = useState('');
@@ -59,16 +60,19 @@ const LadiesOrderDetails = () => {
 
   // Declare and initialize refs
   const nameRef = useRef();
+  const emailRef = useRef();
   const cellRef = useRef();
   const adressRef = useRef();
 
   const ValidInput = () => {
     const namePattern = /^[a-zA-Z\s]*$/;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const cellPattern = /^(\+92|92|0)(3\d{2}|\d{2})(\d{7})$/;
     const adressPattern = /^[\w\s,'-]*$/;
 
     return (
       namePattern.test(name) &&
+      emailPattern.test(email) &&
       cellPattern.test(cell) &&
       adressPattern.test(adress)
     );
@@ -82,6 +86,19 @@ const LadiesOrderDetails = () => {
     return '';
   };
   const nameError = validateName();
+
+  const validateEmail = () => {
+    if (!email) {
+      return ''; // Return an empty string if the email is empty
+    }
+
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!regex.test(email)) {
+      return 'Invalid Email Format';
+    }
+    return '';
+  };
+  const emailError = validateEmail();
 
   const handleCellChange = value => {
     setCell(value);
@@ -119,6 +136,11 @@ const LadiesOrderDetails = () => {
       nameRef.current.focus();
       return;
     }
+    if (!email) {
+      alert('Email field is empty');
+      emailRef.current.focus();
+      return;
+    }
     if (!cell) {
       alert('Cell field is empty');
       cellRef.current.focus();
@@ -143,6 +165,7 @@ const LadiesOrderDetails = () => {
         product_pic,
         product,
         name,
+        email,
         cell,
         adress,
         comments,
@@ -180,6 +203,7 @@ const LadiesOrderDetails = () => {
       });
 
       setName('');
+      setEmail('');
       setCell('');
       setAdress('');
       setComments('');
@@ -210,12 +234,12 @@ const LadiesOrderDetails = () => {
         <View className="flex-1 mt-14">
           {/* Product Name */}
           <View>
-            <Text className="text-sm mb-2">Product Name:-</Text>
             <View className="border-2 border-gray-500 mb-3">
               <TextInput
-                className="text-sm text-primary left-2 "
+                className="text-sm text-primary left-2"
                 placeholder={product}
                 placeholderTextColor={'#539165'}
+                style={{fontFamily: 'Montserrat-SemiBold'}}
               />
             </View>
           </View>
@@ -228,11 +252,34 @@ const LadiesOrderDetails = () => {
               value={name}
               onChangeText={setName}
               ref={nameRef}
+              style={{fontFamily: 'Montserrat-SemiBold'}}
             />
           </View>
           {nameError ? (
-            <Text className="text-red-600 text-sm left-3 font-semibold">
+            <Text
+              className="text-red-600 text-sm left-3"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
               {nameError}
+            </Text>
+          ) : null}
+
+          {/* Email */}
+          <View className="border-b-2 border-b-gray-500 mb-3">
+            <TextInput
+              className="text-sm text-primary left-3"
+              placeholder="Email"
+              placeholderTextColor={'#539165'}
+              value={email}
+              onChangeText={setEmail}
+              ref={emailRef}
+              style={{fontFamily: 'Montserrat-SemiBold'}}
+            />
+          </View>
+          {emailError ? (
+            <Text
+              className="text-red-600 text-sm left-3"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
+              {emailError}
             </Text>
           ) : null}
 
@@ -246,10 +293,13 @@ const LadiesOrderDetails = () => {
               value={cell}
               onChangeText={handleCellChange}
               ref={cellRef}
+              style={{fontFamily: 'Montserrat-SemiBold'}}
             />
           </View>
           {cellError ? (
-            <Text className="text-red-600 text-sm left-3 font-semibold">
+            <Text
+              className="text-red-600 text-sm left-3"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
               {cellError}
             </Text>
           ) : null}
@@ -263,10 +313,13 @@ const LadiesOrderDetails = () => {
               value={adress}
               onChangeText={handleAdressChange}
               ref={adressRef}
+              style={{fontFamily: 'Montserrat-SemiBold'}}
             />
           </View>
           {adressError ? (
-            <Text className="text-red-600 text-sm left-3 font-semibold">
+            <Text
+              className="text-red-600 text-sm left-3"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
               {adressError}
             </Text>
           ) : null}
@@ -281,13 +334,18 @@ const LadiesOrderDetails = () => {
               numberOfLines={6}
               value={comments}
               onChangeText={setComments}
+              style={{fontFamily: 'Montserrat-SemiBold'}}
             />
           </View>
 
           {/* Piko */}
           <View>
             <View className="left-3 mt-8">
-              <Text className="text-primary text-lg font-semibold">Piko</Text>
+              <Text
+                className="text-primary text-lg"
+                style={{fontFamily: 'Montserrat-SemiBold'}}>
+                Piko
+              </Text>
             </View>
             <View className="flex-row items-center">
               <View className="flex-row mb-3">
@@ -319,10 +377,14 @@ const LadiesOrderDetails = () => {
                   </View>
                 </TouchableOpacity>
                 <View className="mt-5">
-                  <Text className="text-[15px] text-black font-semibold">
+                  <Text
+                    className="text-[15px] text-black"
+                    style={{fontFamily: 'Montserrat-SemiBold'}}>
                     Piko Half
                   </Text>
-                  <Text className="text-[15px] text-black font-semibold">
+                  <Text
+                    className="text-[15px] text-black"
+                    style={{fontFamily: 'Montserrat-SemiBold'}}>
                     (Rs.120)
                   </Text>
                 </View>
@@ -358,10 +420,14 @@ const LadiesOrderDetails = () => {
                     </View>
                   </TouchableOpacity>
                   <View className="mt-5">
-                    <Text className="text-[15px] text-black font-semibold">
+                    <Text
+                      className="text-[15px] text-black"
+                      style={{fontFamily: 'Montserrat-SemiBold'}}>
                       Piko Half
                     </Text>
-                    <Text className="text-[15px] text-black font-semibold">
+                    <Text
+                      className="text-[15px] text-black"
+                      style={{fontFamily: 'Montserrat-SemiBold'}}>
                       (Rs.60)
                     </Text>
                   </View>
@@ -373,7 +439,9 @@ const LadiesOrderDetails = () => {
           {/* Dupatta */}
           <View className="flex-1">
             <View className="left-3 mt-8">
-              <Text className="text-primary text-lg font-semibold">
+              <Text
+                className="text-primary text-lg"
+                style={{fontFamily: 'Montserrat-SemiBold'}}>
                 Dupatta
               </Text>
             </View>
@@ -410,10 +478,14 @@ const LadiesOrderDetails = () => {
                     </View>
                   </TouchableOpacity>
                   <View className="mt-5">
-                    <Text className="text-[15px] text-black font-semibold">
+                    <Text
+                      className="text-[15px] text-black"
+                      style={{fontFamily: 'Montserrat-SemiBold'}}>
                       Dupatta Piping
                     </Text>
-                    <Text className="text-[15px] text-black font-semibold">
+                    <Text
+                      className="text-[15px] text-black"
+                      style={{fontFamily: 'Montserrat-SemiBold'}}>
                       (Rs.300)
                     </Text>
                   </View>
@@ -449,10 +521,14 @@ const LadiesOrderDetails = () => {
                     </View>
                   </TouchableOpacity>
                   <View className="mt-5">
-                    <Text className="text-[15px] text-black font-semibold">
+                    <Text
+                      className="text-[15px] text-black"
+                      style={{fontFamily: 'Montserrat-SemiBold'}}>
                       Dupatta Extension
                     </Text>
-                    <Text className="text-[15px] text-black font-semibold">
+                    <Text
+                      className="text-[15px] text-black"
+                      style={{fontFamily: 'Montserrat-SemiBold'}}>
                       (Rs.300)
                     </Text>
                   </View>
@@ -490,10 +566,14 @@ const LadiesOrderDetails = () => {
                   </View>
                 </TouchableOpacity>
                 <View className="mt-5">
-                  <Text className="text-[15px] text-black font-semibold">
+                  <Text
+                    className="text-[15px] text-black"
+                    style={{fontFamily: 'Montserrat-SemiBold'}}>
                     Dupatta Fetta
                   </Text>
-                  <Text className="text-[15px] text-black font-semibold">
+                  <Text
+                    className="text-[15px] text-black"
+                    style={{fontFamily: 'Montserrat-SemiBold'}}>
                     (Rs.300)
                   </Text>
                 </View>
@@ -504,7 +584,11 @@ const LadiesOrderDetails = () => {
           {/* Top */}
           <View>
             <View className="left-3 mt-8">
-              <Text className="text-primary text-lg font-semibold">Top</Text>
+              <Text
+                className="text-primary text-lg"
+                style={{fontFamily: 'Montserrat-SemiBold'}}>
+                Top
+              </Text>
             </View>
             <View className="flex-col">
               {/* First and second rows */}
@@ -539,10 +623,14 @@ const LadiesOrderDetails = () => {
                     </View>
                   </TouchableOpacity>
                   <View className="mt-5">
-                    <Text className="text-[15px] text-black font-semibold">
+                    <Text
+                      className="text-[15px] text-black"
+                      style={{fontFamily: 'Montserrat-SemiBold'}}>
                       Full Top Piping
                     </Text>
-                    <Text className="text-[15px] text-black font-semibold">
+                    <Text
+                      className="text-[15px] text-black"
+                      style={{fontFamily: 'Montserrat-SemiBold'}}>
                       (Rs.300)
                     </Text>
                   </View>
@@ -578,10 +666,14 @@ const LadiesOrderDetails = () => {
                     </View>
                   </TouchableOpacity>
                   <View className="mt-5">
-                    <Text className="text-[15px] text-black font-semibold">
+                    <Text
+                      className="text-[15px] text-black"
+                      style={{fontFamily: 'Montserrat-SemiBold'}}>
                       Full Top Extension
                     </Text>
-                    <Text className="text-[15px] text-black font-semibold">
+                    <Text
+                      className="text-[15px] text-black"
+                      style={{fontFamily: 'Montserrat-SemiBold'}}>
                       (Rs.300)
                     </Text>
                   </View>
@@ -619,10 +711,14 @@ const LadiesOrderDetails = () => {
                   </View>
                 </TouchableOpacity>
                 <View className="mt-5">
-                  <Text className="text-[15px] text-black font-semibold">
+                  <Text
+                    className="text-[15px] text-black"
+                    style={{fontFamily: 'Montserrat-SemiBold'}}>
                     Full Top Fetta
                   </Text>
-                  <Text className="text-[15px] text-black font-semibold">
+                  <Text
+                    className="text-[15px] text-black"
+                    style={{fontFamily: 'Montserrat-SemiBold'}}>
                     (Rs.300)
                   </Text>
                 </View>
@@ -633,7 +729,9 @@ const LadiesOrderDetails = () => {
           {/* Embroidery */}
           <View>
             <View className="left-3 mt-8">
-              <Text className="text-primary text-lg font-semibold">
+              <Text
+                className="text-primary text-lg"
+                style={{fontFamily: 'Montserrat-SemiBold'}}>
                 Embroidery
               </Text>
             </View>
@@ -671,10 +769,14 @@ const LadiesOrderDetails = () => {
                     </View>
                   </TouchableOpacity>
                   <View className="mt-5">
-                    <Text className="text-[15px] text-black font-semibold">
+                    <Text
+                      className="text-[15px] text-black"
+                      style={{fontFamily: 'Montserrat-SemiBold'}}>
                       Embroidery Galla
                     </Text>
-                    <Text className="text-[15px] text-black font-semibold">
+                    <Text
+                      className="text-[15px] text-black"
+                      style={{fontFamily: 'Montserrat-SemiBold'}}>
                       (Rs.300)
                     </Text>
                   </View>
@@ -711,10 +813,14 @@ const LadiesOrderDetails = () => {
                     </View>
                   </TouchableOpacity>
                   <View className="mt-5">
-                    <Text className="text-[15px] text-black font-semibold">
+                    <Text
+                      className="text-[15px] text-black"
+                      style={{fontFamily: 'Montserrat-SemiBold'}}>
                       Embroidery Daman
                     </Text>
-                    <Text className="text-[15px] text-black font-semibold">
+                    <Text
+                      className="text-[15px] text-black"
+                      style={{fontFamily: 'Montserrat-SemiBold'}}>
                       (Rs.300)
                     </Text>
                   </View>
@@ -754,10 +860,14 @@ const LadiesOrderDetails = () => {
                     </View>
                   </TouchableOpacity>
                   <View className="mt-5">
-                    <Text className="text-[15px] text-black font-semibold">
+                    <Text
+                      className="text-[15px] text-black"
+                      style={{fontFamily: 'Montserrat-SemiBold'}}>
                       Embroidery Bazu
                     </Text>
-                    <Text className="text-[15px] text-black font-semibold">
+                    <Text
+                      className="text-[15px] text-black"
+                      style={{fontFamily: 'Montserrat-SemiBold'}}>
                       (Rs.300)
                     </Text>
                   </View>
@@ -794,10 +904,14 @@ const LadiesOrderDetails = () => {
                     </View>
                   </TouchableOpacity>
                   <View className="mt-5">
-                    <Text className="text-[15px] text-black font-semibold">
+                    <Text
+                      className="text-[15px] text-black"
+                      style={{fontFamily: 'Montserrat-SemiBold'}}>
                       Embroidery Bottom
                     </Text>
-                    <Text className="text-[15px] text-black font-semibold">
+                    <Text
+                      className="text-[15px] text-black"
+                      style={{fontFamily: 'Montserrat-SemiBold'}}>
                       (Rs.300)
                     </Text>
                   </View>
@@ -817,7 +931,9 @@ const LadiesOrderDetails = () => {
                 />
               ))
             ) : (
-              <Text className="text-gray-400 font-medium text-sm">
+              <Text
+                className="text-gray-400 text-sm"
+                style={{fontFamily: 'Montserrat-SemiBold'}}>
                 Any Sample (Upto 3 Samples)
               </Text>
             )}
@@ -828,7 +944,9 @@ const LadiesOrderDetails = () => {
             <TouchableOpacity
               onPress={handlePickDocument}
               className="pl-5 pr-5 pt-4 pb-4 rounded-md bg-primary">
-              <Text className="text-white font-bold text-[16px]">
+              <Text
+                className="text-white text-[16px]"
+                style={{fontFamily: 'Montserrat-SemiBold'}}>
                 Choose File
               </Text>
             </TouchableOpacity>
@@ -841,7 +959,11 @@ const LadiesOrderDetails = () => {
             {loading ? (
               <ActivityIndicator color={'#fff'} /> // Show loader while loading
             ) : (
-              <Text className="text-white text-xl">Proceed To CheckOut</Text> // Show Submit text when not loading
+              <Text
+                className="text-white text-xl"
+                style={{fontFamily: 'Montserrat-SemiBold'}}>
+                Proceed To CheckOut
+              </Text> // Show Submit text when not loading
             )}
           </TouchableOpacity>
         </View>

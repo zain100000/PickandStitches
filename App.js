@@ -34,6 +34,7 @@ const App = () => {
             headerTitleStyle: {
               color: '#fff',
               fontSize: 20,
+              fontFamily: 'Montserrat-Bold',
             },
             headerStyle: {
               backgroundColor: '#539165',
@@ -49,6 +50,7 @@ const App = () => {
             headerTitleStyle: {
               color: '#fff',
               fontSize: 20,
+              fontFamily: 'Montserrat-Bold',
             },
             headerStyle: {
               backgroundColor: '#539165',
@@ -66,6 +68,7 @@ const App = () => {
             headerTitleStyle: {
               color: '#fff',
               fontSize: 20,
+              fontFamily: 'Montserrat-Bold',
             },
             headerStyle: {
               backgroundColor: '#539165',
@@ -82,6 +85,7 @@ const App = () => {
             headerTitleStyle: {
               color: '#fff',
               fontSize: 20,
+              fontFamily: 'Montserrat-Bold',
             },
             headerStyle: {
               backgroundColor: '#539165',
@@ -99,6 +103,7 @@ const App = () => {
             headerTitleStyle: {
               color: '#fff',
               fontSize: 20,
+              fontFamily: 'Montserrat-Bold',
             },
             headerStyle: {
               backgroundColor: '#00bcd4',
@@ -115,6 +120,7 @@ const App = () => {
             headerTitleStyle: {
               color: '#fff',
               fontSize: 20,
+              fontFamily: 'Montserrat-Bold',
             },
             headerStyle: {
               backgroundColor: '#00bcd4',

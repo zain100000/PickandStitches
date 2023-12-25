@@ -28,6 +28,7 @@ const AdminBottomNavigator = () => {
         headerTitleStyle: {
           color: '#fff',
           fontSize: 25,
+          fontFamily: 'Montserrat-Bold',
         },
         headerStyle: {
           backgroundColor: '#00bcd4',

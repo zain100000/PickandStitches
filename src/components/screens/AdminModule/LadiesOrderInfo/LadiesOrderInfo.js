@@ -27,81 +27,143 @@ const LadiesOrderInfo = ({route}) => {
         />
         <View>
           <View className="flex-row border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg text-black font-bold">Product Name:</Text>
-            <Text className="text-lg text-black font-bold">
+            <Text
+              className="text-lg text-black"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
+              Product Name:
+            </Text>
+            <Text
+              className="text-lg text-black"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
               {selectedOrder.product}
             </Text>
           </View>
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg text-black font-bold">Name:</Text>
-            <Text className="text-lg text-black font-bold">
+            <Text
+              className="text-lg text-black"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
+              Name:
+            </Text>
+            <Text
+              className="text-lg text-black"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
               {selectedOrder.name}
             </Text>
           </View>
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg text-black font-bold">Cell:</Text>
-            <Text className="text-lg text-black font-bold">
+            <Text
+              className="text-lg text-black"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
+              Cell:
+            </Text>
+            <Text
+              className="text-lg text-black"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
               {selectedOrder.cell}
             </Text>
           </View>
           <View className="flex-row  flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg text-black font-bold">Address:</Text>
-            <Text className="text-lg text-black font-bold">
+            <Text
+              className="text-lg text-black"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
+              Address:
+            </Text>
+            <Text
+              className="text-lg text-black"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
               {selectedOrder.address}
             </Text>
           </View>
           <View className="flex-row  flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg text-black font-bold">Comments:</Text>
-            <Text className="text-lg text-black font-bold">
+            <Text
+              className="text-lg text-black"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
+              Comments:
+            </Text>
+            <Text
+              className="text-lg text-black"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
               {selectedOrder.comments}
             </Text>
           </View>
 
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg text-black font-bold">Piko:</Text>
-            <Text className="text-lg text-black font-bold left-4">
+            <Text
+              className="text-lg text-black"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
+              Piko:
+            </Text>
+            <Text className="text-lg text-black  style={{ fontFamily: 'Montserrat-SemiBold',}}left-4">
               {selectedOrder.piko}
             </Text>
           </View>
 
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg text-black font-bold">Top:</Text>
-            <Text className="text-lg text-black font-bold left-6">
+            <Text
+              className="text-lg text-black"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
+              Top:
+            </Text>
+            <Text className="text-lg text-black  style={{ fontFamily: 'Montserrat-SemiBold',}}left-6">
               {selectedOrder.Top}
             </Text>
           </View>
 
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg text-black font-bold">Dupatta:</Text>
-            <Text className="text-lg text-black font-bold left-6">
+            <Text
+              className="text-lg text-black"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
+              Dupatta:
+            </Text>
+            <Text className="text-lg text-black  style={{ fontFamily: 'Montserrat-SemiBold',}}left-6">
               {selectedOrder.Dupatta}
             </Text>
           </View>
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg text-black font-bold ">Embroidery:</Text>
-            <Text className="text-lg text-black font-bold left-6">
+            <Text
+              className="text-lg text-black"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
+              Embroidery:
+            </Text>
+            <Text
+              className="text-lg text-black left-6"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
               {selectedOrder.Embroidery}
             </Text>
           </View>
 
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg text-black font-bold ">Product Price:</Text>
-            <Text className="text-lg text-black font-bold left-0">
+            <Text
+              className="text-lg text-black"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
+              Product Price:
+            </Text>
+            <Text
+              className="text-lg text-black left-0"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
               {selectedOrder.product_price}
             </Text>
           </View>
 
           <View className="flex-row flex-wrap border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg text-black font-bold">
+            <Text
+              className="text-lg text-black"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
               Delivery Charges:
             </Text>
-            <Text className="text-lg text-black font-bold">
+            <Text
+              className="text-lg text-black"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
               Rs.{selectedOrder.deliverycharges}
             </Text>
           </View>
 
           <View className="flex-row  flex-wrap border-b-2 border-b-gray-400 p-5 justify-between items-center">
-            <Text className="text-lg text-black font-bold">Samples:</Text>
+            <Text
+              className="text-lg text-black"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
+              Samples:
+            </Text>
             <TouchableOpacity onPress={toggleModal}>
               <Image
                 source={{uri: selectedOrder.sample}}
@@ -110,8 +172,14 @@ const LadiesOrderInfo = ({route}) => {
             </TouchableOpacity>
           </View>
           <View className="flex-row border-b-2 border-b-gray-400 p-5 justify-between">
-            <Text className="text-lg text-black font-bold">Total:</Text>
-            <Text className="text-lg text-black font-bold">
+            <Text
+              className="text-lg text-black"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
+              Total:
+            </Text>
+            <Text
+              className="text-lg text-black"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
               {selectedOrder.total}Rs/-
             </Text>
           </View>

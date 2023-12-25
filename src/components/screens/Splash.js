@@ -15,7 +15,7 @@ const Splash = () => {
 
       if (netInfoState.isConnected) {
         setTimeout(() => {
-          navigation.navigate('UserHome');
+          navigation.replace('UserHome');
         }, 2000);
       }
     };

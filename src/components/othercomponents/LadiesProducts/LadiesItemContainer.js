@@ -22,11 +22,19 @@ const GentsItemsContainer = ({product_pic, product, price, onwards}) => {
       {product ? (
         <>
           <View className="flex-1 items-center p-2">
-            <Text className="text-[#c3497d] text-xl font-semibold px-2 mt-2">
+            <Text
+              className="text-[#c3497d] text-xl px-2 mt-2"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
               {product}
             </Text>
-            <Text className="text-dark text-lg font-semibold">Rs.{price}</Text>
-            <Text className="text-primary text-lg font-semibold">
+            <Text
+              className="text-dark text-lg"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
+              Rs.{price}
+            </Text>
+            <Text
+              className="text-primary text-lg"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
               {onwards}
             </Text>
           </View>

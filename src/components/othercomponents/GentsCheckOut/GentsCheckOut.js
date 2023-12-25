@@ -133,7 +133,9 @@ const GentsCheckOut = () => {
               <Image key={uri} source={{uri}} className="w-20 h-20" />
             ))
           ) : (
-            <Text className="text-gray-400 font-medium text-sm">
+            <Text
+              className="text-gray-400 text-sm"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
               No Sample Attached
             </Text>
           )}
@@ -297,7 +299,7 @@ const GentsCheckOut = () => {
         wrist,
         comments,
         price,
-        puncha: puncha ? 'Single Kanta(Rs.100)' : 'Double Kanta(Rs.200)', // Adjusted this part based on your logic
+        puncha: puncha ? 'Single Kanta(Rs.100)' : 'Double Kanta(Rs.200)',
         Tob_double_stitch: Tob_double_stitch ? 'Tob Double Stitch(Rs.300)' : '',
         Embroidery: Embroidery
           ? 'Embroidery Full(Rs.500)'
@@ -345,7 +347,7 @@ const GentsCheckOut = () => {
 
         if (notificationResponse.data.success) {
           // Notification sent successfully
-          alert('Thank You! Your Order Has Been Successfully Placed!');
+          alert('Thank You! Your Order Has Been Placed Successfully!');
         } else {
           console.error(
             'Error sending notification:',
@@ -376,14 +378,22 @@ const GentsCheckOut = () => {
         keyExtractor={(item, index) => index.toString()}
         renderItem={({item}) => (
           <View className="flex-row flex-wrap justify-between items-center p-4 border-b-2 border-b-gray-400">
-            <Text className="mb-2 font-semibold text-primary">
+            <Text
+              className="mb-2  text-primary"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
               {item.label}
             </Text>
-            <Text className="font-semibold text-primary">{item.value}</Text>
+            <Text
+              className=" text-primary"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
+              {item.value}
+            </Text>
           </View>
         )}
       />
-      <Text className="text-lg font-semibold text-center text-primary top-3">
+      <Text
+        className="text-lg  text-center text-primary top-3"
+        style={{fontFamily: 'Montserrat-SemiBold'}}>
         Total Price: {formatPriceAsCurrency(total)}
       </Text>
 
@@ -394,7 +404,11 @@ const GentsCheckOut = () => {
           {loading ? (
             <ActivityIndicator color={'#fff'} />
           ) : (
-            <Text className="text-white text-xl">Submit Order</Text>
+            <Text
+              className="text-white text-xl"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
+              Submit Order
+            </Text>
           )}
         </TouchableOpacity>
 
@@ -402,7 +416,11 @@ const GentsCheckOut = () => {
           className="right-5 top-2 justify-center items-center"
           onPress={printReceipt}>
           <AntDesign name="printer" size={30} color="#000" />
-          <Text className="text-ternary font-bold">Print</Text>
+          <Text
+            className="text-ternary"
+            style={{fontFamily: 'Montserrat-SemiBold'}}>
+            Print
+          </Text>
         </TouchableOpacity>
       </View>
     </View>

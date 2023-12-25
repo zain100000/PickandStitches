@@ -23,22 +23,30 @@ const DashBoard = () => {
   return (
     <SafeAreaView className="flex-1 items-center p-5 bg-white">
       <View className="flex-row top-2">
-        <Text className="text-center text-lg font-semibold text-dark right-2">
+        <Text
+          className="text-center text-lg text-dark right-2"
+          style={{fontFamily: 'Montserrat-Bold'}}>
           Current Day:
         </Text>
-        <Text className="text-center text-lg font-semibold text-ternary">
+        <Text
+          className="text-center text-lg text-ternary"
+          style={{fontFamily: 'Montserrat-Bold'}}>
           {formattedDate}
         </Text>
       </View>
 
       <View className="w-96 items-center p-6 mt-10 shadow-md shadow-gray-400">
-        <Text className="text-lg text-[#8B0000] font-semibold">
+        <Text
+          className="text-lg text-[#8B0000]"
+          style={{fontFamily: 'Montserrat-Bold'}}>
           Welcome Back Admin
         </Text>
       </View>
 
       <View className="p-10">
-        <Text className="text-lg text-[#8B0000] font-semibold left-5">
+        <Text
+          className="text-lg text-[#8B0000] left-5"
+          style={{fontFamily: 'Montserrat-Bold'}}>
           Order Analysis
         </Text>
         <BarChart

@@ -224,9 +224,10 @@ const GentsOrderDetails = () => {
             <Text className="text-sm mb-2">Product Name:-</Text>
             <View className="border-2 border-gray-500 mb-3">
               <TextInput
-                className="text-sm text-black left-2 "
+                className="text-sm text-black left-2"
                 placeholder={product}
                 placeholderTextColor={'#539165'}
+                style={{fontFamily: 'Montserrat-SemiBold'}}
               />
             </View>
           </View>
@@ -239,10 +240,13 @@ const GentsOrderDetails = () => {
               value={name}
               onChangeText={setName}
               ref={nameRef}
+              style={{fontFamily: 'Montserrat-SemiBold'}}
             />
           </View>
           {nameError ? (
-            <Text className="text-red-600 text-sm left-3 font-semibold">
+            <Text
+              className="text-red-600 text-sm left-3"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
               {nameError}
             </Text>
           ) : null}
@@ -256,10 +260,13 @@ const GentsOrderDetails = () => {
               value={email}
               onChangeText={setEmail}
               ref={emailRef}
+              style={{fontFamily: 'Montserrat-SemiBold'}}
             />
           </View>
           {emailError ? (
-            <Text className="text-red-600 text-sm left-3 font-semibold">
+            <Text
+              className="text-red-600 text-sm left-3"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
               {emailError}
             </Text>
           ) : null}
@@ -274,10 +281,13 @@ const GentsOrderDetails = () => {
               value={cell}
               onChangeText={handleCellChange}
               ref={cellRef}
+              style={{fontFamily: 'Montserrat-SemiBold'}}
             />
           </View>
           {cellError ? (
-            <Text className="text-red-600 text-sm left-3 font-semibold">
+            <Text
+              className="text-red-600 text-sm left-3"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
               {cellError}
             </Text>
           ) : null}
@@ -291,10 +301,13 @@ const GentsOrderDetails = () => {
               value={adress}
               onChangeText={handleAdressChange}
               ref={adressRef}
+              style={{fontFamily: 'Montserrat-SemiBold'}}
             />
           </View>
           {adressError ? (
-            <Text className="text-red-600 text-sm left-3 font-semibold">
+            <Text
+              className="text-red-600 text-sm left-3"
+              style={{fontFamily: 'Montserrat-SemiBold'}}>
               {adressError}
             </Text>
           ) : null}
@@ -308,22 +321,38 @@ const GentsOrderDetails = () => {
               <Picker.Item
                 label="Select Neck Type"
                 value=""
-                style={{color: '#fff', fontSize: 15}}
+                style={{
+                  color: '#539165',
+                  fontSize: 15,
+                  fontWeight: '800',
+                }}
               />
               <Picker.Item
                 label="Collar"
                 value="Collar"
-                style={{color: '#fff', fontSize: 15}}
+                style={{
+                  color: '#539165',
+                  fontSize: 18,
+                  fontWeight: '800',
+                }}
               />
               <Picker.Item
                 label="Ban"
                 value="Ban"
-                style={{color: '#fff', fontSize: 15}}
+                style={{
+                  color: '#539165',
+                  fontSize: 18,
+                  fontWeight: '800',
+                }}
               />
               <Picker.Item
                 label="Ban Round Cut"
                 value="Ban Round Cut"
-                style={{color: '#fff', fontSize: 15}}
+                style={{
+                  color: '#539165',
+                  fontSize: 18,
+                  fontWeight: '800',
+                }}
               />
             </Picker>
           </View>
@@ -337,47 +366,47 @@ const GentsOrderDetails = () => {
               <Picker.Item
                 label="Select Pocket Type"
                 value=""
-                style={{color: '#fff', fontSize: 15}}
+                style={{color: '#539165', fontSize: 15}}
               />
               <Picker.Item
                 label="Front Single"
                 value="Front Single"
-                style={{color: '#fff', fontSize: 15}}
+                style={{color: '#539165', fontSize: 18, fontWeight: '800'}}
               />
               <Picker.Item
                 label="Front Double"
                 value="Front Double"
-                style={{color: '#fff', fontSize: 15}}
+                style={{color: '#539165', fontSize: 18, fontWeight: '800'}}
               />
               <Picker.Item
                 label="Side Single"
                 value="Side Single"
-                style={{color: '#fff', fontSize: 15}}
+                style={{color: '#539165', fontSize: 18, fontWeight: '800'}}
               />
               <Picker.Item
                 label="Side Double"
                 value="Side Double"
-                style={{color: '#fff', fontSize: 15}}
+                style={{color: '#539165', fontSize: 18, fontWeight: '800'}}
               />
               <Picker.Item
                 label="Front Single, Side Single"
                 value="Front Single, Side Single"
-                style={{color: '#fff', fontSize: 15}}
+                style={{color: '#539165', fontSize: 18, fontWeight: '800'}}
               />
               <Picker.Item
                 label="Front Double, Side Double"
                 value="Front Double, Side Double"
-                style={{color: '#fff', fontSize: 15}}
+                style={{color: '#539165', fontSize: 18, fontWeight: '800'}}
               />
               <Picker.Item
                 label="Front Single, Side Double"
                 value="Front Single, Side Double"
-                style={{color: '#fff', fontSize: 15}}
+                style={{color: '#539165', fontSize: 18, fontWeight: '800'}}
               />
               <Picker.Item
                 label="Front Double, Side Single"
                 value="Front Double, Side Single"
-                style={{color: '#fff', fontSize: 15}}
+                style={{color: '#539165', fontSize: 18, fontWeight: '800'}}
               />
             </Picker>
           </View>
@@ -391,17 +420,17 @@ const GentsOrderDetails = () => {
               <Picker.Item
                 label="Select Daman Type"
                 value=""
-                style={{color: '#fff', fontSize: 15}}
+                style={{color: '#539165', fontSize: 15, fontWeight: '800'}}
               />
               <Picker.Item
                 label="Round"
                 value="Round"
-                style={{color: '#fff', fontSize: 15}}
+                style={{color: '#539165', fontSize: 18, fontWeight: '800'}}
               />
               <Picker.Item
                 label="Straight"
                 value="Straight"
-                style={{color: '#fff', fontSize: 15}}
+                style={{color: '#539165', fontSize: 18, fontWeight: '800'}}
               />
             </Picker>
           </View>
@@ -415,17 +444,17 @@ const GentsOrderDetails = () => {
               <Picker.Item
                 label="Select Wrist Type"
                 value=""
-                style={{color: '#fff', fontSize: 15}}
+                style={{color: '#539165', fontSize: 15, fontWeight: '800'}}
               />
               <Picker.Item
                 label="Open"
                 value="Open"
-                style={{color: '#fff', fontSize: 15}}
+                style={{color: '#539165', fontSize: 18, fontWeight: '800'}}
               />
               <Picker.Item
                 label="Cuff"
                 value="Cuff"
-                style={{color: '#fff', fontSize: 15}}
+                style={{color: '#539165', fontSize: 18, fontWeight: '800'}}
               />
             </Picker>
           </View>
@@ -440,13 +469,16 @@ const GentsOrderDetails = () => {
               numberOfLines={6}
               value={comments}
               onChangeText={setComments}
+              style={{fontFamily: 'Montserrat-SemiBold'}}
             />
           </View>
 
           {/* Puncha */}
           <View>
             <View className="left-3 mt-8">
-              <Text className="text-primary text-lg font-semibold">
+              <Text
+                className="text-primary text-lg"
+                style={{fontFamily: 'Montserrat-SemiBold'}}>
                 Leg Opening (Puncha)
               </Text>
             </View>
@@ -480,10 +512,14 @@ const GentsOrderDetails = () => {
                   </View>
                 </TouchableOpacity>
                 <View className="mt-5">
-                  <Text className="text-[15px] text-black font-semibold">
+                  <Text
+                    className="text-[15px] text-black"
+                    style={{fontFamily: 'Montserrat-SemiBold'}}>
                     Single Kanta
                   </Text>
-                  <Text className="text-[15px] text-black font-semibold">
+                  <Text
+                    className="text-[15px] text-black"
+                    style={{fontFamily: 'Montserrat-SemiBold'}}>
                     (Rs.100)
                   </Text>
                 </View>
@@ -519,10 +555,14 @@ const GentsOrderDetails = () => {
                     </View>
                   </TouchableOpacity>
                   <View className="mt-5">
-                    <Text className="text-[15px] text-black font-semibold">
+                    <Text
+                      className="text-[15px] text-black"
+                      style={{fontFamily: 'Montserrat-SemiBold'}}>
                       Double Kanta
                     </Text>
-                    <Text className="text-[15px] text-black font-semibold">
+                    <Text
+                      className="text-[15px] text-black"
+                      style={{fontFamily: 'Montserrat-SemiBold'}}>
                       (Rs.200)
                     </Text>
                   </View>
@@ -534,7 +574,9 @@ const GentsOrderDetails = () => {
           {/* Top Stitch */}
           <View>
             <View className="left-3 mt-8">
-              <Text className="text-primary text-lg font-semibold">
+              <Text
+                className="text-primary text-lg"
+                style={{fontFamily: 'Montserrat-SemiBold'}}>
                 Tob Stitch
               </Text>
             </View>
@@ -565,10 +607,14 @@ const GentsOrderDetails = () => {
                   </View>
                 </TouchableOpacity>
                 <View className="mt-5">
-                  <Text className="text-[15px] text-black font-semibold">
+                  <Text
+                    className="text-[15px] text-black"
+                    style={{fontFamily: 'Montserrat-SemiBold'}}>
                     Tob Double Stitch
                   </Text>
-                  <Text className="text-[15px] text-black font-semibold">
+                  <Text
+                    className="text-[15px] text-black"
+                    style={{fontFamily: 'Montserrat-SemiBold'}}>
                     (Rs.300)
                   </Text>
                 </View>
@@ -579,7 +625,9 @@ const GentsOrderDetails = () => {
           {/* Embroidery */}
           <View>
             <View className="left-3 mt-8">
-              <Text className="text-primary text-lg font-semibold">
+              <Text
+                className="text-primary text-lg"
+                style={{fontFamily: 'Montserrat-SemiBold'}}>
                 Embroidery
               </Text>
             </View>
@@ -613,10 +661,14 @@ const GentsOrderDetails = () => {
                   </View>
                 </TouchableOpacity>
                 <View className="mt-5">
-                  <Text className="text-[15px] text-black font-semibold">
+                  <Text
+                    className="text-[15px] text-black"
+                    style={{fontFamily: 'Montserrat-SemiBold'}}>
                     Embroidery Full
                   </Text>
-                  <Text className="text-[15px] text-black font-semibold">
+                  <Text
+                    className="text-[15px] text-black"
+                    style={{fontFamily: 'Montserrat-SemiBold'}}>
                     (Rs.500)
                   </Text>
                 </View>
@@ -652,10 +704,14 @@ const GentsOrderDetails = () => {
                     </View>
                   </TouchableOpacity>
                   <View className="mt-5">
-                    <Text className="text-[15px] text-black font-semibold">
+                    <Text
+                      className="text-[15px] text-black"
+                      style={{fontFamily: 'Montserrat-SemiBold'}}>
                       Embroidery Normal
                     </Text>
-                    <Text className="text-[15px] text-black font-semibold">
+                    <Text
+                      className="text-[15px] text-black"
+                      style={{fontFamily: 'Montserrat-SemiBold'}}>
                       (Rs.300)
                     </Text>
                   </View>
@@ -675,7 +731,9 @@ const GentsOrderDetails = () => {
                 />
               ))
             ) : (
-              <Text className="text-gray-400 font-medium text-sm">
+              <Text
+                className="text-gray-400 text-sm"
+                style={{fontFamily: 'Montserrat-SemiBold'}}>
                 Any Sample (Upto 3 Samples)
               </Text>
             )}
@@ -686,7 +744,9 @@ const GentsOrderDetails = () => {
             <TouchableOpacity
               onPress={handlePickDocument}
               className="pl-5 pr-5 pt-4 pb-4 rounded-md bg-primary">
-              <Text className="text-white font-bold text-[16px]">
+              <Text
+                className="text-white text-[16px]"
+                style={{fontFamily: 'Montserrat-SemiBold'}}>
                 Choose File
               </Text>
             </TouchableOpacity>
@@ -699,7 +759,11 @@ const GentsOrderDetails = () => {
             {loading ? (
               <ActivityIndicator color={'#fff'} /> // Show loader while loading
             ) : (
-              <Text className="text-white text-xl">Proceed To CheckOut</Text> // Show Submit text when not loading
+              <Text
+                className="text-white text-xl"
+                style={{fontFamily: 'Montserrat-SemiBold'}}>
+                Proceed To CheckOut
+              </Text> // Show Submit text when not loading
             )}
           </TouchableOpacity>
         </View>

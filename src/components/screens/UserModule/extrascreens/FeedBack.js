@@ -134,12 +134,13 @@ const FeedBack = () => {
                   <AntDesign name="user" size={25} color={'#fff'} />
                 </View>
                 <TextInput
-                  className="text-sm px-5 text-white"
+                  className="text-sm px-5 text-white w-full"
                   placeholder="Your Name"
                   placeholderTextColor={'#fff'}
                   value={fullname}
                   onChangeText={setFullName}
                   ref={fullnameRef}
+                  style={{fontFamily: 'Montserrat-SemiBold'}}
                 />
               </View>
 
@@ -148,13 +149,14 @@ const FeedBack = () => {
                   <AntDesign name="mail" size={25} color={'#fff'} />
                 </View>
                 <TextInput
-                  className="text-sm px-5 text-white"
+                  className="text-sm px-5 text-white w-full"
                   keyboardType="email-address"
                   placeholder="Your Email"
                   placeholderTextColor={'#fff'}
                   value={email}
                   onChangeText={setEmail}
                   ref={emailRef}
+                  style={{fontFamily: 'Montserrat-SemiBold'}}
                 />
               </View>
 
@@ -163,13 +165,14 @@ const FeedBack = () => {
                   <AntDesign name="mobile1" size={25} color={'#fff'} />
                 </View>
                 <TextInput
-                  className="text-sm px-5 text-white"
+                  className="text-sm px-5 text-white w-full"
                   keyboardType="number-pad"
                   placeholder="Your Phone"
                   placeholderTextColor={'#fff'}
                   value={mobile}
                   onChangeText={setMobile}
                   ref={mobileRef}
+                  style={{fontFamily: 'Montserrat-SemiBold'}}
                 />
               </View>
 
@@ -178,12 +181,13 @@ const FeedBack = () => {
                   <AntDesign name="book" size={25} color={'#fff'} />
                 </View>
                 <TextInput
-                  className="text-sm px-5 text-white"
+                  className="text-sm px-5 text-white w-full"
                   placeholder="Subject"
                   placeholderTextColor={'#fff'}
                   value={subject}
                   onChangeText={setSubject}
                   ref={subjectRef}
+                  style={{fontFamily: 'Montserrat-SemiBold'}}
                 />
               </View>
 
@@ -192,7 +196,7 @@ const FeedBack = () => {
                   <AntDesign name="message1" size={25} color={'#fff'} />
                 </View>
                 <TextInput
-                  className="text-sm px-5 text-light border-b-2 border-b-black"
+                  className="text-sm px-5 text-light border-b-2 border-b-black w-full"
                   placeholder="Message"
                   placeholderTextColor="white"
                   multiline={true}
@@ -200,6 +204,7 @@ const FeedBack = () => {
                   value={message}
                   onChangeText={setMessage}
                   ref={messageRef}
+                  style={{fontFamily: 'Montserrat-SemiBold'}}
                 />
               </View>
 
@@ -210,7 +215,11 @@ const FeedBack = () => {
                 {loading ? (
                   <ActivityIndicator color={'#fff'} /> // Show loader while loading
                 ) : (
-                  <Text className="text-white text-xl">Submit</Text> // Show login text when not loading
+                  <Text
+                    className="text-white text-xl"
+                    style={{fontFamily: 'Montserrat-SemiBold'}}>
+                    Submit
+                  </Text> // Show login text when not loading
                 )}
               </TouchableOpacity>
               {/* Button End */}
