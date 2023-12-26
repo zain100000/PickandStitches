@@ -361,6 +361,7 @@ const GentsCheckOut = () => {
           Daman,
           wrist,
           comments,
+          product,
           price,
           puncha: puncha
             ? `${puncha} (Rs.${
@@ -384,7 +385,7 @@ const GentsCheckOut = () => {
               })`
             : '',
           deliverycharges,
-          total,
+          total: calculateTotalPrice(),
         });
 
         if (notificationResponse.data.success) {

@@ -13,7 +13,7 @@ import Print from 'react-native-print';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import axios from 'axios';
 
-const LediesCheckOut = () => {
+const LadiesCheckOut = () => {
   const route = useRoute();
   const product = route.params?.product || 'Default product';
   const product_pic = route.params?.product_pic || 'Default product_pic';
@@ -106,8 +106,8 @@ const LediesCheckOut = () => {
     {label: 'Name', value: name},
     {label: 'Email', value: email},
     {label: 'Mobile', value: cell},
-    {label: 'adress', value: adress},
-    {label: 'Comment', value: comments || 'No additional comment'},
+    {label: 'Address', value: adress},
+    {label: 'Comments', value: comments || 'No additional comments'},
     {label: 'Product Base Price', value: formatPriceAsCurrency(price)},
     {
       label: 'Piko',
@@ -336,39 +336,52 @@ const LediesCheckOut = () => {
         time: currentTime,
         deliverycharges,
         price,
-        total,
+        total: calculateTotalPrice(),
         product,
-        peko: pikoFull
-          ? 'Piko Full(Rs.120)'
-          : pikoHalf
-          ? 'Piko Half(Rs.60)'
+        peko: peko
+          ? `${peko} (Rs.${
+              peko === 'Piko Full' ? 120 : peko === 'Piko Half' ? 60 : 0
+            })`
           : '',
 
-        Dupata_Piping: dupattaPiping
-          ? 'Dupatta Piping(Rs.300)'
-          : dupattaExtension
-          ? 'Dupatta Extension(Rs.300)'
-          : dupattaFetta
-          ? 'Dupatta Fetta(Rs.300)'
+        Dupata_Piping: Dupata_Piping
+          ? `${Dupata_Piping} (Rs.${
+              Dupata_Piping === 'Dupatta Piping'
+                ? 300
+                : Dupata_Piping === 'Dupatta Extension'
+                ? 300
+                : Dupata_Piping === 'Dupatta Fetta'
+                ? 300
+                : 0
+            })`
           : '',
 
-        Full_top_piping: fullTopPiping
-          ? 'Full Top Piping(Rs.300)'
-          : fullTopExtension
-          ? 'Full Top Extension(Rs.300)'
-          : fullTopFetta
-          ? 'Full Top Fetta(Rs.300)'
+        Full_top_piping: Full_top_piping
+          ? `${Full_top_piping} (Rs.${
+              Full_top_piping === 'Full Top Piping'
+                ? 300
+                : Full_top_piping === 'Full Top Extension'
+                ? 300
+                : Full_top_piping === 'Full Top Fetta'
+                ? 300
+                : 0
+            })`
           : '',
 
-        Embroidery: embroideryGalla
-          ? 'Embroidery Galla(Rs.300)'
-          : embroideryDaman
-          ? 'Embroidery Daman(Rs.300)'
-          : embroideryBazo
-          ? 'Embroidery Bazo(Rs.300)'
-          : embroideryBottom
-          ? 'Embroidery Bottom(Rs.300)'
+        Embroidery: Embroidery
+          ? `${Embroidery} (Rs.${
+              Embroidery === 'Embroidery Galla'
+                ? 300
+                : Embroidery === 'Embroidery Daman'
+                ? 300
+                : Embroidery === 'Embroidery Bazo'
+                ? 300
+                : Embroidery === 'Embroidery Bazo'
+                ? 300
+                : 0
+            })`
           : '',
+
         sample: sample.forEach((uri, index) => {
           const sample = `sample_${index + 1}.jpg`;
           formData.append('sample[]', {
@@ -392,12 +405,61 @@ const LediesCheckOut = () => {
         // Order submission successful
         // Now, send a notification to the admin
         const notificationApiUrl =
-          'https://pickandstitches.com/font-awesome/scss/scss/notifications.php';
+          'https://pickandstitches.com/font-awesome/scss/scss/api_female_orders_notifications.php';
         const notificationResponse = await axios.post(notificationApiUrl, {
+          product,
           name,
           email,
           cell,
           adress,
+          comments,
+          price,
+          peko: peko
+            ? `${peko} (Rs.${
+                peko === 'Piko Full' ? 120 : peko === 'Piko Half' ? 60 : 0
+              })`
+            : '',
+
+          Dupata_Piping: Dupata_Piping
+            ? `${Dupata_Piping} (Rs.${
+                Dupata_Piping === 'Dupatta Piping'
+                  ? 300
+                  : Dupata_Piping === 'Dupatta Extension'
+                  ? 300
+                  : Dupata_Piping === 'Dupatta Fetta'
+                  ? 300
+                  : 0
+              })`
+            : '',
+
+          Full_top_piping: Full_top_piping
+            ? `${Full_top_piping} (Rs.${
+                Full_top_piping === 'Full Top Piping'
+                  ? 300
+                  : Full_top_piping === 'Full Top Extension'
+                  ? 300
+                  : Full_top_piping === 'Full Top Fetta'
+                  ? 300
+                  : 0
+              })`
+            : '',
+
+          Embroidery: Embroidery
+            ? `${Embroidery} (Rs.${
+                Embroidery === 'Embroidery Galla'
+                  ? 300
+                  : Embroidery === 'Embroidery Daman'
+                  ? 300
+                  : Embroidery === 'Embroidery Bazo'
+                  ? 300
+                  : Embroidery === 'Embroidery Bazo'
+                  ? 300
+                  : 0
+              })`
+            : '',
+
+          deliverycharges,
+          total: calculateTotalPrice(),
         });
 
         if (notificationResponse.data.success) {
@@ -417,6 +479,9 @@ const LediesCheckOut = () => {
         alert('Error saving data. Please try again later.');
       }
     } catch (error) {
+      // Log the Axios error for debugging
+      console.error('AxiosError:', error);
+
       // Handle any errors that occurred during the process
       console.error('Error handling checkout:', error);
       alert('An error occurred during checkout. Please try again.');
@@ -482,4 +547,4 @@ const LediesCheckOut = () => {
   );
 };
 
-export default LediesCheckOut;
+export default LadiesCheckOut;
