@@ -200,11 +200,11 @@ const GentsOrderDetails = () => {
       setWrist('');
       setComments('');
       setSample('');
-      setSingleKanta(false);
-      setDoubleKanta(false);
-      setTobDoubleStitch(false);
-      setEmbroideryFull(false);
-      setEmbroideryNormal(false);
+      setSingleKanta('');
+      setDoubleKanta('');
+      setTobDoubleStitch('');
+      setEmbroideryFull('');
+      setEmbroideryNormal('');
       setSample('');
     }, 2000);
   };

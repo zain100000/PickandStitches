@@ -299,11 +299,26 @@ const GentsCheckOut = () => {
         wrist,
         comments,
         price,
-        puncha: puncha ? 'Single Kanta(Rs.100)' : 'Double Kanta(Rs.200)',
+        puncha: puncha
+          ? `${puncha} (Rs.${
+              puncha === 'Single Kanta'
+                ? 100
+                : puncha === 'Double Kanta'
+                ? 200
+                : 0
+            })`
+          : '',
+
         Tob_double_stitch: Tob_double_stitch ? 'Tob Double Stitch(Rs.300)' : '',
         Embroidery: Embroidery
-          ? 'Embroidery Full(Rs.500)'
-          : 'Embroidery Normal(Rs.300)',
+          ? `${Embroidery} (Rs.${
+              Embroidery === 'Embroidery Full'
+                ? 500
+                : Embroidery === 'Embroidery Normal'
+                ? 300
+                : 0
+            })`
+          : '',
         type: 'male',
         total: calculateTotalPrice(),
         date: currentDate,
@@ -331,18 +346,45 @@ const GentsCheckOut = () => {
         },
       });
 
-      console.log('Order:', orderData);
-
       if (response.status === 200) {
         // Order submission successful
         // Now, send a notification to the admin
         const notificationApiUrl =
-          'https://pickandstitches.com/font-awesome/scss/scss/notifications.php';
+          'https://pickandstitches.com/font-awesome/scss/scss/api_male_orders_notifications.php';
         const notificationResponse = await axios.post(notificationApiUrl, {
           name,
           email,
           cell,
           adress,
+          neck,
+          Pocket,
+          Daman,
+          wrist,
+          comments,
+          price,
+          puncha: puncha
+            ? `${puncha} (Rs.${
+                puncha === 'Single Kanta'
+                  ? 100
+                  : puncha === 'Double Kanta'
+                  ? 200
+                  : 0
+              })`
+            : '',
+          Tob_double_stitch: Tob_double_stitch
+            ? 'Tob Double Stitch(Rs.300)'
+            : '',
+          Embroidery: Embroidery
+            ? `${Embroidery} (Rs.${
+                Embroidery === 'Embroidery Full'
+                  ? 500
+                  : Embroidery === 'Embroidery Normal'
+                  ? 300
+                  : 0
+              })`
+            : '',
+          deliverycharges,
+          total,
         });
 
         if (notificationResponse.data.success) {
@@ -357,13 +399,10 @@ const GentsCheckOut = () => {
         }
       } else {
         // Order submission failed
-        console.error('API request failed with status code:', response.status);
-        console.log('API Response Data:', response.data);
         alert('Error saving data. Please try again later.');
       }
     } catch (error) {
       // Handle any errors that occurred during the process
-      console.error('Error handling checkout:', error);
       alert('An error occurred during checkout. Please try again.');
     } finally {
       // Hide loading indicator
