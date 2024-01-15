@@ -235,7 +235,7 @@ const GentsOrderDetails = () => {
           <View className="border-b-2 border-b-gray-500 mb-3">
             <TextInput
               className="text-sm text-primary left-3"
-              placeholder="Ful Name"
+              placeholder="Full Name"
               placeholderTextColor={'#539165'}
               value={name}
               onChangeText={setName}
