@@ -187,7 +187,6 @@ const GentsOrderDetails = () => {
           ? 'Embroidery Normal'
           : '',
 
-        sample,
       });
 
       setName('');
