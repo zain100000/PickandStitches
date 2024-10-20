@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "171649481852",
+    "project_id": "pick-and-stitches-d16b6",
+    "storage_bucket": "pick-and-stitches-d16b6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:171649481852:android:ccd569cd56ae021a879df9",
+        "android_client_info": {
+          "package_name": "com.pickandstitches"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFUpH4b_hPIDlR-36UR7Frf6NgMACTzM8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
