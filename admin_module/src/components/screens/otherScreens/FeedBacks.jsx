@@ -4,7 +4,7 @@ import { collection, getDocs, doc, deleteDoc, query } from "firebase/firestore";
 import { TailSpin } from "react-loader-spinner";
 import { toast } from "react-toastify";
 import CustomModal from "../../utils/CustomModal";
-import "./otherCss/Feedbacks.css";
+import "./otherCss/FeedBacks.css";
 import { useNavigate } from "react-router-dom";
 import deleteAnimation from "../../../assets/animations/delete.json";
 
