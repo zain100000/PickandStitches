@@ -60,7 +60,7 @@ const GentsCheckOut = () => {
   const top_stitch = 300;
   const embroideryFull = 500;
   const embroideryNormal = 300;
-  const deliverycharges = 300;
+  const deliveryCharges = 300;
 
   const calculateTotalPrice = () => {
     let totalPrice = basePrice;
@@ -81,7 +81,7 @@ const GentsCheckOut = () => {
       totalPrice += embroideryNormal;
     }
 
-    totalPrice += deliverycharges;
+    totalPrice += deliveryCharges;
 
     return totalPrice;
   };
@@ -137,10 +137,12 @@ const GentsCheckOut = () => {
       })`,
     },
 
-    {label: 'Delivery Charges', value: formatPriceAsCurrency(deliverycharges)},
+    {label: 'Delivery Charges', value: formatPriceAsCurrency(deliveryCharges)},
   ];
 
   const handleSubmitOrder = async () => {
+    const currentDate = new Date().toISOString().split('T')[0];
+    const currentTime = new Date().toLocaleTimeString();
     setLoading(true);
 
     try {
@@ -165,14 +167,15 @@ const GentsCheckOut = () => {
         comments,
         price,
         puncha,
-        Top_double_stitch: top_double_stitch ? 'Top Double Stitch' : null,
-        Embroidery: embroidery ? embroidery : null,
+        top: top_double_stitch ? 'Top Double Stitch' : null,
+        embroidery: embroidery ? embroidery : null,
         availTime,
         total,
-        deliverycharges,
+        deliveryCharges,
         sample: sampleUrl,
         category: 'gents',
-        orderPlace: Date.now(),
+        date: currentDate,
+        time: currentTime,
       };
 
       const response = await firestore().collection('orders').add(orderData);

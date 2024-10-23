@@ -64,7 +64,7 @@ const LadiesCheckOut = () => {
   const embroideryDaman = 300;
   const embroideryBazo = 300;
   const embroideryBottom = 300;
-  const deliverycharges = 300;
+  const deliveryCharges = 300;
 
   const calculateTotalPrice = () => {
     let totalPrice = basePrice;
@@ -104,7 +104,7 @@ const LadiesCheckOut = () => {
       totalPrice += embroideryBottom;
     }
 
-    totalPrice += deliverycharges;
+    totalPrice += deliveryCharges;
 
     return totalPrice;
   };
@@ -176,10 +176,12 @@ const LadiesCheckOut = () => {
       })`,
     },
 
-    {label: 'Delivery Charges', value: formatPriceAsCurrency(deliverycharges)},
+    {label: 'Delivery Charges', value: formatPriceAsCurrency(deliveryCharges)},
   ];
 
   const handleSubmitOrder = async () => {
+    const currentDate = new Date().toISOString().split('T')[0];
+    const currentTime = new Date().toLocaleTimeString();
     setLoading(true);
 
     try {
@@ -207,8 +209,9 @@ const LadiesCheckOut = () => {
         sample: sampleUrl,
         category: 'ladies',
         total,
-        deliverycharges,
-        orderPlace: Date.now(),
+        deliveryCharges,
+        date: currentDate,
+        time: currentTime,
       };
 
       const response = await firestore().collection('orders').add(orderData);
