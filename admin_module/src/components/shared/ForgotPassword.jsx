@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../../../FirebaseConfig/FirebaseConfig";
 import { TailSpin } from "react-loader-spinner";
-import "./css/Signin.css";
+import "./css/ForgotPassword.css";
 
-const Signin = () => {
+const ForgotPassword = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -23,14 +22,7 @@ const Signin = () => {
     return "";
   };
 
-  const validatePassword = () => {
-    if (!password) {
-      return "Password is required";
-    }
-    return "";
-  };
-
-  const handleSignIn = async (e) => {
+  const handleResetPassword = async (e) => {
     e.preventDefault();
     setLoading(true);
 
@@ -41,41 +33,31 @@ const Signin = () => {
       return;
     }
 
-    const passwordError = validatePassword();
-    if (passwordError) {
-      toast.error(passwordError);
-      setLoading(false);
-      return;
-    }
-
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      setEmail("");
-      setPassword("");
-      toast.success("Sign in successful!");
-      navigate("/dashboard");
+      await sendPasswordResetEmail(auth, email);
+      toast.success("Password reset email sent! Please check your inbox.");
+      navigate("/auth/signin");
     } catch (error) {
-      console.error("Error signing in: ", error);
-      if (error.code === "auth/user-not-found") {
-        toast.error("User not found. Please check your email.");
-      } else if (error.code === "auth/wrong-password") {
-        toast.error("Incorrect password. Please try again.");
-      } else {
-        toast.error("Error during sign in. Please check your credentials.");
-      }
+      console.error("Error sending password reset email: ", error);
+      toast.error(
+        "Error sending password reset email. Please check your email."
+      );
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <section id="signin-form">
+    <section id="forgot-password-form">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-12 col-lg-6">
-            <div className="login-wrap p-4 p-md-5">
-              <h3 className="mb-4">Sign In</h3>
-              <form onSubmit={handleSignIn} className="signin-form">
+            <div className="forgot-password-wrap p-4 p-md-5">
+              <h3 className="mb-4">Reset Password</h3>
+              <form
+                onSubmit={handleResetPassword}
+                className="forgot-password-form"
+              >
                 <div className="form-group mb-3">
                   <label className="label">Email</label>
                   <input
@@ -85,21 +67,6 @@ const Signin = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
-                </div>
-                <div className="form-group mb-3">
-                  <label className="label">Password</label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </div>
-                <div className="form-group">
-                  <div className="w-50 text-md-left">
-                    <Link to="/auth/forgot_password">Forgot Password</Link>
-                  </div>
                 </div>
                 <div className="form-group">
                   <button
@@ -112,13 +79,13 @@ const Signin = () => {
                         <TailSpin height={20} width={20} color="#fff" />
                       </div>
                     ) : (
-                      "Sign In"
+                      "Send Reset Link"
                     )}
                   </button>
                 </div>
               </form>
               <p className="text-center">
-                Didn't have an account? <Link to="/auth/signup">Sign Up</Link>
+                Remembered your password? <Link to="/auth/signin">Sign In</Link>
               </p>
             </div>
           </div>
@@ -128,4 +95,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default ForgotPassword;

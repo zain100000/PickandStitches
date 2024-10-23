@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Signin from "./components/shared/Signin";
 import Signup from "./components/shared/Signup";
+import ForgotPassword from "./components/shared/ForgotPassword";
 import Error404 from "./components/shared/Error404";
 import Dashboard from "./components/screens/otherScreens/Dashboard";
 import GentsOrders from "./components/screens/otherScreens/GentsOrders";
@@ -19,6 +20,7 @@ const App = () => {
       <Route path="/" element={<Navigate to="/auth/signin" replace />} />
       <Route path="/auth/signin" element={<Signin />} />
       <Route path="/auth/signup" element={<Signup />} />
+      <Route path="/auth/forgot_password" element={<ForgotPassword />} />
       <Route
         path="/dashboard"
         element={
