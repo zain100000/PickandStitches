@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;600;700&display=swap");
+
+:root {
+  --font-family: "Montserrat", sans-serif;
+  --primary-color: #56c777;
+  --secondary-color: #bdf1cc;
+  --custom-modal-background-color: #ffffff;
+  --dark: #000;
+  --gray: #d0d5dd;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+/* ------------------------------------------ CUSTOM MODAL CSS ----------------------------------- */
+/* ----------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------- */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: var(--custom-modal-background-color);
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 90%;
+  width: 400px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  font-family: var(--font-family);
+}
+
+.modal-content.opening {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.modal-content.closing {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.modal-animation {
+  width: 40%;
+  margin: 0 auto 5px;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  color: var(--dark);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.modal-description {
+  font-size: 1rem;
+  color: var(--dark);
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.modal-button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-button.primary {
+  background-color: #000;
+  color: white;
+  font-weight: 500;
+}
+
+.modal-button.secondary {
+  background-color: red;
+  font-weight: 500;
+  color: white;
+}

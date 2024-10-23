@@ -43,7 +43,11 @@ const GentsProducts = () => {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const snapshot = await firestore().collection('gents_products').get();
+      const snapshot = await firestore()
+        .collection('products')
+        .where('category', '==', 'gents')
+        .get();
+
       const productsList = snapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data(),
@@ -81,7 +85,6 @@ const GentsProducts = () => {
       console.error('Error fetching products: ', error);
     } finally {
       setLoading(false);
-      setRefreshing(false);
     }
   };
 

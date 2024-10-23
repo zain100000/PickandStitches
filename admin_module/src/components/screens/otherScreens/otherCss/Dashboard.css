@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;600;700&display=swap");
+
+:root {
+  --font-family: "Montserrat", sans-serif;
+  --primary-color: #56c777;
+  --secondary-color: #bdf1cc;
+  --dashboard-background-color: #ffffff;
+  --dark: #000;
+  --gray: #d0d5dd;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+/* ------------------------------------------ DASHBOARD CSS -------------------------------------- */
+/* ----------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------- */
+
+#dashboard .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Montserrat';
+}
+
+

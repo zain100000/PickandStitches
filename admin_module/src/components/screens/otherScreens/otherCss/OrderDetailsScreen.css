@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;600;700&display=swap");
+
+:root {
+  --font-family: "Montserrat", sans-serif;
+  --primary-color: #56c777;
+  --secondary-color: #bdf1cc;
+  --order-details-background-color: #ffffff;
+  --dark: #000;
+  --gray: #d0d5dd;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+/* ------------------------------------------ ORDER DETAILS CSS ---------------------------------- */
+/* ----------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------- */
+
+#order-details {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1rem;
+  background-color: var(--order-details-background-color);
+}
+
+#order-details .order-details-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-family: var(--font-family);
+}
+
+#order-details .row.order-details-row {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1rem;
+  width: 100%;
+}
+
+#order-details .product-img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  margin: 5px 100px;
+}
+
+#order-details .sample-img {
+  width: 20%;
+}
+
+#order-details .col-sm-12.col-md-6.col-lg-8 {
+  flex: 1;
+}
+
+#order-details .orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-family);
+  background-color: var(--order-details-background-color);
+}
+
+#order-details .orders-table th,
+#order-details .orders-table td {
+  padding: 0.5rem 0.5rem;
+  font-size: 0.85rem;
+  border-bottom: 1px solid var(--gray);
+}
+
+#order-details .orders-table th {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 600;
+  text-align: left;
+}
+
+#order-details .orders-table td {
+  background-color: #f8f9fa;
+}
+
+#order-details .orders-table img {
+  max-width: 150px;
+  border-radius: 5px;
+}
+
+#order-details .loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#order-details .no-details-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#order-details .no-details {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+  #order-details .row.order-details-row {
+    flex-direction: column;
+  }
+
+  #order-details .orders-table th,
+  #order-details .orders-table td {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.5rem;
+  }
+
+  #order-details .product-img {
+    max-width: 100%;
+  }
+}

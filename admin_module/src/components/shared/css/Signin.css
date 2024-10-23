@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  --font-family: "Montserrat", sans-serif;
+  --primary-color: #56c777;
+  --secondary-color: #bdf1cc;
+  --signin-background-color: #ffffff;
+  --dark: #000;
+  --gray: #d0d5dd;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+/* ------------------------------------------ SIGNIN FORM CSS ------------------------------------ */
+/* ----------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------- */
+
+#signin-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 0 1rem;
+}
+
+#signin-form .container {
+  max-width: 1200px;
+}
+
+#signin-form .row {
+  margin: 0;
+  justify-content: center;
+}
+
+#signin-form .login-wrap {
+  width: 100%;
+  max-width: 800px;
+  padding: 3rem;
+  background-color: var(--signin-background-color);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+#signin-form .login-wrap h3 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+#signin-form .signin-form {
+  width: 100%;
+}
+
+#signin-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+#signin-form .form-group .label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+#signin-form .form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--gray);
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+#signin-form .btn {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#signin-form .btn:hover {
+  background-color: #45a85b;
+}
+
+#signin-form .w-50 {
+  width: 50%;
+}
+
+#signin-form a {
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+#signin-form a:hover {
+  color: #45a85b;
+}
+
+#signin-form .text-center {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}

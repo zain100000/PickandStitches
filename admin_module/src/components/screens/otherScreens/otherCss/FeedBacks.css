@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;600;700&display=swap");
+
+:root {
+  --font-family: "Montserrat", sans-serif;
+  --primary-color: #56c777;
+  --secondary-color: #bdf1cc;
+  --get-feedbacks-background-color: #ffffff;
+  --sidebar-width: 250px;
+  --dark: #000;
+  --gray: #d0d5dd;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+/* ------------------------------------------ FEEDBACKS CSS -------------------------------------- */
+/* ----------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------- */
+
+#get-feedbacks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 110%;
+  background-color: var(--get-feedbacks-background-color);
+}
+
+#get-feedbacks .feedbacks-container {
+  width: 75%;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 10px;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+#get-feedbacks .feedbacks-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Montserrat";
+}
+
+#get-feedbacks .feedbacks-table thead {
+  background-color: var(--primary-color);
+  color: #fff;
+  position: sticky;
+  top: 0;
+}
+
+#get-feedbacks .feedbacks-table th,
+#get-feedbacks .feedbacks-table td {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+#get-feedbacks .feedbacks-table th {
+  text-transform: uppercase;
+}
+
+#get-feedbacks .action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+#get-feedbacks .delete-btn {
+  color: #dc3545;
+}
+
+#get-feedbacks .view-btn {
+  color: #007bff;
+}
+
+#get-feedbacks .action-btn:hover {
+  transform: scale(1.2);
+}
+
+#get-feedbacks .loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#get-feedbacks .no-feedbacks-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#get-feedbacks .no-feedbacks {
+  font-size: 16px;
+  font-family: "Montserrat";
+  margin: 4px 0px;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+  #get-feedbacks .feedbacks-container {
+    width: 100%;
+    padding: 15px;
+    overflow-x: scroll;
+  }
+
+  #get-feedbacks .feedbacks-table {
+    width: 100%;
+    min-width: 600px;
+  }
+
+  #get-feedbacks .feedbacks-table th,
+  #get-feedbacks .feedbacks-table td {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+}

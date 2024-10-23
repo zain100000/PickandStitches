@@ -146,7 +146,7 @@ const GentsCheckOut = () => {
     try {
       let sampleImageName = `sample_${Date.now()}.jpg`;
       const reference = storage().ref(
-        `gents_orders/samples/${sampleImageName}`,
+        `orders/gents_orders/samples/${sampleImageName}`,
       );
 
       await reference.putFile(sample);
@@ -168,13 +168,14 @@ const GentsCheckOut = () => {
         Top_double_stitch: top_double_stitch ? 'Top Double Stitch' : null,
         Embroidery: embroidery ? embroidery : null,
         availTime,
+        total,
+        deliverycharges,
         sample: sampleUrl,
-        createdAt: Date.now(),
+        category: 'gents',
+        orderPlace: Date.now(),
       };
 
-      const response = await firestore()
-        .collection('gents_orders')
-        .add(orderData);
+      const response = await firestore().collection('orders').add(orderData);
 
       if (response) {
         setShowSuccessModal(true);
