@@ -90,8 +90,8 @@ const OrderDetailsScreen = () => {
                         <td>{order.puncha}</td>
                       </tr>
                       <tr>
-                        <th>Top Stitch</th>
-                        <td>{order.Top_double_stitch}</td>
+                        <th>Top</th>
+                        <td>{order.top}</td>
                       </tr>
                       <tr>
                         <th>Embroidery</th>
