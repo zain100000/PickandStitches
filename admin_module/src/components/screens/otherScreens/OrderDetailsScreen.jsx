@@ -64,56 +64,14 @@ const OrderDetailsScreen = () => {
                   <tr>
                     <th>Address</th>
                     <td>{order.address}</td>
-                    <th>Neck</th>
-                    {order.category === "gents" ? (
-                      <td>{order.neck}</td>
-                    ) : (
-                      <td>{order.piko}</td>
-                    )}
                   </tr>
                   <tr>
-                    <th>Pocket</th>
-                    {order.category === "gents" ? (
-                      <td>{order.pocket}</td>
-                    ) : (
-                      <td>{order.dupatta}</td>
-                    )}
-                    <th>Daman</th>
-                    {order.category === "gents" ? (
-                      <td>{order.daman}</td>
-                    ) : (
-                      <td>{order.top}</td>
-                    )}
+                    <th>Comments</th>
+                    <td>{order.comments}</td>
                   </tr>
-                  <tr>
-                    <th>Wrist</th>
-                    {order.category === "gents" ? (
-                      <td>{order.wrist}</td>
-                    ) : (
-                      <td>{order.comments}</td>
-                    )}
-                    <th>Embroidery</th>
-                    <td>{order.embroidery}</td>
-                  </tr>
-                  {order.category === "gents" && (
-                    <tr>
-                      <th>Puncha</th>
-                      <td>{order.puncha}</td>
-                      <th>Top Stitch</th>
-                      <td>{order.Top_double_stitch}</td>
-                    </tr>
-                  )}
                   <tr>
                     <th>Available Time</th>
                     <td>{order.availTime}</td>
-                    <th>Price</th>
-                    <td>Rs.{order.price}-/</td>
-                  </tr>
-                  <tr>
-                    <th>Delivery Charges</th>
-                    <td>Rs.{order.deliveryCharges}-/</td>
-                    <th>Total Price</th>
-                    <td>Rs.{order.total}-/</td>
                   </tr>
                   <tr>
                     <th>Sample</th>
@@ -125,6 +83,68 @@ const OrderDetailsScreen = () => {
                       />
                     </td>
                   </tr>
+                  <tr>
+                    <th>Delivery Charges</th>
+                    <td>Rs.{order.deliveryCharges}-/</td>
+                    <th>Total Price</th>
+                    <td>Rs.{order.total}-/</td>
+                  </tr>
+
+                  {/* Fields specific to Gents */}
+                  {order.category === "gents" && (
+                    <>
+                      <tr>
+                        <th>Neck</th>
+                        <td>{order.neck}</td>
+                      </tr>
+                      <tr>
+                        <th>Pocket</th>
+                        <td>{order.pocket}</td>
+                      </tr>
+                      <tr>
+                        <th>Daman</th>
+                        <td>{order.daman}</td>
+                      </tr>
+                      <tr>
+                        <th>Wrist</th>
+                        <td>{order.wrist}</td>
+                      </tr>
+                      <tr>
+                        <th>Puncha</th>
+                        <td>{order.puncha}</td>
+                      </tr>
+                      <tr>
+                        <th>Top Stitch</th>
+                        <td>{order.Top_double_stitch}</td>
+                      </tr>
+                      <tr>
+                        <th>Embroidery</th>
+                        <td>{order.embroidery}</td>
+                      </tr>
+                    </>
+                  )}
+
+                  {/* Fields specific to Ladies */}
+                  {order.category === "ladies" && (
+                    <>
+                      <tr>
+                        <th>Piko</th>
+                        <td>{order.piko}</td>
+                      </tr>
+                      <tr>
+                        <th>Dupatta</th>
+                        <td>{order.dupatta}</td>
+                      </tr>
+                      <tr>
+                        <th>Top</th>
+                        <td>{order.top}</td>
+                      </tr>
+                      <tr>
+                        <th>Embroidery</th>
+                        <td>{order.embroidery}</td>
+                      </tr>
+                    </>
+                  )}
                 </tbody>
               </table>
             </div>
