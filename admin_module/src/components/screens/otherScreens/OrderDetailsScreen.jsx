@@ -65,33 +65,9 @@ const OrderDetailsScreen = () => {
                     <th>Address</th>
                     <td>{order.address}</td>
                   </tr>
-                  <tr>
-                    <th>Comments</th>
-                    <td>{order.comments}</td>
-                  </tr>
-                  <tr>
-                    <th>Available Time</th>
-                    <td>{order.availTime}</td>
-                  </tr>
-                  <tr>
-                    <th>Sample</th>
-                    <td>
-                      <img
-                        src={order.sample}
-                        alt="Sample"
-                        className="sample-img"
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>Delivery Charges</th>
-                    <td>Rs.{order.deliveryCharges}-/</td>
-                    <th>Total Price</th>
-                    <td>Rs.{order.total}-/</td>
-                  </tr>
 
                   {/* Fields specific to Gents */}
-                  {order.category === "gents" && (
+                  {order.category === "gents" ? (
                     <>
                       <tr>
                         <th>Neck</th>
@@ -114,25 +90,22 @@ const OrderDetailsScreen = () => {
                         <td>{order.puncha}</td>
                       </tr>
                       <tr>
-                        <th>Top</th>
-                        <td>{order.top}</td>
+                        <th>Top Stitch</th>
+                        <td>{order.Top_double_stitch}</td>
                       </tr>
                       <tr>
                         <th>Embroidery</th>
                         <td>{order.embroidery}</td>
                       </tr>
                     </>
-                  )}
-
-                  {/* Fields specific to Ladies */}
-                  {order.category === "ladies" && (
+                  ) : order.category === "ladies" ? (
                     <>
                       <tr>
                         <th>Piko</th>
                         <td>{order.piko}</td>
                       </tr>
                       <tr>
-                        <th>Dupatta</th>
+                        <th>Pocket</th>
                         <td>{order.dupatta}</td>
                       </tr>
                       <tr>
@@ -144,7 +117,30 @@ const OrderDetailsScreen = () => {
                         <td>{order.embroidery}</td>
                       </tr>
                     </>
-                  )}
+                  ) : null}
+
+                  <tr>
+                    <th>Available Time</th>
+                    <td>{order.availTime}</td>
+                    <th>Price</th>
+                    <td>Rs.{order.price}-/</td>
+                  </tr>
+                  <tr>
+                    <th>Delivery Charges</th>
+                    <td>Rs.{order.deliveryCharges}-/</td>
+                    <th>Total Price</th>
+                    <td>Rs.{order.total}-/</td>
+                  </tr>
+                  <tr>
+                    <th>Sample</th>
+                    <td>
+                      <img
+                        src={order.sample}
+                        alt="Sample"
+                        className="sample-img"
+                      />
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
