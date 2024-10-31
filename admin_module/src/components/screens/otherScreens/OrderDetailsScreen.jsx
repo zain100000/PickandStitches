@@ -71,30 +71,24 @@ const OrderDetailsScreen = () => {
                       <tr>
                         <th>Neck</th>
                         <td>{order.neck}</td>
-                      </tr>
-                      <tr>
                         <th>Pocket</th>
                         <td>{order.pocket}</td>
                       </tr>
                       <tr>
                         <th>Daman</th>
                         <td>{order.daman}</td>
-                      </tr>
-                      <tr>
                         <th>Wrist</th>
                         <td>{order.wrist}</td>
                       </tr>
                       <tr>
                         <th>Puncha</th>
                         <td>{order.puncha}</td>
-                      </tr>
-                      <tr>
                         <th>Top</th>
                         <td>{order.top}</td>
                       </tr>
                       <tr>
                         <th>Embroidery</th>
-                        <td>{order.embroidery}</td>
+                        <td colSpan={3}>{order.embroidery}</td>
                       </tr>
                     </>
                   ) : order.category === "ladies" ? (
