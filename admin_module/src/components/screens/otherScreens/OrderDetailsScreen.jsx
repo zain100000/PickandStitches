@@ -66,7 +66,6 @@ const OrderDetailsScreen = () => {
                     <td>{order.address}</td>
                   </tr>
 
-                  {/* Fields specific to Gents */}
                   {order.category === "gents" ? (
                     <>
                       <tr>
