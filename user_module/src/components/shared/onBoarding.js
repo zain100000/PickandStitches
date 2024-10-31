@@ -218,12 +218,12 @@ const styles = StyleSheet.create({
 
   headerImage: {
     width: '100%',
-    height: height * 0.55,
+    height: height * 0.5,
     resizeMode: 'cover',
   },
 
   textContainer: {
-    top: height * 0.09,
+    top: height * 0.12,
   },
 
   title: {
@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
   description: {
     fontSize: width * 0.045,
     left: width * 0.075,
-    fontFamily: FONTS.semiBold,
+    fontFamily: FONTS.medium,
     lineHeight: height * 0.04,
     width: width * 0.9,
   },

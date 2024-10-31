@@ -93,7 +93,7 @@ const OrderDetailsScreen = () => {
                       <td>{order.comments}</td>
                     )}
                     <th>Embroidery</th>
-                    <td>{order.Embroidery}</td>
+                    <td>{order.embroidery}</td>
                   </tr>
                   {order.category === "gents" && (
                     <tr>
@@ -111,7 +111,7 @@ const OrderDetailsScreen = () => {
                   </tr>
                   <tr>
                     <th>Delivery Charges</th>
-                    <td>Rs.{order.deliverycharges}-/</td>
+                    <td>Rs.{order.deliveryCharges}-/</td>
                     <th>Total Price</th>
                     <td>Rs.{order.total}-/</td>
                   </tr>
