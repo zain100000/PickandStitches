@@ -40,6 +40,11 @@ const GentsProducts = () => {
     fetchProducts();
   }, []);
 
+  const onRefresh = () => {
+    setRefreshing(true); // Set to true immediately when refresh is triggered
+    fetchProducts();
+  };
+
   const fetchProducts = async () => {
     setLoading(true);
     try {
@@ -85,12 +90,8 @@ const GentsProducts = () => {
       console.error('Error fetching products: ', error);
     } finally {
       setLoading(false);
+      setRefreshing(false); // Reset refreshing state here
     }
-  };
-
-  const onRefresh = () => {
-    setRefreshing(true);
-    fetchProducts();
   };
 
   const renderProductItem = ({item}) => (

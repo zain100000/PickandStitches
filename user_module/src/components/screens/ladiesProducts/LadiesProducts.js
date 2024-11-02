@@ -92,6 +92,7 @@ const LadiesProducts = () => {
       console.error('Error fetching products: ', error);
     } finally {
       setLoading(false);
+      setRefreshing(false); // Reset refreshing state here
     }
   };
 
