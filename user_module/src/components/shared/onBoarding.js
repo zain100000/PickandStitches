@@ -295,7 +295,7 @@ const styles = StyleSheet.create({
   paginationContainer: {
     flexDirection: 'row',
     position: 'absolute',
-    bottom: height * 0.4,
+    bottom: height * 0.43,
     left: width * 0.05,
     width: '100%',
     gap: 5,
